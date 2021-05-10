@@ -1,0 +1,102 @@
+.m-brand .m-brand__logo .m-brand__logo-wrapper h1{
+    font-size: 25px;
+}
+
+select.form-control.financial-selector, .form-control{
+    height: 33px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    padding: 0 15px 0 10px;
+    height: 33px;
+    line-height: 33px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow, .select2-container--default .select2-selection--multiple .select2-selection__arrow{
+    right: -10px;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single{
+    border-radius: 5px !important;
+}
+
+.form-control.focus, .form-control:focus{
+    border-color: #ced4da;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple, .select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #ced4da;
+}
+.m-footer--push.m-aside-left--enabled:not(.m-footer--fixed) .m-footer{
+    margin-top: 0;
+}
+
+/* .m-grid__item.m-aside-left.m-aside-left--skin-dark.custsidebar{
+    height: 87vh;
+} */
+
+/* body{
+    display: block;
+    height: 100%;
+} */
+
+.m-content {
+    flex: 1 0 auto;
+}
+
+.m-grid.m-grid--hor:not(.m-grid--desktop):not(.m-grid--desktop-and-tablet):not(.m-grid--tablet):not(.m-grid--tablet-and-mobile):not(.m-grid--mobile).m-grid--root{
+    height: 100%;
+}
+
+.m-grid__item.m-aside-left.m-aside-left--skin-dark.custsidebar{
+    height: auto;
+}
+
+.m-header--fixed .m-body{
+    padding-top: 50px !important;
+}
+
+.m-header {
+    height: 50px;
+}
+
+.m-brand .m-brand__logo, .m-brand .m-brand__tools{
+    height: 50px !important;
+}
+
+/* select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 20px;
+    background: url("../images/select-arrow.png") no-repeat 95% center;
+    background-size: 12%;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single{
+    width: 112px;
+}
+
+.select2-container--default .select2-dropdown{
+    width: 112px !important;
+} */
+
+.def_form{
+    border: 1px solid #46586f;
+}
+
+.def_chalan input{
+    width: 35%;
+    float: none;
+    display: inline-block;
+    margin: 0 0 10px;
+}
+
+.def_chalan label{
+    margin-top: 6px;
+}

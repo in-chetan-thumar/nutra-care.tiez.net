@@ -1,0 +1,107 @@
+@font-face {
+    font-family: NILKANTH;
+    src: url('/fonts/nilkanth.eot');
+	src: local('☺'), url('/fonts/nilkanth.woff') format('woff'), url('/fonts/nilkanth.ttf') format('truetype'), url('/fonts/nilkanth.svg') format('svg');
+}
+
+.nilkanth {
+    font-family: NILKANTH;
+}
+
+.digit_nilkanth {
+    font-family: NILKANTH;
+}
+
+@font-face {
+    font-family: terafont-varun;
+    src: url('/fonts/terafontvarun.eot');
+    src: local('☺'), url('/fonts/terafontvarun.woff') format('woff'), url('/fonts/terafontvarun.ttf') format('truetype'), url('/fonts/terafontvarun.svg') format('svg');
+}
+
+.varun {
+    font-family: terafont-varun;
+}
+
+@font-face {
+    font-family: 'HindVadodara-Medium';
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    src: url("/fonts/HindVadodara-Medium.ttf") format("truetype");
+}
+
+.googleGu {
+    font-family: HindVadodara-Medium;
+}
+
+.modal-select2 .select2 {
+    width: 100% !important;
+}
+
+.table tbody tr td.nilkanth {
+    font-size: 16px;
+}
+
+.table tbody tr td.digit_nilkanth {
+    font-size: 18px;
+}
+
+.table tbody tr td label.digit_nilkanth {
+    font-size: 18px;
+}
+
+.table tbody tr td.varun {
+    font-size: 16px;
+}
+
+input.varun {
+    font-size: 16px;
+}
+
+input.nilkanth {
+    font-size: 16px; 
+}
+
+input.digit_nilkanth {
+    font-size: 22px; 
+}
+
+.select2-selection.varun {
+    font-size: 16px; 
+}
+
+.select2-selection.nilkanth {
+    font-size: 16px; 
+}
+
+.select2-selection.digit_nilkanth {
+    font-size: 18px; 
+}
+
+.varun .select2-results li {
+    font-size: 16px; 
+} 
+
+.nilkanth .select2-results li {
+    font-size: 16px; 
+}
+
+.digit_nilkanth .select2-results li {
+    font-size: 16px; 
+}
+
+span.varun {
+    font-size: 16px; 
+}
+
+span.nilkanth {
+    font-size: 16px; 
+}
+
+span.digit_nilkanth {
+    font-size: 18px; 
+}
+
+table {
+	border : 1px solid #000000;
+}

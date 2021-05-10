@@ -37,9 +37,16 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\CategoryProductLink', 'product_id', 'id');
     }
-
+    public function attribute_product_links()
+    {
+        return $this->hasMany('App\Models\ProductsAttributes', 'product_id', 'id');
+    }
     public function getCategoryIdsAttribute()
     {
         return $this->category_product_links->pluck('category_id')->toArray();
+    }
+    public function getAttributeIdsAttribute()
+    {
+        return $this->attribute_product_links->pluck('attribute_id')->toArray();
     }
 }

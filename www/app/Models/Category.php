@@ -17,6 +17,7 @@ class Category extends Model
         'description',
         'photo',
         'slug',
+        'parent_category_id',
         'created_by',
         'updated_by',
         'deleted_at',
@@ -35,4 +36,8 @@ class Category extends Model
         return $this->hasMany('App\Models\CategoryProductLink','category_id','id');
     }
 
+    public function chaild_category()
+    {
+        return $this->hasMany('App\Models\Category','parent_category_id','id');
+    }
 }

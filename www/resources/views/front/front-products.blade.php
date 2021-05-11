@@ -198,6 +198,6 @@
         var index_url = "{{route('front.front.products')}}";
 
     </script>
-    <script src="{{ URL::asset('js/admin/fronted_product.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/admin/fronted_product.js')}}" type="text/javascript"></script>
 @endsection
 

@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-3">
         <div class="value_left">
-          <h3>Our <br/> Values</h3>
+          <h3>Our Values</h3>
           <div class="value_img">
             <img src="assets/images/value.jpg" alt="Value" title="Value" />
           </div>

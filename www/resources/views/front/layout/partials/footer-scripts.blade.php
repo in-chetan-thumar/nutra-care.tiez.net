@@ -11,7 +11,8 @@
 <script src="{{asset('assets/js/common.js')}}"></script>
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ URL::asset('assets/vendor/jsvalidation/jsvalidation.js')}}"></script>
-<script src="{{asset('assets/js/script.js')}}"></script>
+
 <script src="{{asset('assets/js/smooth-scrollbar.js')}}"></script>
 <script src="{{asset('assets/js/lottie.min.js')}}"></script>
-<script src="{{asset('assets/js/nutrafinal.json')}}"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>
+

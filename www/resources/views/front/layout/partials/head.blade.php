@@ -16,6 +16,7 @@
 
 <!-- Custom styles for this template -->
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('assets/css/animation_style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/all.min.css')}}" rel="stylesheet">

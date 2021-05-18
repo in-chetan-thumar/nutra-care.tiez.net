@@ -6,7 +6,7 @@
     <div class="row innovation_main">
       <div class="col-md-12 col-lg-5">
         <div class="innovation_left">
-          <h3>Research, Research, More Research</h3>
+          <h3>Research, Research, <br/> More Research</h3>
           <p>As an attempt to contribute to our mission and steer towards our vision, we at Nutracare International consider research and development as an integral and crucial part of our work. In our commitment to deliver quality and value for money as chemical manufacturers in India, we make R&D the pedestal of our products. Supported by a resourceful library and information management service, our efforts in research and development run majorly on innovation too.</p>
         </div>
       </div>

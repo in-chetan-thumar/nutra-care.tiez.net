@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer_block">
             <div class="row">
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-5">
                     <div class="footer_logo">
                         <a href="{{route('front.home')}}">
                             <img src="assets/images/logo.png" />
@@ -33,7 +33,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-4">
                     <ul>
                         <li>
                             <a href="{{route('front.about.us')}}">About Us</a>

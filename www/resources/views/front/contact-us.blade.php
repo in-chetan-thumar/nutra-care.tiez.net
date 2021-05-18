@@ -38,8 +38,8 @@
     <div class="contact_address_block">
         <h3>Head Office Address:</h3>
         <p>214, Blue Rose Industrial Estate, W.E. Highway, Borivali(E), Mumbai - 400066, INDIA.</p>
-        <p class="contact_detail"><i class="fas fa-mobile-alt"></i> 91-22-28065292 / 28059274 / +91-9820315046</p>
-        <p class="contact_detail"><i class="fas fa-at"></i> info@nutracareintl.com / nutracare@yahoo.com / bdm@nutracareintl.com</p>
+        <p class="contact_detail"><i class="fas fa-mobile-alt"></i> <a href="tel: +91-22-28065292"> 91-22-28065292 </a> / <a href="tel: +28059274"> 28059274 </a> / <a href="tel: +91-9820315046"> +91-9820315046 </a></p>
+        <p class="contact_detail"><i class="fas fa-at"></i> <a href="mailto:info@nutracareintl.com"> info@nutracareintl.com </a> / <a href="mailto:nutracare@yahoo.com"> nutracare@yahoo.com </a> / <a href="mailto:bdm@nutracareintl.com "> bdm@nutracareintl.com </a></p>
     </div>
     <div class="contact_address_block">
         <h3>Corporate Address:</h3>

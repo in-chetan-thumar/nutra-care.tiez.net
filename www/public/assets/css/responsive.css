@@ -12,6 +12,12 @@
     }
 }
 
+@media screen and (min-width: 1399px){
+    .contact_div {
+        margin: -21% 25px 0;
+    }
+}
+
 @media screen and (max-width: 1199px){
     .header_main nav ul li a, .header_main nav ul li a:visited{
         margin: 0 11px;

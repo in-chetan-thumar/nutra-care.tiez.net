@@ -1434,19 +1434,20 @@ button.send_inquiry span{
 }
 
 .about_left h3{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     color: #212121;
-    margin: 0 0 25px;
-    line-height: 48px;
+    margin: 0;
+    line-height: 82px;
+    letter-spacing: -0.0084em;
 }
 
 .about_left p{
     font-size: 16px;
     font-weight: 400;
-    color: #50677E;
-    margin: 0 0 25px;
-    line-height: 25px;
+    color: #637056;
+    margin: 0;
+    line-height: 26px;
 }
 
 .about_box{
@@ -1469,7 +1470,9 @@ button.send_inquiry span{
     font-size: 40px;
     font-weight: 700;
     color: #fff;
-    margin: 0 0 15px;
+    margin: 0;
+    line-height: 82px;
+    letter-spacing: -0.0084em;
 }
 
 .world_sec p{
@@ -1493,6 +1496,7 @@ button.send_inquiry span{
     padding: 20px 0 0;
     border-top: 2px solid #707070;
     margin: 0 0 30px;
+    letter-spacing: -0.0124em;
 }
 
 .value_right{
@@ -1512,6 +1516,7 @@ button.send_inquiry span{
     line-height: 58px;
     color: #1E2616;
     margin: 0 0 10px;
+    letter-spacing: -0.0084em;
 }
 
 .value_box p{

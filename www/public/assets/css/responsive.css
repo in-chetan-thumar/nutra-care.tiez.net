@@ -16,6 +16,9 @@
     .contact_div {
         margin: -21% 25px 0;
     }
+    .innovation_left{
+        padding-right: 98px;
+    }
 }
 
 @media screen and (max-width: 1199px){

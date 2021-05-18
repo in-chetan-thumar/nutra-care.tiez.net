@@ -986,7 +986,8 @@ ul.development_description li{
     display: block;
     padding: 65px 45px;
     box-sizing: border-box;
-    background: transparent linear-gradient(113deg, #FFDFDF 0%, #F6FFE3 100%) 0% 0% no-repeat;
+    background: url(../images/product-banner.png) no-repeat bottom center;
+    height: 280px;
 }
 
 .contact_bg3.product_bg3{
@@ -998,17 +999,18 @@ ul.development_description li{
 }
 
 .contact_bg1.product_bg1 p{
-    font-size: 20px;
-    font-weight: 400;
-    color: #1A3260;
-    line-height: 24px;
-    margin: 0 0 10px;
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.061em;
+    line-height: 62px;
 }
 
 .contact_bg1.product_bg1 h1{
-    font-size: 30px;
-    font-weight: 500;
-    color: #1A3260;
+    font-size: 46px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.104em;
 }
 
 .breadcrumb_sec{
@@ -1045,18 +1047,19 @@ ol.breadcrumb li a{
 .product_right{
     float: none;
     display: inline-block;
-    width: 64%;
+    width: 64.5%;
     text-align: right;
 }
 
 .product_right .dropdown button.dropbtn{
     background: transparent;
-    color: #818181;
+    color: #161F34;
     font-size: 16px;
     font-weight: 400;
-    padding: 10px 20px;
+    padding: 14px 20px;
     box-sizing: border-box;
-    border: 1px solid #FFC034;
+    border: 1px solid #6E6E6E;
+    letter-spacing: 0.034em;
 }
 
 .dropdown {
@@ -1106,15 +1109,16 @@ ol.breadcrumb li a{
 }
 
 button.send_inquiry{
-    background: #FFC034;
+    background: #c5c7c3;
     text-decoration: none;
-    padding: 6px 18px;
+    padding: 10px 18px;
     box-sizing: border-box;
     font-size: 16px;
     letter-spacing: 0.034em;
-    color: #00329B;
+    color: #fff;
     border-radius: 0;
     outline: 0;
+    font-weight: 400;
 }
 
 button.send_inquiry:focus{
@@ -1122,7 +1126,7 @@ button.send_inquiry:focus{
 }
 
 button.send_inquiry span{
-    color: #00329B;
+    color: #fff;
 }
 
 .contact_form.modal-form{
@@ -1781,6 +1785,7 @@ ul.resp-tabs-list li img{
     display: inline-block;
     vertical-align: middle;
     width: 100%;
+    padding-right: 20px;
 }
 
 .innovation_right{
@@ -1791,27 +1796,28 @@ ul.resp-tabs-list li img{
 }
 
 .innovation_left h3{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     color: #212121;
-    line-height: 48px;
-    margin: 0 0 20px;
+    line-height: 58px;
+    margin: 0 0 5px;
+    letter-spacing: -0.0084em; 
 }
 
 .innovation_left p{
     font-size: 16px;
     font-weight: 400;
-    color: #50677E;
-    line-height: 28px;
-    margin: 0 0 35px;
+    color: #637056;
+    line-height: 26px;
+    margin: 0;
 }
 
 .innovation_right img{
-    width: auto;
+    width: 100%;
 }
 
 .innovation_main{
-    margin: 0 0 50px;
+    margin: 0 0 25px;
 }
 
 .header.sticky{
@@ -1926,4 +1932,23 @@ span.invalid-feedback{
 
 .lottie-progress path {
     stroke: #0034dd;
+}
+
+.breadcrumb_sec li.breadcrumb-item{
+    color: #3E3E3E9C;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.breadcrumb_sec li.breadcrumb-item.active{
+    color: rgba(62, 62, 62, 0.61)
+}
+
+.innovation_left.no-padding{
+    padding-right: 0px;
+}
+
+.innovation_text{
+    display: flex;
+    align-items: center;
 }

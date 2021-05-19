@@ -37,6 +37,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 
     <section class="value_block">

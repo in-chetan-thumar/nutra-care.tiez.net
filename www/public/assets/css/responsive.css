@@ -16,6 +16,12 @@
     .contact_div {
         margin: -21% 25px 0;
     }
+    .innovation_left{
+        padding-right: 98px;
+    }
+    .value_left h3{
+        padding: 20px 20px 0 0;
+    }
 }
 
 @media screen and (max-width: 1199px){
@@ -106,6 +112,7 @@
     }
     .innovation_left h3{
         font-size: 26px;
+        line-height: 30px;
     }
 }
 
@@ -477,6 +484,14 @@
     }
     .contact_div {
         margin: -56% 0 0;
+    }
+    .footer ul li a {
+        font-size: 15px;
+        margin: 0 0 12px;
+    }
+    .footer h6{
+        font-size: 15px;
+        margin: 0 0 12px;
     }
 }
 

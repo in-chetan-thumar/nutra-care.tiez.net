@@ -2,19 +2,13 @@
 @section('content')
 
     <section class="contact_us_sec">
-        <div class="container">
-            <div class="contact_block">
-                <div class="contact_left">
-                    <div class="contact_bg1 product_bg1">
-                        <p>At Salvi chemical industries limited we believe in</p>
+        <div class="contact_block">
+            <div class="contact_left"> 
+                <div class="contact_bg1 product_bg1">
+                    <div class="container">
+                        <p>At Nutra Care we believe in </p>
                         <h1>Quality, Quantity & Quick service</h1>
                     </div>
-                </div>
-                <div class="contact_right">
-                    <div class="contact_bg2">
-                        <div class="contact_bg3 product_bg3"></div>
-                    </div>
-                    <div class="contact_bg4 product_bg4"></div>
                 </div>
             </div>
         </div>
@@ -25,7 +19,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    <li class="breadcrumb-item active" aria-current="page">Products</li>
                 </ol>
             </nav>
             <div class="product_main">

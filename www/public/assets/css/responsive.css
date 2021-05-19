@@ -555,6 +555,7 @@
     .value_left h3{
         font-size: 26px;
         width: 40%;
+        padding: 20px 0px 0 0;
     }
     .value_img img {
         width: auto;

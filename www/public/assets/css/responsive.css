@@ -22,6 +22,18 @@
     .value_left h3{
         padding: 20px 20px 0 0;
     }
+    .health_info{
+        padding: 0 200px 0 35px;
+    }
+    .vision_para p{
+        padding: 0 170px 0 60px;
+    }
+    .certify_info{
+        width: 55%;
+    }
+    .header_main nav ul li a, .header_main nav ul li a:visited{
+        margin: 0 40px;
+    }
 }
 
 @media screen and (max-width: 1199px){
@@ -114,6 +126,43 @@
         font-size: 26px;
         line-height: 30px;
     }
+    .health_sec img{
+        width: 100%;
+    }
+    .health_info{
+        padding: 0 0px 0 35px;
+    }
+    .anemia_sec{
+        padding: 75px 0 75px;
+    }
+    .anemia_block img{
+        padding: 0;
+    }
+    .category_sec h3{
+        font-size: 30px;
+    }
+    .category_main{
+        padding: 0;
+    }
+    .category_block h4{
+        font-size: 17px;
+    }
+    .vision_sec h3{
+        font-size: 30px;
+    }
+    .tragedy_block{
+        margin: 0;
+    }
+    .category_sec{
+        padding: 60px 0 30px;
+    }
+    .certify_sec h3{
+        font-size: 30px;
+        margin: 0 0 40px;
+    }
+    .certify_info{
+        width: 58%;
+    }
 }
 
 @media screen and (max-width: 823px){
@@ -124,7 +173,7 @@
     }
 
     .header_main{
-        padding: 15px 0;
+        padding: 0;
     }
 
     .header_main .nav-mobile {
@@ -160,7 +209,7 @@
     .header_main #navbar-toggle {
         position: absolute;
         left: 18px;
-        top: 15px;
+        top: 8px;
         cursor: pointer;
         padding: 10px 35px 16px 0px;
     }
@@ -343,6 +392,53 @@
         font-size: 38px;
         line-height: 40px;
     }
+    .health_sec img {
+        width: auto;
+        margin: 0 auto 20px;
+        text-align: center;
+        display: block;
+    }
+    .health_info {
+        padding: 0;
+        text-align: center;
+        margin: 0 0 10px;
+    }
+    .anemia_sec {
+        padding: 30px 0;
+    }
+    .category_sec {
+        padding: 40px 0 30px;
+    }
+    .vision_sec h3{
+        margin: 0 0 25px;
+        text-align: center;
+    }
+    .vision_para p{
+        border-left: 0;
+        text-align: center;
+        padding: 0;
+    }
+    .certify_symbol{
+        display: none;
+    }
+    .certify_info{
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+    .certify_info p svg{
+        display: none;
+    }
+    .certify_sec h3{
+        margin: 0 0 25px;
+        text-align: center;
+    }
+    ul.certify_list{
+        margin: 15px 0 0;
+    }
+    .certify_sec{
+        padding: 30px 0;
+    }
 }
 
 @media screen and (max-width: 767px){
@@ -492,6 +588,43 @@
     .footer h6{
         font-size: 15px;
         margin: 0 0 12px;
+    }
+    .category_sec h3 {
+        font-size: 22px;
+        margin: 0 0 25px;
+    }
+    .category_block{
+        padding: 35px 25px 28px;
+    }
+    .category_block img {
+        margin: 0 0 30px;
+    }
+    .category_block h4{
+        line-height: 25px;
+    }
+    .vision_sec h3 {
+        font-size: 22px;
+    }
+    .tragedy_block h3{
+        font-size: 22px;
+    }
+    .tragedy_block{
+        height: 260px;
+        padding: 32px 0 50px 60px;
+    }
+    .tragedy_block::after{
+        right: 35%;
+        top: 40%;
+    }
+    .certify_sec h3{
+        font-size: 22px;
+        margin: 0 0 20px;
+    }
+    .category_sec h3{
+        text-align: center;
+    }
+    .category_block{
+        height: 230px;
     }
 }
 
@@ -656,12 +789,38 @@
     .contact_form {
         padding: 25px 25px 25px;
     }
+    .health_info p{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .anemia_sec {
+        padding: 20px 0;
+    }
+    .category_sec {
+        padding: 20px 0;
+    }
+    .certify_info p{
+        line-height: 22px;
+        font-size: 15px;
+    }
+    .vision_para p{
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .health_sec img{
+        width: 100%;
+    }
+    .tragedy_block{
+        padding: 32px 0 50px 30px;
+    }
 }
+
 
 @media screen and (max-width: 375px){
     .banner_title h1{
         font-size: 15px;
     }
+    
     .custom-select__trigger{
         padding: 0 10px;
         font-size: 12px;

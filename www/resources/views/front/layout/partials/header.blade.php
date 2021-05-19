@@ -24,19 +24,19 @@
               </li>
             </ul>
           </nav>
-            <div class="lang_block">
-                <div class="custom-select-wrapper">
-{{--                    <div class="custom-select">--}}
-{{--                        <div class="custom-select__trigger"><span>English</span>--}}
-{{--                            <div class="arrow"></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="custom-options">--}}
-{{--                            <span class="custom-option selected" data-value="english">English</span>--}}
-{{--                            <span class="custom-option" data-value="spanish">Spanish</span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                </div>
-            </div>
+              <div class="lang_block">
+                  <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <div class="custom-select__trigger"><span>English</span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="custom-options">
+                           <span class="custom-option selected" data-value="english">English</span>
+                          <span class="custom-option" data-value="spanish">Spanish</span>
+                        </div>
+                    </div>
+                  </div>
+              </div>
         </div>
       </div>
     </div>

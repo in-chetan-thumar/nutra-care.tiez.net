@@ -21,6 +21,7 @@
     }
     .value_left h3{
         padding: 20px 20px 0 0;
+        width: 60%;
     }
     .health_info{
         padding: 0 200px 0 35px;
@@ -101,6 +102,7 @@
     }
     .world_sec h3{
         font-size: 27px;
+        line-height: 50px;
     }
     .world_sec p{
         font-size: 13px;
@@ -439,6 +441,17 @@
     .certify_sec{
         padding: 30px 0;
     }
+    .contact_bg1.product_bg1 h1{
+        font-size: 35px;
+    }
+    .product_left{
+        width: 100%;
+    }
+    .product_right{
+        width: 100%;
+        text-align: left;
+        margin: 20px 0 0;
+    }
 }
 
 @media screen and (max-width: 767px){
@@ -519,6 +532,7 @@
         font-size: 25px;
         margin: 0 0 20px;
         line-height: 35px;
+        text-align: center;
     }
     .value_right{
         padding: 0;
@@ -625,6 +639,30 @@
     }
     .category_block{
         height: 230px;
+    }
+    .about_left p{
+        margin: 0 0 20px;
+        line-height: 22px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .contact_bg1.product_bg1 h1 {
+        font-size: 28px;
+    }
+    .contact_bg1.product_bg1 p {
+        font-size: 22px;
+        line-height: 50px;
+    }
+    .contact_bg1.product_bg1{
+        height: 225px;
+    }
+    .sidenav{
+        width: 100%;
+        border-right: none;
+    }
+    .main{
+        width: 100%;
+        border-top: 1px solid rgba(160, 160, 160, 0.30);
     }
 }
 
@@ -813,6 +851,26 @@
     .tragedy_block{
         padding: 32px 0 50px 30px;
     }
+    .value_box p{
+        margin: 0 0 30px;
+    }
+    .contact_bg1.product_bg1 h1 {
+        font-size: 22px;
+        line-height: 25px;
+    }
+    .contact_bg1.product_bg1 p {
+        font-size: 20px;
+        line-height: 40px;
+    }
+    .dropdown{
+        margin-right: 0;
+    }
+    button.send_inquiry{
+        margin: 15px 0 0;
+    }
+    .contact_bg1.product_bg1{  
+        padding: 65px 20px;
+    }
 }
 
 
@@ -852,6 +910,9 @@
     }
     .contact_div {
         margin: -94% 0 0;
+    }
+    .contact_bg1.product_bg1 p{
+        font-size: 18px;
     }
 }
 
@@ -904,9 +965,7 @@
     .spotlight_sec {
         padding: 0 25px;
     }
-    .header_right{
-        width: 100%;
-    }
+
     .inquiry_block {
         margin: 0;
     }

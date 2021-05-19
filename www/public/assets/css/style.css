@@ -1510,9 +1510,9 @@ button.send_inquiry span{
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
-.value_box{
+/* .value_box{
     height: 70%;
-}
+} */
 
 .value_box h4{
     font-size: 40px;
@@ -1528,7 +1528,7 @@ button.send_inquiry span{
     font-weight: 400;
     line-height: 26px;
     color: #637056;
-    margin: 0 0 10px;
+    margin: 0 0 80px;
 }
 
 .privacy_block.terms{
@@ -2160,4 +2160,8 @@ ul.certify_list li{
     display: inline-block;
     margin: 0 0 30px;
     text-align: center;
+}
+
+#img_other {
+    width: 100%;
 }

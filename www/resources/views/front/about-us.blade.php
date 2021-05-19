@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
                         <div class="about_left">
-                            <h3>Mission & Vission</h3>
+                            <h3>Mission & Vision</h3>
                             <p>Our customers need and deserve high performance products, and the finest of raw materials
                                 and services. Our visionary goal is to continue to cater to them with honesty,
                                 integrity, and transparency, but also do so with commitment to providing quality and
@@ -43,7 +43,7 @@
     <section class="value_block">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-lg-3">
+                <div class="col-md-12 col-lg-4">
                     <div class="value_left">
                         <h3>Our Values</h3>
                         <div class="value_img">
@@ -51,31 +51,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-9">
+                <div class="col-md-12 col-lg-8">
                     <div class="value_right">
                         <div class="value_box" data-img-url="assets/images/value.jpg">
-                            <h4 class="title">A Chemical Approach to Health</h4>
+                            <h4 class="title">A Chemical Approach <br/> to Health</h4>
                             <p>A core purpose at Nutracare, we believe in the introduction of chemistry to health, and
                                 its uplifting results. Our value lies in customer satisfaction and catering to their
                                 needs of nutritional elements with the correct healthy chemistry formulation and
                                 techniques.</p>
                         </div>
                         <div class="value_box" data-img-url="assets/images/quality.jpg">
-                            <h4 class="title">Keeping Up with Your Needs & Demands</h4>
+                            <h4 class="title">Keeping Up with Your Needs <br/> & Demands</h4>
                             <p>As the days and years pass, our needs and demands keep changing. Today, the world needs
                                 personal attention and made-to-order services. We are committed to working hard enough
                                 to be able to keep up with the needs and demands of our customers with efficient and
                                 cost-effective products and services.</p>
                         </div>
                         <div class="value_box" data-img-url="assets/images/research.jpg">
-                            <h4 class="title">Excelling but with Integrity and Honesty</h4>
+                            <h4 class="title">Excelling but with Integrity <br/> and Honesty</h4>
                             <p>We believe that we run on a fair dose of integrity, honesty, and perseverance. We not
                                 only believe in a sustainable future for the world but also sustainability in our work,
                                 as givers to society today. By maintaining transparency through our processes and
                                 products, we also hope to send out an inspiring message.</p>
                         </div>
                         <div class="value_box" data-img-url="assets/images/resource.jpg">
-                            <h4 class="title">Flexibility and Quality as the Crux</h4>
+                            <h4 class="title">Flexibility and Quality as <br/> the Crux</h4>
                             <p>With our customers guiding our growth, we are constantly motivated to bring innovation
                                 into our work. With an open mind to feedback and customer inputs, we trust our
                                 flexibility and innovation to keep churning out high-quality products.</p>

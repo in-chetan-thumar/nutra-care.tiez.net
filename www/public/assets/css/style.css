@@ -1856,7 +1856,7 @@ span.invalid-feedback{
 /* Contact Us */
 
 .contact_banner{
-    background: rgba(0, 100, 18, 0.70);
+    background: rgba(0, 100, 18, 0.70) url("../images/contact-us.png") no-repeat center center;
     padding: 45px 0 0;
     box-sizing: border-box;
     height: 400px;

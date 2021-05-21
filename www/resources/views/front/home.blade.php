@@ -1,13 +1,13 @@
 @extends('front.layout.mainlayout')
 @section('content')
 
-<!-- <div class="lottie-progress">
+<div class="lottie-progress">
 </div>
 <div class="lottie_container">
     <div class="content">
 
     </div>
-</div> -->
+</div>
 
 <section class="health_sec">
     <div class="container">
@@ -109,7 +109,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-6">
                 <div class="certify_symbol">
-                    <img src="assets/images/symbol.png" alt="Nutra Care" title="Nutra Care" /> 
+                    <img src="assets/images/symbol.png" alt="Nutra Care" title="Nutra Care" />
                 </div>
                 <div class="certify_info">
                     <p>Nutra Care is a responsible corporate citizen and has taken several steps to integrate its quality and business objectives. The Quality system adopted by SCIL is certified by reputed international authorities like

@@ -100,3 +100,10 @@ select.form-control.financial-selector, .form-control{
 .def_chalan label{
     margin-top: 6px;
 }
+
+/* Home page animation CSS Start */
+.lottie_container{
+	height: 100vh
+}
+
+/* Home page animation CSS End */

@@ -24,7 +24,7 @@ scrollbar.addListener(() => {
     let scrollPercentage = (scrollFromTop * 100) / totalHeight;
     let scrollPercentRounded = Math.round(scrollPercentage); // Just in case
     lottieProgress.goToAndStop(
-        (scrollPercentage * lottieProgress.totalFrames) / 100,
+        (scrollPercentage * lottieProgress.totalFrames) / 45,
         true
     );
 });

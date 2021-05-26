@@ -1,6 +1,6 @@
 .lottie-progress {
   width: 100%;
-  height: auto;
+  height: auto;  
   position: fixed;
   top: 50%;
   right: 50%;
@@ -8,4 +8,8 @@
 }
 .lottie-progress path {
   stroke: #0034dd;
+}
+
+.lottie_container {
+	height: 100vh;
 }

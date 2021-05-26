@@ -243,3 +243,7 @@ $('.journey_list.owl-carousel').owlCarousel({
         }
     }
 });
+
+$(document).ready(function(){
+    $(this).scrollTop(0);
+});

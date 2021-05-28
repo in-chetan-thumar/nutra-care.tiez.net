@@ -6,8 +6,8 @@
             <div class="contact_left"> 
                 <div class="contact_bg1 product_bg1">
                     <div class="container">
-                        <p>At Nutra Care we believe in </p>
-                        <h1>Quality, Quantity & Quick service</h1>
+                        <p>{{trans('labels.product_subtitle')}}</p>
+                        <h1>{{trans('labels.product_title')}}</h1>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
       <div class="header_main">
         <div class="brand">
           <a href="{{route('front.home')}}">
-            <img src="assets/images/logo.png" alt="Salvi Chemical" title="Salvi Chemical" />
+            <img src="assets/images/logo.png" alt="Nutra Care" title="Nutra Care" />
           </a>
         </div>
         <div class="header_right">
@@ -11,16 +11,16 @@
             <div class="nav-mobile"><a id="navbar-toggle" href="javascript:void(0);"><span></span></a></div>
             <ul class="nav-list">
               <li>
-                <a href="{{route('front.about.us')}}">About Us</a>
+                <a href="{{route('front.about.us')}}">{{trans('labels.menu_about_us')}}</a>
               </li>
               <li>
-                <a href="{{route('front.research.development')}}">Research and Development</a>
+                <a href="{{route('front.research.development')}}">{{trans('labels.menu_r_d')}}</a>
               </li>
               <li>
-                <a href="{{route('front.front.products')}}">Products</a>
+                <a href="{{route('front.front.products')}}">{{trans('labels.menu_products')}}</a>
               </li>
               <li>
-                <a href="{{route('front.contact.us')}}">Contact Us</a>
+                <a href="{{route('front.contact.us')}}">{{trans('labels.menu_contact_us')}}</a>
               </li>
             </ul>
           </nav>

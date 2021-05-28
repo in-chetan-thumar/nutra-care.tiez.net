@@ -3,7 +3,7 @@
 
 <section class="contact_banner">
     <div class="container">
-        <h1>Contact Us</h1>
+        <h1>{{trans('labels.contact_title')}}</h1>
     </div>
 </section>
 
@@ -36,18 +36,18 @@
       </div>
     </div>
     <div class="contact_address_block">
-        <h3>Head Office Address:</h3>
-        <p>214, Blue Rose Industrial Estate, W.E. Highway, Borivali(E), Mumbai - 400066, INDIA.</p>
+        <h3>{{trans('labels.head_office_title')}}</h3>
+        <p>{{trans('labels.head_office_address')}}</p>
         <p class="contact_detail"><i class="fas fa-mobile-alt"></i> <a href="tel: +91-22-28065292"> 91-22-28065292 </a> / <a href="tel: +28059274"> 28059274 </a> / <a href="tel: +91-9820315046"> +91-9820315046 </a></p>
         <p class="contact_detail"><i class="fas fa-at"></i> <a href="mailto:info@nutracareintl.com"> info@nutracareintl.com </a> / <a href="mailto:nutracare@yahoo.com"> nutracare@yahoo.com </a> / <a href="mailto:bdm@nutracareintl.com "> bdm@nutracareintl.com </a></p>
     </div>
     <div class="contact_address_block">
-        <h3>Corporate Address:</h3>
-        <p>Plot No.43, Road No.13, SurSEZ, Near Sachin Railway <br/> Station, Sachin - 394230, District: Surat, Gujarat.</p>
+        <h3>{{trans('labels.corporate_office_title')}}</h3>
+        <p>{!!trans('labels.corporate_office_address')!!}</p>
     </div>
     <div class="contact_address_block">
-        <h3>Factory Address:</h3>
-        <p>Plot No.3601, Road No.3, GIDC, Sachin, District: Surat, Gujarat.</p>
+        <h3>{{trans('labels.factory_title')}}</h3>
+        <p>{{trans('labels.factory_address')}}</p>
     </div>
   </div>
 </section>

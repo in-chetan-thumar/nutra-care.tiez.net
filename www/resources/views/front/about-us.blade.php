@@ -83,7 +83,7 @@
                                 <h4 class="title">{!!trans('labels.value_info_title3')!!}</h4>
                                 <p>{{trans('labels.value_info_para3')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/resource.jpg">
+                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/value.jpg">
                                 <h4 class="title">{!!trans('labels.value_info_title4')!!}</h4>
                                 <p>{{trans('labels.value_info_para4')}}</p>
                             </div>

@@ -150,6 +150,8 @@
         </div>
     </section>
 
+    @include('front.layout.partials.footer') 
+
 </div>
 
 @endsection

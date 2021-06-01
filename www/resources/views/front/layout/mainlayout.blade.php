@@ -6,7 +6,9 @@
  <body>
     @include('front.layout.partials.header')
     @yield('content')
-    @include('front.layout.partials.footer')
+    @if(Route::currentRouteName() != 'front.home')
+      @include('front.layout.partials.footer')
+    @endif
     @include('front.layout.partials.footer-scripts')
    @yield('script')
  </body>

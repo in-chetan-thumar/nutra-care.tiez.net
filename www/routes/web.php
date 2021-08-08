@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 // });
 
 
+Route::group(['middleware'=>'language'], function () {
     Route::get('/', 'Front\MainController@home')->name('front.home');
     Route::get('/about-us', 'Front\MainController@aboutUs')->name('front.about.us');
     Route::get('/contact-us', 'Front\MainController@contactUs')->name('front.contact.us');
@@ -34,5 +35,9 @@ use Illuminate\Support\Facades\Session;
     Route::get('/sustainability', 'Front\MainController@sustainability')->name('front.sustainability');
     Route::get('/research-development', 'Front\MainController@researchDevelopment')->name('front.research.development');
 
+});
 
-
+Route::get('/{locale}', function ($locale) {
+    Session::put('locale',$locale);
+    return redirect(url()->previous());
+})->name('locale.lang');

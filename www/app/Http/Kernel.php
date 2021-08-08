@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \App\Http\Middleware\CheckRolePermission::class,
         'set-locale' => \App\Http\Middleware\SetLocale::class,
+        'language' => \App\Http\Middleware\LanguageSwitcher::class
     ];
 }

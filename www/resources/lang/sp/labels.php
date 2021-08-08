@@ -13,7 +13,16 @@ return [
    /* Banner Description */
    'banner_title' => 'Creating life-enhancing products through the power of chemistry for 41+ years',
 
-   /* Development Details */
+    /* Product Category */
+    'category_title' => 'Categorías de Productos',
+    'category_info1' => 'Alimentos y productos farmacéuticos',
+    'category_info2' => 'Ingredientes alimentarios',
+    'category_info3' => 'Productos de microencapsulación<br/> y grado CC',
+    'category_info4' => 'Vitaminas y<br/> premezcla de minerales',
+    'category_info5' => 'Biocidas',
+    'category_info6' => 'Productos Cosméticos',
+
+    /* Development Details */
    'development_title' => 'Our motto is sustainable development for all',
    'development_subtitle' => 'Our company’s values are based on three pillars',
    'development_block1_title' => 'People',
@@ -29,7 +38,12 @@ return [
    'development_block3_listing2' => 'Compliance with all the rules, regulations and laws',
    'development_block3_listing3' => 'Transparent Accounting',
 
-   /* Industry Details */
+    /* Mission Vision Block */
+    'mission_title' => 'Misión y Visión',
+    'mission_para' => 'Our customers need and deserve high performance products, and the finest of raw materials and services. Our visionary goal is to continue to cater to them with honesty, integrity, and transparency, but also do so with commitment to providing quality and cost-effective products. Sustainability is also a core part of our policies as a nutraceutical chemical manufacturer, along with the aim of mastering operational excellence. Our mission and vision convene to curate services that allow our customers to meet the challenges of today and all the tomorrows.',
+
+
+    /* Industry Details */
    'industry_title' => 'Industries and applications',
    'industry_subtitle' => 'Benefiting the industry and society at large through constant innovation.',
    'industry_block1_title' => 'Food and Pharma',
@@ -55,7 +69,70 @@ return [
    'spotlight_block1_title' => 'Corporate annaouncement bombay stock exchange.',
    'spotlight_block1_info' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
 
-   /* Certification Details */
+    /*------------------------------------------------ About Us Page -----------------------------------------*/
+
+    'about_us_title' => 'Misión y Visión',
+    'about_us_subtitle' => 'Nuestros clientes necesitan y merecen productos de alto rendimiento y las
+mejores materias primas y servicios. Nuestro objetivo es continuar atendiéndolos
+con honestidad, integridad y transparencia, pero también hacerlo con el
+compromiso de proporcionar productos de calidad y rentables. La sostenibilidad
+también es una parte fundamental de nuestras políticas como fabricante de
+productos químicos nutracéuticos, junto con el objetivo de dominar la excelencia
+operativa. Nuestra misión y visión se reúnen para seleccionar servicios que
+permitan a nuestros clientes enfrentarse a los desafíos de hoy y del mañana.',
+    'about_para1' => 'Ayudamos al mundo a avanzar',
+    'about_para2' => 'El mundo puede convertirse en un lugar mejor cuando es más saludable y
+consume los productos que ofrece el planeta. En Nutracare, tenemos la misión de
+contribuir a un mundo saludable y, por lo tanto, feliz y cordial. Al acercarle a los
+nutrientes, nos gusta considerarnos la mano amiga que hace girar la rueda del
+cambio.',
+    'value_title' => 'Our Valores',
+    'value_info_title1' => 'Un enfoque químico de <br/> la salud',
+    'value_info_para1' => 'Un propósito central en Nutracare, creemos en la introducción de la química en la
+salud y sus resultados edificantes. Nuestro valor radica en la satisfacción del
+cliente y en atender sus necesidades de elementos nutricionales con la correcta
+formulación y técnicas de química saludable.',
+    'value_info_title2' => 'Nos mantenemos al día con sus necesidades <br/> y demandas ',
+    'value_info_para2' => 'A medida que pasan los días y los años, nuestras necesidades y demandas siguen
+cambiando. Hoy en día, el mundo necesita atención y servicios personalizados.
+Estamos comprometidos a trabajar lo suficientemente duro para poder satisfacer
+las necesidades y demandas de nuestros clientes con productos y servicios
+eficientes y rentables.',
+    'value_info_title3' => 'Sobresalientes, pero con  <br/>integridad y honestidad',
+    'value_info_para3' => 'Creemos que operamos con una buena dosis de integridad, honestidad y
+perseverancia. No solo creemos en un futuro sostenible para el mundo, sino
+también en la sostenibilidad de nuestro trabajo, como generadores de la sociedad
+actual. Al mantener la transparencia a través de nuestros procesos y productos,
+también esperamos enviar un mensaje inspirador.',
+    'value_info_title4' => 'Flexibilidad y calidad como <br/> punto crucial',
+    'value_info_para4' => 'Con nuestros clientes guiando nuestro crecimiento, estamos constantemente
+motivados para introducir innovaciones en nuestro trabajo. Con una mente
+abierta a los comentarios y aportes de los clientes, confiamos en nuestra
+flexibilidad e innovación para seguir produciendo productos de alta calidad.',
+
+    /*-------------------------------------------- Research & Development ------------------------------------*/
+    'research_title1' => 'Investigación y Desarrollo',
+    'research_description1' => 'Como un intento de contribuir a nuestra misión y orientarnos hacia nuestra
+visión, en Nutracare International consideramos la investigación y el desarrollo
+como una parte integral y crucial de nuestro trabajo. En nuestro compromiso de
+ofrecer calidad y relación calidad-precio como fabricantes de productos químicos
+en la India, hacemos de la I+D la base de nuestros productos. Con el apoyo de un
+ingenioso servicio de biblioteca y gestión de la información, nuestros esfuerzos en
+la investigación y desarrollo también se basan principalmente en la innovación.',
+    'research_title2' => 'La calidad es el trabajo de la paciencia',
+    'research_description2' => 'El propósito de ofrecer una calidad suprema se encuentra en el centro de las
+actividades de la empresa. Creemos en la búsqueda de la excelencia pero con
+paciencia y atención. Preferimos no acortar la persecución y el proceso de
+desarrollo. En cambio, nuestra I+D se centra en una ética laboral innovadora, que
+promete productos conscientes y de calidad.',
+    'research_title3' => 'Equipado con los recursos',
+    'research_description3' => 'Los laboratorios internos y las herramientas de equipo instaladas en Nutracare
+garantizan una investigación y un desarrollo independientes, completos y de
+calidad. Nuestros productos están respaldados por la innovación y los recursos
+adecuados para desarrollar tecnologías y procesos de fabricación eficientes y
+rentables.',
+
+    /* Certification Details */
    'certification_title' => 'Certifications',
 
    /* Footer Links */

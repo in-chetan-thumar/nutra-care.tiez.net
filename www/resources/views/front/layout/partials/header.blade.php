@@ -24,19 +24,19 @@
               </li>
             </ul>
           </nav>
-              <div class="lang_block">
-                  <div class="custom-select-wrapper">
+            <div class="lang_block">
+                <div class="custom-select-wrapper">
                     <div class="custom-select">
-                        <div class="custom-select__trigger"><span>English</span>
+                        <div class="custom-select__trigger"><span>{{App::isLocale('en') ? 'English':'Spanish'}}</span>
                             <div class="arrow"></div>
                         </div>
                         <div class="custom-options">
-                           <span class="custom-option selected" data-value="english">English</span>
-                          <span class="custom-option" data-value="spanish">Spanish</span>
+                            <span class="custom-option {{App::isLocale('en') ? 'selected':''}}" data-value="{{route('locale.lang','en')}}" onclick="language(event)">English</span>
+                            <span class="custom-option {{App::isLocale('sp') ? 'selected':''}}" data-value="{{route('locale.lang','sp')}}" onclick="language(event)">Spanish</span>
                         </div>
                     </div>
-                  </div>
-              </div>
+                </div>
+            </div>
         </div>
       </div>
     </div>

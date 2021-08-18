@@ -40,7 +40,14 @@ return [
 
     /* Mission Vision Block */
     'mission_title' => 'Misión y Visión',
-    'mission_para' => 'Our customers need and deserve high performance products, and the finest of raw materials and services. Our visionary goal is to continue to cater to them with honesty, integrity, and transparency, but also do so with commitment to providing quality and cost-effective products. Sustainability is also a core part of our policies as a nutraceutical chemical manufacturer, along with the aim of mastering operational excellence. Our mission and vision convene to curate services that allow our customers to meet the challenges of today and all the tomorrows.',
+    'mission_para' => 'Nuestros clientes necesitan y merecen productos de alto rendimiento y las
+    mejores materias primas y servicios. Nuestro objetivo es continuar atendiéndolos
+    con honestidad, integridad y transparencia, pero también hacerlo con el
+    compromiso de proporcionar productos de calidad y rentables. La sostenibilidad
+    también es una parte fundamental de nuestras políticas como fabricante de
+    productos químicos nutracéuticos, junto con el objetivo de dominar la excelencia
+    operativa. Nuestra misión y visión se reúnen para seleccionar servicios que
+    permitan a nuestros clientes enfrentarse a los desafíos de hoy y del mañana.',
 
 
     /* Industry Details */
@@ -86,7 +93,7 @@ consume los productos que ofrece el planeta. En Nutracare, tenemos la misión de
 contribuir a un mundo saludable y, por lo tanto, feliz y cordial. Al acercarle a los
 nutrientes, nos gusta considerarnos la mano amiga que hace girar la rueda del
 cambio.',
-    'value_title' => 'Our Valores',
+    'value_title' => 'Valores',
     'value_info_title1' => 'Un enfoque químico de <br/> la salud',
     'value_info_para1' => 'Un propósito central en Nutracare, creemos en la introducción de la química en la
 salud y sus resultados edificantes. Nuestro valor radica en la satisfacción del

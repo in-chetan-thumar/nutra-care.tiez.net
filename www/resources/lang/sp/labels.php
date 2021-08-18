@@ -11,7 +11,7 @@ return [
    'menu_send_inquiry' => 'Enviar Consulta',
 
    /* Banner Description */
-   'banner_title' => 'Creating life-enhancing products through the power of chemistry for 41+ years',
+   'banner_title' => 'Nutracare International, los mayores fabricantes de productos de hierro en la  India y en el extranjero, se creó en 2001. Nuestra gama de servicios incluye  fabricación, marketing, investigación y desarrollo en áreas de premezclas de  vitaminas y minerales, productos microencapsulados, ingredientes alimentarios y  biocidas. Reconocemos que el mundo se ha vuelto un lugar más pequeño con  demandas cada vez más complejas. Sin embargo, seguimos comprometidos para  garantizar que nuestros clientes puedan competir tanto en términos de alta  calidad constante como de precio efectivo. La flexibilidad y el servicio premium,  equipados con instalaciones progresistas, son los pilares de valor de nuestra  filosofía y la base del éxito.',
 
     /* Product Category */
     'category_title' => 'Categorías de Productos',

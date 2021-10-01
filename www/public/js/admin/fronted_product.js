@@ -2,34 +2,37 @@ $(document).ready(function () {
 
     //Load list
     fetch_list($('.filters').serialize());
+
+    disableInquiryBtn();
+    changeProductText();
     $(".productCount").text(countProduct())
 
-});
+})
 
 var count = 0;
 
-function selectProduct(e) {
-    var hasClass = e.currentTarget.classList.contains('active');
-    var id = e.currentTarget.getAttribute('id');
-    var product_id = e.currentTarget.getAttribute('data-product-id');
-
-    if (hasClass) {
-        $("#" + id).removeClass("active");
-        removeLocalStorage(product_id)
-        $(".productCount").text(countProduct())
-    } else {
-        $("#" + id).addClass("active");
-        const arr_attribute_id = [];
-        const arr_checkbox_id = [];
-        const product_attribute = {
-            'attribute_id': arr_attribute_id,
-            'product_id': product_id,
-            'checkbox_id':arr_checkbox_id,
-        }
-        saveLocalStorage(product_id, JSON.stringify(product_attribute))
-        $(".productCount").text(countProduct())
-    }
-}
+// function selectProduct(e) {
+//     var hasClass = e.currentTarget.classList.contains('active');
+//     var id = e.currentTarget.getAttribute('id');
+//     var product_id = e.currentTarget.getAttribute('data-product-id');
+//
+//     if (hasClass) {
+//         $("#" + id).removeClass("active");
+//         removeLocalStorage(product_id)
+//         $(".productCount").text(countProduct())
+//     } else {
+//         $("#" + id).addClass("active");
+//         const arr_attribute_id = [];
+//         const arr_checkbox_id = [];
+//         const product_attribute = {
+//             'attribute_id': arr_attribute_id,
+//             'product_id': product_id,
+//             'checkbox_id':arr_checkbox_id,
+//         }
+//         saveLocalStorage(product_id, JSON.stringify(product_attribute))
+//         $(".productCount").text(countProduct())
+//     }
+// }
 
 function reset_search() {
     $('.filters').find('input[name="filters[search]"]').val('');
@@ -87,6 +90,8 @@ $(document).on('submit', '#form-inquiry', function (e) {
                 success: function (result) {
                     $('.btnInquiry').attr("disabled", false);
                     $('#inquiryModal').modal('hide');
+                    disableInquiryBtn();
+                    changeProductText();
                     $(".productCount").text(countProduct())
                     $('.success_modal').modal('show');
                     localStorage.clear();
@@ -117,7 +122,7 @@ function getValue(e) {
         var data = JSON.parse(localStorage.getItem(product_id));
 
         if (e.target.checked) {
-
+            $("#product" + product_id).addClass("active");
             $.each(data['checkbox_id'], function (index, value) {
                 arr_checkbox_id.push(value);
             })
@@ -138,17 +143,28 @@ function getValue(e) {
             })
             $.each(data['checkbox_id'], function (index, value) {
                 if (value != checkbox_id){
-
                     arr_checkbox_id.push(value);
                 }
             })
         }
-
-        product_attribute = {
-            'attribute_id': arr_attribute_id,
-            'product_id': product_id,
-            'checkbox_id':arr_checkbox_id,
+        if(arr_attribute_id.length == 0 || arr_checkbox_id.length == 0){
+            $("#product" + product_id).removeClass("active");
+            removeLocalStorage(product_id)
+            disableInquiryBtn();
+            changeProductText();
+            $(".productCount").text(countProduct())
+        }else{
+            product_attribute = {
+                'attribute_id': arr_attribute_id,
+                'product_id': product_id,
+                'checkbox_id':arr_checkbox_id,
+            }
+            saveLocalStorage(product_id, JSON.stringify(product_attribute))
+            disableInquiryBtn();
+            changeProductText();
+            $(".productCount").text(countProduct())
         }
+
 
     } else {
 
@@ -162,9 +178,12 @@ function getValue(e) {
             'product_id': product_id,
             'checkbox_id':arr_checkbox_id,
         }
+        saveLocalStorage(product_id, JSON.stringify(product_attribute))
+        disableInquiryBtn();
+        changeProductText();
+        $(".productCount").text(countProduct())
     }
-    saveLocalStorage(product_id, JSON.stringify(product_attribute))
-    $(".productCount").text(countProduct())
+
 }
 
 function saveLocalStorage(key, value) {
@@ -212,6 +231,8 @@ function countProduct() {
 }
 
 $(document).on('hide.bs.modal', '#exampleModal1', function () {
+    disableInquiryBtn();
+    changeProductText();
     $(".productCount").text(countProduct())
     location.reload()
 });
@@ -232,3 +253,71 @@ $(document).on('show.bs.modal', '#inquiryModal', function () {
         localStorage.removeItem('_grecaptcha')
     }
 });
+
+function getProduct(categories,url) {
+    $.ajax({
+        headers: {
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        },
+        type: "post",
+        url: url,
+        data:{id:categories},
+        success: function (result) {
+            $('.product-list').html(result);
+            readLoacalstorage()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
+$(document).ready(function () {
+
+    var categories = [];
+
+    $('input[name="categories[]"]').on('change', function (e) {
+        e.preventDefault();
+        filterProduct()
+    });
+
+    $(".clearFilter").on('click',function () {
+        $('input[name="categories[]"]').prop('checked',false);
+        localStorage.clear()
+        disableInquiryBtn();
+        changeProductText();
+        $(".productCount").text(countProduct())
+        filterProduct();
+    })
+
+});
+
+function filterProduct() {
+    categories = [];
+    $('input[name="categories[]"]:checked').each(function()
+    {
+        categories.push($(this).val());
+    });
+
+    if(categories.length == 0){
+        fetch_list($('.filters').serialize());
+    }else{
+        getProduct(categories,product_url);
+
+    }
+}
+
+function changeProductText() {
+    if(countProduct() > 1){
+        $(".productText").text('Products');
+    }else{
+        $(".productText").text('Product');
+    }
+}
+
+function disableInquiryBtn() {
+    if(countProduct() == 0){
+        $(".send_inquiry").attr('disabled','disabled');
+    }else{
+        $(".send_inquiry").removeAttr('disabled');
+    }
+}

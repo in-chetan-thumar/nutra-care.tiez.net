@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="dashbordreoirt">
-                    <p><i class="m-menu__link-icon fas fa-list"></i>Category</p>
+                    <p><i class="m-menu__link-icon fas fa-list"></i>Attribute</p>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="text-right">
             <a href="javascript:;" class="theme-btn mb-3 add_record"><i class="fas fa-plus mr-2"></i>Add
-                Category</a>
+                Attribute</a>
         </div>
 
         <div id="data-list-page">
@@ -44,42 +44,24 @@
     </div>
 
     <!--Create Page Model-->
-    <div class="modal fade" id="add-category-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="add-attribute-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">ADD CATEGORY</h5>
+                    <h5 class="modal-title">ADD Attribute</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div id="editModalContent">
-                    {{ Form::open(array('url' =>route('categories.store'),'name' => 'form-category', 'id'=>'form-category','enctype'=>'multipart/form-data')) }}
+                    {{ Form::open(array('url' =>route('attributes.store'),'name' => 'form-attribute', 'id'=>'form-attribute','enctype'=>'multipart/form-data')) }}
                     @csrf
                     <div class="modal-body row">
                         <div class="form-group col-md-12">
-                            {{ Form::label('title', 'Title', array('class'=>'form-control-label')) }}
-                            {{ Form::text('title','', array('class' => 'form-control', 'id' => 'title')) }}
+                            {{ Form::label('attribute', 'Attribute Name', array('class'=>'form-control-label')) }}
+                            {{ Form::text('attribute_name','', array('class' => 'form-control', 'id' => 'attribute_name')) }}
                         </div>
-                        <!--div class="form-group col-md-12">
-                            {{ Form::label('description', 'Description', array('class'=>'form-control-label')) }}
-                            {{ Form::textarea('description','', array('class' => 'form-control', 'id' => 'description')) }}
-                        </div-->
-                        <div class="form-group col-md-12">
-                            {{ Form::label('photo', 'Photo', array('class'=>'form-control-label')) }}
-                            {{ Form::file('photo', array('class' => 'form-control', 'id' => 'photo')) }}
-                        </div>
-                        <!--div class="form-group col-md-12">
-                            {{ Form::label('slug', 'Slug', array('class'=>'form-control-label')) }}
-                            {{ Form::text('slug','', array('class' => 'form-control', 'id' => 'slug')) }}
-                        </div-->
-                        <div class="form-group col-md-12">
-                            {{ Form::label('parent_category', 'Main Category', array('class'=>'form-control-label')) }}
-                            {{Form::select('parent_category', $categories,null,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}
-                        </div>
-
-                    </div>
                     <div class="modal-footer">
                         <button class="btn theme-btn">Submit</button>
                         <button type="button" class="btn theme-btn-white" data-dismiss="modal">Close</button>
@@ -90,18 +72,20 @@
             </div>
         </div>
     </div>
+    </div>
+
     <!-- Edit user mddal -->
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editAttributeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Category</h5>
+                    <h5 class="modal-title">Edit Attribute</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="editCategoryModalContent">
+                <div id="editAttributeContent">
 
                 </div>
             </div>
@@ -109,9 +93,9 @@
     </div>
 @endsection
 @section('scripts')
-    {!! $validator !!}
-    <script>
-        var index_url = "{{route('category.index')}}";
-    </script>
-    <script src="{{ URL::asset('js/admin/category.js') }}" type="text/javascript"></script>
+            {!! $validator !!}
+            <script>
+                var index_url = "{{route('attribute.index')}}";
+            </script>
+            <script src="{{ URL::asset('js/admin/attribute.js') }}" type="text/javascript"></script>
 @endsection

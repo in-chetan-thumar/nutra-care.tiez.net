@@ -1,6 +1,6 @@
 @extends('admin.layouts.auth')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2 userbglogin" id="m_login">
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2 userbglogin" id="m_login" style="background: url('{{asset('assets/images/banner.jpg')}}') no-repeat center center !important; background-size: cover !important;">
 	<div class="m-grid__item m-grid__item--fluid m-login__wrapper">
 		<div class="m-login__container user_m-login__container">
 			<div class="m-login__logo">

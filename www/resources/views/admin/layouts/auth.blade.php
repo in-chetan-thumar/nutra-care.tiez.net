@@ -2,8 +2,9 @@
     <!-- begin::Head -->
     <head>
         <meta charset="utf-8" />
-        <title>Actress Wallpaper</title>
-        <meta name="description" content="Latest updates and statistic charts"> 
+        <title>Salvi Chemical Industries Ltd.</title>
+        <meta name="description" content="Salvi Chemical Industries">
+        <meta name="tag" content="Salvi Chemical Industries">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 		<!--begin::Base Styles -->
 			<link href="{{ URL::asset('/assets/vendor/css/vendors.bundle.css') }}" rel="stylesheet" type="text/css" /><!--RTL version:<link href="../../../assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
@@ -29,15 +30,14 @@
             @yield('content')
         </div>
         <!-- end:: Page -->
-        <!--begin::Base Scripts -->        
+        <!--begin::Base Scripts -->
     	    	<script  src="{{ URL::asset('/assets/vendor/js/vendors.bundle.js') }}" type="text/javascript"></script>
 		    	<script src="{{ URL::asset('/assets/vendor/js/scripts.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
-        <!--begin::Page Snippets --> 
-        <!--end::Page Snippets -->    
+		<!--end::Base Scripts -->
+        <!--begin::Page Snippets -->
+        <!--end::Page Snippets -->
     </body>
     @yield('plugin_script')
     @yield('scripts')
     <!-- end::Body -->
 </html>
-    

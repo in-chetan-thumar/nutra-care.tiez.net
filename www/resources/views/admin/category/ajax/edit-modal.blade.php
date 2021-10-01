@@ -6,18 +6,22 @@
             {{ Form::label('title', 'Title', array('class'=>'form-control-label')) }}
             {{ Form::text('title',$record->title, array('class' => 'form-control', 'id' => 'title')) }}
         </div>
-        <div class="form-group col-md-12">
+        <!--div class="form-group col-md-12">
             {{ Form::label('description', 'Description', array('class'=>'form-control-label')) }}
             {{ Form::textarea('description',$record->description, array('class' => 'form-control', 'id' => 'description')) }}
-        </div>
+        </div-->
         <div class="form-group col-md-12">
             {{ Form::label('photo', 'Photo', array('class'=>'form-control-label')) }}
             {{ Form::file('photo', array('class' => 'form-control', 'id' => 'photo')) }}
             {{ Form::hidden('photo_name',$record->photo) }}
         </div>
-        <div class="form-group col-md-12">
+        <!--div class="form-group col-md-12">
             {{ Form::label('slug', 'Slug', array('class'=>'form-control-label')) }}
             {{ Form::text('slug',$record->slug, array('class' => 'form-control', 'id' => 'slug')) }}
+        </div-->
+        <div class="form-group col-md-12">
+            {{ Form::label('parent_category', 'Parent Category', array('class'=>'form-control-label')) }}
+            {{Form::select('parent_category', $categories,$record->parent_category_id,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}
         </div>
     </div>
 </div>

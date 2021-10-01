@@ -9,7 +9,7 @@
 				<div class="m-stack m-stack--ver m-stack--general">
 					<div class="m-stack__item m-stack__item--middle m-brand__logo">
 						<a href="{{ route('dashboard') }}" class="m-brand__logo-wrapper">
-							<h1 class="text-white">Actress Wallpaper</h1>
+							<h1 class="text-white">Nutra Care</h1>
 						</a>
 					</div>
 					<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -47,7 +47,7 @@
 					id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
 				<div id="m_header_menu"
 					class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-dark m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark financial-menu">
-				
+
 				</div>
 				<!-- END: Horizontal Menu -->
 				<!-- BEGIN: Topbar -->
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- START: Change financial year form -->
 	@if(!\Auth::user()->isAdmin())
     {{ Form::open(array('route' => 'change-financial-years.store', 'id'=>'change-financial-year-form', 'style' => 'display:none')) }}

@@ -40,4 +40,15 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Category','parent_category_id','id');
     }
+    public function category_products()
+    {
+        $total_link_products = 0;
+        //$total_link_products = $this->category_product_links->count();
+        if(!empty($this->chaild_category)){
+            foreach($this->chaild_category as $subCategory){
+                $total_link_products += $subCategory->category_product_links->count();
+            }
+        }
+        return $total_link_products;
+    }
 }

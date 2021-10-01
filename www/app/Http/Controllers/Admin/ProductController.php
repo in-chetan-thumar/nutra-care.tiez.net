@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attributes;
 use App\Models\Category;
 use App\Models\CategoryProductLink;
 use App\Models\Product;
+use App\Models\ProductsAttributes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JsValidator, File, Storage;
@@ -26,14 +28,15 @@ class ProductController extends Controller
         $records = resolve('product')->getListing($filters, true, $per_page);
         $records->appends($filters);
 
-        $categories = resolve('category')->getAll();
+        $categories = Category::where('parent_category_id','!=',0)->pluck('title','id');
+        $attributes = Attributes::all()->pluck('attribute_name','id');
 
         $rules = [
             'title' => 'required|max:100',
-            'description' => 'required',
-            'photo' => 'required|image',
+            'photo' => 'image',
             'slug' => 'required',
-            'categories.*' => 'required|not_in:0',
+            'categories.*' => 'not_in:0',
+            'attributes.*' => 'not_in:0',
         ];
 
         $custom_messages = [];
@@ -48,7 +51,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return view('admin.product.product_list', ['validator' => $validator, 'categories' => $categories]);
+        return view('admin.product.product_list', ['validator' => $validator, 'categories' => $categories,'attributes' => $attributes]);
     }
 
     /**
@@ -100,6 +103,18 @@ class ProductController extends Controller
                 ]);
             }
 
+            //if(count($request->get('attributes')) != 0)
+            if(!empty($request->get('attributes')))
+            {
+                foreach ($request->get('attributes') as $attribute)
+                {
+                    ProductsAttributes::create([
+                        'product_id' => $products->id,
+                        'attribute_id' => $attribute,
+                    ]);
+                }
+            }
+
             return response()->json(['status' => 'success', 'message' => 'Product created successfully.']);
 
         } catch (\Exception $e) {
@@ -135,10 +150,11 @@ class ProductController extends Controller
                 'description' => 'required',
                 'photo' => 'image',
                 'slug' => 'required',
-                'categories.*' => 'required|not_in:0',
+                'categories.*' => 'required|not_in:0'
             ];
 
-            $categories = resolve('category')->getAll();
+            $categories = Category::where('parent_category_id','!=',0)->pluck('title','id');
+            $attributes = Attributes::all()->pluck('attribute_name','id');
 
             $custom_messages = [];
             $custom_attribute = [];
@@ -149,6 +165,7 @@ class ProductController extends Controller
                 'record' => $record,
                 'validator' => $validator,
                 'categories' => $categories,
+                'attributes' => $attributes
             ]);
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => 'Something went wrong, please try again.']);
@@ -188,6 +205,7 @@ class ProductController extends Controller
             ];
 
             CategoryProductLink::where('product_id',$id)->delete();
+            ProductsAttributes::where('product_id',$id)->delete();
 
             foreach ($request->get('categories') as $category)
             {
@@ -195,6 +213,17 @@ class ProductController extends Controller
                     'category_id' => $category,
                     'product_id' => $id
                 ]);
+            }
+
+            if(count($request->get('attributes')) != 0)
+            {
+                foreach ($request->get('attributes') as $attribute)
+                {
+                    ProductsAttributes::create([
+                        'product_id' => $id,
+                        'attribute_id' => $attribute,
+                    ]);
+                }
             }
 
             Product::find($id)->update($data);

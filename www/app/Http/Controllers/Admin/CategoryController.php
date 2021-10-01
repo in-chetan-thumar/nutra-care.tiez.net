@@ -17,19 +17,18 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all()->pluck('title','id');
         $filters = $request->get('filters');
         $per_page = 10;
         $filters['filters'] = $filters;
 
 
-        $records = resolve('category')->getListing($filters,true, $per_page);
+        $records = resolve('category')->getListing($filters, true, $per_page);
         $records->appends($filters);
 
         $rules = [
             'title' => 'required|max:100',
-            'description' => 'required',
-            'photo' => 'required|image',
-            'slug' => 'required',
+            'photo' => 'image',
         ];
 
 
@@ -45,7 +44,7 @@ class CategoryController extends Controller
             ]);
         }
 
-        return view('admin.category.category_list', ['validator' => $validator]);
+        return view('admin.category.category_list', ['validator' => $validator,'categories' => $categories]);
     }
 
     /**
@@ -83,6 +82,7 @@ class CategoryController extends Controller
                 'description' => $request->get('description'),
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
+                'parent_category_id' => $request->parent_category ?? 0 ,
                 'created_by' => $user->id,
                 'created_at' => Carbon::now()
             ];
@@ -117,7 +117,7 @@ class CategoryController extends Controller
         try {
 
             $record = Category::find($id);
-
+            $categories = Category::where('id','!=',$id)->pluck('title','id');
             $rules = [
                 'title' => 'required|max:100',
                 'description' => 'required',
@@ -132,7 +132,8 @@ class CategoryController extends Controller
 
             return view('admin.category.ajax.edit-modal', [
                 'record' => $record,
-                'validator' => $validator
+                'validator' => $validator,
+                'categories' => $categories
             ]);
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => 'Something went wrong, please try again.']);
@@ -158,7 +159,7 @@ class CategoryController extends Controller
                 if (!File::exists($fileDir)) {
                     Storage::makeDirectory($fileDir, 0777);
                 }
-                Storage::delete($fileDir.$filename);
+                Storage::delete($fileDir . $filename);
                 $filename = basename($request->file('photo')->store($fileDir));
             }
 
@@ -168,6 +169,7 @@ class CategoryController extends Controller
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
                 'updated_by' => $user->id,
+                'parent_category_id' => $request->parent_category,
                 'updated_at' => Carbon::now()
             ];
 
@@ -193,5 +195,41 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => $e->getMessage()]);
         }
+    }
+
+    public function getCategory()
+    {
+        $data = [];
+
+        $parent_category = Category::where('parent_category_id', 0)->orderBy('title', 'asc')->get();
+
+        foreach ($parent_category as $category) {
+            $parent_category_list = [];
+            $parent_category_list['id'] = $category->id;
+            $parent_category_list['title'] = $category->title;
+
+            $subcategory_list[] = $this->getSubCategory($category);
+
+            if (!empty($subcategory_list)) {
+                $parentlist['sub_category'] = $subcategory_list;
+            }
+            $data[] = $parent_category_list;
+        }
+
+        return $data;
+    }
+
+    public function getSubCategory($category)
+    {
+        $data = [];
+
+        $sub_categories = Category::where('parent_category_id', $category->id)->orderBy('title', 'asc')->get();
+
+        if ($sub_categories->count() > 0) {
+            foreach ($sub_categories as $sub_category) {
+                $data[] = $sub_category;
+            }
+        }
+        return $data;
     }
 }

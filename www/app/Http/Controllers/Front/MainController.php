@@ -169,10 +169,11 @@ class MainController extends Controller
         }
     }
 
-    public function getProductsByCategoryId($id)
+    public function getProductsByCategoryId(Request $request)
     {
-        $products = Product::whereHas('category_product_links', function ($query) use ($id) {
-            $query->where('category_id', $id);
+        $ids = $request->id;
+        $products = Product::whereHas('category_product_links', function ($query) use ($ids) {
+            $query->whereIn('category_id', $ids);
         })->get();
 
         echo view('front.layout.partials.ajax_product_list', [

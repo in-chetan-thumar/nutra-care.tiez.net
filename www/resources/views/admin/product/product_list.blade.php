@@ -14,10 +14,11 @@
                     <div class="search_button d-flex">
                         <div class="search_button d-flex">
                             <div class="search_label">
+{{--                                {{Form::select('filters[category]', $categories,null,['class'=>'form-control category','id'=>'filter_category'] )}}--}}
                                 <select class="form-control" name="filters[category]" id="filter_category">
                                     <option value="" selected>All</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                    @foreach($categories as $key => $category)
+                                        <option value="{{$key}}">{{$category}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,27 +73,27 @@
                             {{ Form::label('title', 'Title', array('class'=>'form-control-label')) }}
                             {{ Form::text('title','', array('class' => 'form-control', 'id' => 'title')) }}
                         </div>
-                        <div class="form-group col-md-12">
+                        <!--div class="form-group col-md-12">
                             {{ Form::label('description', 'Description', array('class'=>'form-control-label')) }}
                             {{ Form::textarea('description','', array('class' => 'form-control', 'id' => 'description')) }}
-                        </div>
+                        </div-->
                         <div class="form-group col-md-12">
                             {{ Form::label('photo', 'Photo', array('class'=>'form-control-label')) }}
                             {{ Form::file('photo', array('class' => 'form-control', 'id' => 'photo')) }}
                         </div>
-                        <div class="form-group col-md-12">
+                        <!--div class="form-group col-md-12">
                             {{ Form::label('slug', 'Slug', array('class'=>'form-control-label')) }}
                             {{ Form::text('slug','', array('class' => 'form-control', 'id' => 'slug')) }}
+                        </div-->
+
+                        <div class="form-group col-md-12">
+                            {{ Form::label('category', 'Category', array('class'=>'form-control-label')) }}
+                            {{Form::select('categories[]', $categories,null,['class'=>'form-control category','multiple'=>'multiple'] )}}
                         </div>
 
                         <div class="form-group col-md-12">
-                            {{ Form::label('Category', 'Category', array('class'=>'form-control-label')) }}
-                            <select class="form-control category" name="categories[]" multiple>
-                                <option value="0">Select Category</option>
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->title}}</option>
-                                @endforeach
-                            </select>
+                            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}
+                            {{Form::select('attributes[]', $attributes,null,['class'=>'form-control attribute','multiple'=>'multiple'] )}}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -106,7 +107,7 @@
         </div>
     </div>
     <!-- Edit user mddal -->
-    <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editProductModal"  role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -128,7 +129,8 @@
             <script>
                 var index_url = "{{route('product.index')}}";
             </script>
-            <script src="{{ URL::asset('js/admin/product.js') }}" type="text/javascript"></script>
+
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+            <script src="{{ URL::asset('js/admin/product.js') }}" type="text/javascript"></script>
 @endsection

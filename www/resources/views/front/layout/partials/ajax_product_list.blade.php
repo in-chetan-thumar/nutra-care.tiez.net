@@ -3,7 +3,7 @@
         @foreach($products as $row)
             <li>
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="selectProduct(event)"
+                    <button class="dropbtn"
                             id="product{{$row->id}}" data-product-id="{{$row->id}}">{{$row->title}}</button>
                     @if($row->attribute_product_links->count() != 0)
                         <div class="dropdown-content">

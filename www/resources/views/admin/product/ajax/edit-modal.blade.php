@@ -6,27 +6,27 @@
             {{ Form::label('title', 'Title', array('class'=>'form-control-label')) }}
             {{ Form::text('title',$record->title, array('class' => 'form-control', 'id' => 'title')) }}
         </div>
-        <div class="form-group col-md-12">
+        <!--div class="form-group col-md-12">
             {{ Form::label('description', 'Description', array('class'=>'form-control-label')) }}
             {{ Form::textarea('description',$record->description, array('class' => 'form-control', 'id' => 'description')) }}
-        </div>
+        </div-->
         <div class="form-group col-md-12">
             {{ Form::label('photo', 'Photo', array('class'=>'form-control-label')) }}
             {{ Form::file('photo', array('class' => 'form-control', 'id' => 'photo')) }}
             {{ Form::hidden('photo_name',$record->photo) }}
         </div>
-        <div class="form-group col-md-12">
+        <!--div class="form-group col-md-12">
             {{ Form::label('slug', 'Slug', array('class'=>'form-control-label')) }}
             {{ Form::text('slug',$record->slug, array('class' => 'form-control', 'id' => 'slug')) }}
-        </div>
+        </div-->
         <div class="form-group col-md-12">
             {{ Form::label('category', 'Category', array('class'=>'form-control-label')) }}
-            <select class="form-control category" name="categories[]" multiple>
-                <option value="0">Select Category</option>
-                @foreach($categories as $category)
-                    <option value="{{$category->id}}" {{in_array($category->id,$record->category_ids)?'selected':''}}>{{$category->title}}</option>
-                @endforeach
-            </select>
+            {{Form::select('categories[]', $categories,$record->category_ids,['class'=>'form-control editcategory','multiple'=>'multiple'] )}}
+        </div>
+
+        <div class="form-group col-md-12">
+            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}
+            {{Form::select('attributes[]', $attributes,$record->attribute_ids,['class'=>'form-control editattribute','multiple'=>'multiple'] )}}
         </div>
     </div>
 </div>
@@ -36,3 +36,13 @@
 </div>
 {{ Form::close() }}
 {!! $validator !!}
+<script>
+    $('.editcategory').select2({
+        width: "resolve",
+        dropdownParent: $("#editProductModal .modal-content")
+    });
+    $('.editattribute').select2({
+        width: "resolve",
+        dropdownParent: $("#editProductModal .modal-content")
+    });
+</script>

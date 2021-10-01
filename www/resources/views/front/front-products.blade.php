@@ -3,7 +3,7 @@
 
     <section class="contact_us_sec">
         <div class="contact_block">
-            <div class="contact_left"> 
+            <div class="contact_left">
                 <div class="contact_bg1 product_bg1">
                     <div class="container">
                         <p>{{trans('labels.product_subtitle')}}</p>
@@ -62,7 +62,7 @@
                                 <div class="erroInquiry">
 
                                 </div>
-                                <p><span class="productCount">0</span> Products Selected</p>
+                                <p><span class="productCount">0</span> <span class="productText"></span> Selected</p>
                                 {{ Form::open(array('url' =>route('submit.product.inquiry'),'name' => 'form-inquiry', 'id'=>'form-inquiry')) }}
                                 @csrf
 
@@ -144,29 +144,26 @@
 
             <div class="catalogue_main">
                 <div class="sidenav">
-                    <h4>Products</h4>
+                    <div class="col-md-12">
+                        <h4>Products <span style="margin-left: 120px;font-size: 15px;cursor: pointer;border-bottom:1px solid blue;color: blue" class="clearFilter">Clear all</span></h4>
+                    </div>
+
                     <div class="sidenav_link">
                         @if(!empty($categories))
-                            @foreach($categories as $row)
+                            @foreach($categories as $key => $row)
                                 <div class="link_main">
-                                    <button class="dropdown-btn">
-                                        @if($row->chaild_category->count() == 0)
-                                            <a href="javascript;" class="active"
-                                               data-url="{{route('front.product.category',$row->id)}}"
-                                               onclick="loadProduct(event)">{{$row->title}}<span class="badge text-right" style="color: black !important; font-size: 14px;">({{$row->category_product_links->count()}})</span></a>
-
-                                        @else
-                                            <i class="fas fa-chevron-right"></i> {{$row->title}}
-
+                                    <button class="dropdown-btn active" onclick="changeIcon(event)" data-icon="{{$key}}">
+                                        @if($row->chaild_category->count() != 0)
+                                            <i class="fas fa-chevron-down" id="{{$key}}"></i> {{$row->title}}<span class="badge text-right" style="color: black !important; font-size: 14px;">({{$row->category_products()}})</span></a>
                                         @endif
                                     </button>
                                     @if($row->chaild_category->count() != 0)
-                                        <div class="dropdown-container">
+                                        <div class="dropdown-container" style="height:150px;overflow-y: auto;display: block;">
                                             @foreach($row->chaild_category as $subCategory)
-                                                <a href="javascript;" class="active"
-                                                   data-url="{{route('front.product.category',$subCategory->id)}}"
-                                                   onclick="loadProduct(event)">{{$subCategory->title}} <span class="badge text-right" style="color: black !important; font-size: 14px;">({{$subCategory->category_product_links->count()}})</span></a>
-
+                                                <input type="checkbox" id="{{$subCategory->title}}" class="active mt-3" name="categories[]"
+                                                       value="{{$subCategory->id}}">
+                                                <label for="{{$subCategory->title}}">{{$subCategory->title}}</label>
+                                                <span class="badge text-right" style="color: black !important; font-size: 14px;">({{$subCategory->category_product_links->count()}})</span><br/>
                                             @endforeach
                                         </div>
                                     @endif
@@ -182,15 +179,29 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
 @endsection
 @section('script')
     {!! $validator !!}
     <script>
-        var index_url = "{{route('front.front.products')}}";
+        function changeIcon(e) {
+            var hasClass = e.currentTarget.classList.contains('active');
+            var id = $(e.currentTarget).data('icon');
+            if(hasClass){
+                $("#"+id).removeClass('fas fa-chevron-down');
+                $("#"+id).addClass('fas fa-chevron-right');
+            }else{
+                $("#"+id).removeClass('fas fa-chevron-right');
+                $("#"+id).addClass('fas fa-chevron-down');
+            }
+        }
 
+        var index_url = "{{route('front.front.products')}}";
+        var product_url = "{{route('front.product.category')}}";
+        $('.dropdown-btn').click(function() {
+            $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+        });
     </script>
     <script src="{{ asset('js/admin/fronted_product.js')}}" type="text/javascript"></script>
 @endsection

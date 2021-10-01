@@ -1,7 +1,7 @@
 @component('mail::message')
-#  Dear  {{$contact_data->name}}
+#  New Inquiry
 
-{{$contact_data->replay}}
+New Inquiry From {{$record->name}} Check it.
 
 Thanks,<br>
 {{ config('constants.APP_NAME') }}

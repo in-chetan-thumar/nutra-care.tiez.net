@@ -26,26 +26,35 @@
                         class="m-menu__link-text">Dashboard</span></a>
             </li>
 
-        <li class="m-menu__item m-menu__item--submenu {{$masters_news_menu_class}}" aria-haspopup="true"  m-menu-link-redirect="1">
-                <a  href="#" class="m-menu__link m-menu__toggle"><span class="m-menu__item-here"></span><i class="m-menu__link-icon fas fa-newspaper"></i><span class="m-menu__link-text">News & Article</span>
-                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+            {{--        <li class="m-menu__item m-menu__item--submenu {{$masters_news_menu_class}}" aria-haspopup="true"  m-menu-link-redirect="1">--}}
+            {{--                <a  href="#" class="m-menu__link m-menu__toggle"><span class="m-menu__item-here"></span><i class="m-menu__link-icon fas fa-newspaper"></i><span class="m-menu__link-text">News & Article</span>--}}
+            {{--                    <i class="m-menu__ver-arrow la la-angle-right"></i>--}}
+            {{--                </a>--}}
+            {{--                <div class="m-menu__submenu ">--}}
+            {{--                    <span class="m-menu__arrow"></span>--}}
+            {{--                    <ul class="m-menu__subnav">--}}
+            {{--                        <li class="m-menu__item {{($route_name == 'newscategory.index')?'m-menu__item--active':''}}" aria-haspopup="true"  m-menu-link-redirect="1">--}}
+            {{--                            <a  href="{{route('newscategory.store')}}" class="m-menu__link ">--}}
+            {{--                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">--}}
+            {{--                                    <span></span>--}}
+            {{--                                </i>--}}
+            {{--                                <span class="m-menu__link-text">Category</span>--}}
+            {{--                            </a>--}}
+            {{--                        </li>--}}
+
+            {{--                        <li class="m-menu__item {{($route_name == 'news.index')?'m-menu__item--active':''}}" aria-haspopup="true"  m-menu-link-redirect="1"><a  href="{{route('news.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Manage News</span></a></li>--}}
+
+            {{--                    </ul>--}}
+            {{--                </div>--}}
+            {{--            </li>--}}
+
+            <li class="m-menu__item {{($route_name == 'inquiry.index')?'m-menu__item--active':''}}" aria-haspopup="true"
+                m-menu-link-redirect="1">
+                <a href="{{route('inquiry.index')}}" class="m-menu__link ">
+                    <span class="m-menu__item-here"></span>
+                    <i class="m-menu__link-icon fas fa-info"></i>
+                    <span class="m-menu__link-text">Product Inquiry</span>
                 </a>
-                <div class="m-menu__submenu ">
-                    <span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-                        <li class="m-menu__item {{($route_name == 'newscategory.index')?'m-menu__item--active':''}}" aria-haspopup="true"  m-menu-link-redirect="1">
-                            <a  href="{{route('newscategory.store')}}" class="m-menu__link ">
-                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                    <span></span>
-                                </i>
-                                <span class="m-menu__link-text">Category</span>
-                            </a>
-                        </li>
-
-                        <li class="m-menu__item {{($route_name == 'news.index')?'m-menu__item--active':''}}" aria-haspopup="true"  m-menu-link-redirect="1"><a  href="{{route('news.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Manage News</span></a></li>
-
-                    </ul>
-                </div>
             </li>
 
             <li class="m-menu__item {{($route_name == 'contact.index')?'m-menu__item--active':''}}" aria-haspopup="true"
@@ -57,14 +66,14 @@
                 </a>
             </li>
 
-            <li class="m-menu__item {{($route_name == 'page.index')?'m-menu__item--active':''}}" aria-haspopup="true"
-                m-menu-link-redirect="1">
-                <a href="{{route('page.index')}}" class="m-menu__link ">
-                    <span class="m-menu__item-here"></span>
-                    <i class="m-menu__link-icon fas fa-book"></i>
-                    <span class="m-menu__link-text">Page</span>
-                </a>
-            </li>
+            {{--            <li class="m-menu__item {{($route_name == 'page.index')?'m-menu__item--active':''}}" aria-haspopup="true"--}}
+            {{--                m-menu-link-redirect="1">--}}
+            {{--                <a href="{{route('page.index')}}" class="m-menu__link ">--}}
+            {{--                    <span class="m-menu__item-here"></span>--}}
+            {{--                    <i class="m-menu__link-icon fas fa-book"></i>--}}
+            {{--                    <span class="m-menu__link-text">Page</span>--}}
+            {{--                </a>--}}
+            {{--            </li>--}}
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><span class="m-menu__item-here"></span>
                     <i class="m-menu__link-icon fas fa-image"></i>
@@ -81,6 +90,14 @@
                             </a>
                         </li>
 
+                        <li class="m-menu__item {{($route_name == 'attribute.index')?'m-menu__item--active':''}}"
+                            aria-haspopup="true" m-menu-link-redirect="1">
+                            <a href="{{route('attribute.index')}}" class="m-menu__link ">
+                                <span class="m-menu__item-here"></span>
+                                <span class="m-menu__link-text">Attribute</span>
+                            </a>
+                        </li>
+
                         <li class="m-menu__item {{($route_name == 'product.index')?'m-menu__item--active':''}}"
                             aria-haspopup="true" m-menu-link-redirect="1">
                             <a href="{{route('product.index')}}" class="m-menu__link ">
@@ -92,23 +109,23 @@
                 </div>
             </li>
 
-            <li class="m-menu__item {{($route_name == 'notification.index')?'m-menu__item--active':''}}"
-                aria-haspopup="true" m-menu-link-redirect="1">
-                <a href="{{route('notification.index')}}" class="m-menu__link ">
-                    <span class="m-menu__item-here"></span>
-                    <i class="m-menu__link-icon fas fa-bell"></i>
-                    <span class="m-menu__link-text">Notification</span>
-                </a>
-            </li>
+            {{--            <li class="m-menu__item {{($route_name == 'notification.index')?'m-menu__item--active':''}}"--}}
+            {{--                aria-haspopup="true" m-menu-link-redirect="1">--}}
+            {{--                <a href="{{route('notification.index')}}" class="m-menu__link ">--}}
+            {{--                    <span class="m-menu__item-here"></span>--}}
+            {{--                    <i class="m-menu__link-icon fas fa-bell"></i>--}}
+            {{--                    <span class="m-menu__link-text">Notification</span>--}}
+            {{--                </a>--}}
+            {{--            </li>--}}
 
-            <li class="m-menu__item {{($route_name == 'users.index')?'m-menu__item--active':''}}" aria-haspopup="true"
-                m-menu-link-redirect="1">
-                <a href="{{route('users.index')}}" class="m-menu__link ">
-                    <span class="m-menu__item-here"></span>
-                    <i class="m-menu__link-icon fas fa-user"></i>
-                    <span class="m-menu__link-text">User Management</span>
-                </a>
-            </li>
+            {{--            <li class="m-menu__item {{($route_name == 'users.index')?'m-menu__item--active':''}}" aria-haspopup="true"--}}
+            {{--                m-menu-link-redirect="1">--}}
+            {{--                <a href="{{route('users.index')}}" class="m-menu__link ">--}}
+            {{--                    <span class="m-menu__item-here"></span>--}}
+            {{--                    <i class="m-menu__link-icon fas fa-user"></i>--}}
+            {{--                    <span class="m-menu__link-text">User Management</span>--}}
+            {{--                </a>--}}
+            {{--            </li>--}}
 
             <li class="m-menu__item {{($route_name == 'setting.index')?'m-menu__item--active':''}}" aria-haspopup="true"
                 m-menu-link-redirect="1">

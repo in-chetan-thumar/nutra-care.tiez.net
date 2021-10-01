@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Actress Wallpaper</title>
-    <meta name="description" content="Mehsul">
+    <title>Nutra Care</title>
+    <meta name="description" content="Salvi Chemical Industries">
+    <meta name="tag" content="Salvi Chemical Industries">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--begin::Web font -->
@@ -52,6 +53,10 @@
         input.allow_gt_zero_number {
             -moz-appearance: textfield;
         }
+        .select2-container {
+            width: 100% !important;
+        }
+
     </style>
 
     @yield('styles')
@@ -100,7 +105,6 @@
 
     <!-- 16-4-2020 <script src="{{ URL::asset('/assets/vendor/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"> -->
 
-    </script>
     <!--end::Page Vendors Scripts -->
     <!--begin::Page Snippets -->
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
+use App\Models\Product;
+use App\Models\Category;
 
 class DashboardController extends Controller
 {
@@ -28,7 +30,9 @@ class DashboardController extends Controller
     {
         $locale = 'en';
         $user = \Auth::user();
+		$total_category = Category::all()->count();
+		$total_product = Product::all()->count();
         
-        return view('home');
+        return view('home', compact('total_category', 'total_product'));
     }
 }

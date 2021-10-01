@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="{{config('global.meta_descriptio')}}">
 <meta name="tag" content="{{config('global.meta_tag')}}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>Nutra Care</title>
 
 <!-- Bootstrap core CSS -->

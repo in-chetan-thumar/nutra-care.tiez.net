@@ -145,7 +145,7 @@
             <div class="catalogue_main">
                 <div class="sidenav">
                     <div class="col-md-12">
-                        <h4>Products <span style="margin-left: 120px;font-size: 15px;cursor: pointer;border-bottom:1px solid blue;color: blue" class="clearFilter">Clear all</span></h4>
+                        <h4>Products <span style="margin-left: 95px;font-size: 15px;cursor: pointer;border-bottom:1px solid blue;color: blue" class="clearFilter">Clear all</span></h4>
                     </div>
 
                     <div class="sidenav_link">

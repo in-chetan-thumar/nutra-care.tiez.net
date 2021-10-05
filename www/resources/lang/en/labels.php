@@ -39,7 +39,7 @@ return [
    'footer_email' => 'Email:',
    'footer_tel' => 'Tel:',
    'footer_fax' => 'Fax:',
-   'copyright_text' => 'Copyright@Nutra Care',
+   'copyright_text' => 'Copyright © Nutra Care. All rights reserved',
 
    /*------------------------------------------- Contact Us Page ------------------------------------------- */
    /* Contact Us Details */

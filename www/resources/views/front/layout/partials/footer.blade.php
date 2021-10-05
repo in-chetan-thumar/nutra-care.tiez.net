@@ -57,6 +57,7 @@
         <div class="copyright_sec">
             <div class="copyright_left">
                 <p>{{trans('labels.copyright_text')}}</p>
+				<p style="padding-top: 10px;">Handcrafted with ❤ by <a href="https://www.buzzmakers.in/" style="padding-left: 0px;">Buzz Makers.</a></p>
             </div>
         </div>
     </div>

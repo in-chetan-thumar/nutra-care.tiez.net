@@ -62,8 +62,8 @@ class MainController extends Controller
         $filters['filters'] = $filters;
         $categories = resolve('category')->getAll();
 
-        $products = resolve('product')->getListing($filters, true, $per_page);
-        $products->appends($filters);
+        $products = resolve('product')->getListing($filters, false, $per_page);
+        //$products->appends($filters);
 
         $rules = [
             'name' => 'required|max:100',
@@ -174,7 +174,7 @@ class MainController extends Controller
         $ids = $request->id;
         $products = Product::whereHas('category_product_links', function ($query) use ($ids) {
             $query->whereIn('category_id', $ids);
-        })->get();
+        })->orderBy('title')->get();
 
         echo view('front.layout.partials.ajax_product_list', [
             'products' => $products

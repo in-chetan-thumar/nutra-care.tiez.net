@@ -42,7 +42,7 @@ class ProductRepository
             }
 
             return $qry;
-        })->orderBy('id', 'desc');
+        })->orderBy('title');
 
         if($paginate){
             return $listing->paginate($per_page);

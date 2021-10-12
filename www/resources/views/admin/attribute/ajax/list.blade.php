@@ -2,7 +2,6 @@
     <table class="table usertable table-striped">
         <thead>
         <tr>
-            <th>#</th>
             <th>Name</th>
             <th class="action-icon">Action</th>
         </tr>
@@ -13,7 +12,6 @@
         @endphp
         @forelse($records as $value)
             <tr>
-                <td>{{++$index}}</td>
                 <td>{{$value->attribute_name}}</td>
 
                 <td class="action-icon">

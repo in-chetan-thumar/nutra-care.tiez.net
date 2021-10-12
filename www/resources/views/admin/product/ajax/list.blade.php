@@ -2,7 +2,6 @@
     <table class="table usertable table-striped">
         <thead>
         <tr>
-            <th>#</th>
             <th>Photo</th>
             <th>Title</th>
             <th>Category</th>
@@ -17,7 +16,6 @@
         @endphp
         @forelse($records as $value)
             <tr>
-                <td>{{++$index}}</td>
                 @if($value->photo_ur != null)
                     <td><img src="{{$value->photo_url}}" width="100px"/></td>
 

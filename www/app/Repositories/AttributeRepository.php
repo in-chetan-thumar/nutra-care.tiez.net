@@ -34,7 +34,7 @@ class AttributeRepository
                 });
             }
             return $qry;
-        })->orderBy('id', 'desc');
+        })->orderBy('attribute_name');
 
         if ($paginate) {
             return $listing->paginate($per_page);

@@ -159,11 +159,11 @@
                                     </button>
                                     @if($row->chaild_category->count() != 0)
                                         <div class="dropdown-container" style="height:150px;overflow-y: auto;display: block;">
-                                            @foreach($row->chaild_category as $subCategory)
+                                            @foreach($row->chaild_category->sortBy('title') as $subCategory)
                                                 <input type="checkbox" id="{{$subCategory->title}}" class="active mt-3" name="categories[]"
                                                        value="{{$subCategory->id}}">
                                                 <label for="{{$subCategory->title}}">{{$subCategory->title}}</label>
-                                                <span class="badge text-right" style="color: black !important; font-size: 14px;">({{$subCategory->category_product_links->count()}})</span><br/>
+                                                <span class="badge text-right" style="color: black !important; font-size: 14px;padding:0px;">({{$subCategory->category_product_links->count()}})</span><br/>
                                             @endforeach
                                         </div>
                                     @endif

@@ -12,7 +12,7 @@
 
     #sticky.stick {
         position: sticky;
-        top: 125px;
+        top: 80px;
         z-index: 10;
         border-radius: 0 0 0.5em 0.5em;
         max-width: 100%;
@@ -71,19 +71,19 @@
                 <div class="col-md-12 col-lg-8">
                     <div class="content-holder">
                         <div class="value_right">
-                            <div class="value_box" data-id="vision-1" id="vision-1" data-img-url="assets/images/value.jpg">
+                            <div class="value_box" data-id="vision-1" id="vision-1" data-img-url="assets/images/over_value_1.jpeg">
                                 <h4 class="title">{!!trans('labels.value_info_title1')!!}</h4>
                                 <p>{{trans('labels.value_info_para1')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-2" id="vision-2" data-img-url="assets/images/quality.jpg">
+                            <div class="value_box" data-id="vision-2" id="vision-2" data-img-url="assets/images/over_value_2.jpeg">
                                 <h4 class="title">{!!trans('labels.value_info_title2')!!}</h4>
                                 <p>{{trans('labels.value_info_para2')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-3" id="vision-3" data-img-url="assets/images/resource.jpg">
+                            <div class="value_box" data-id="vision-3" id="vision-3" data-img-url="assets/images/over_value_3.jpeg">
                                 <h4 class="title">{!!trans('labels.value_info_title3')!!}</h4>
                                 <p>{{trans('labels.value_info_para3')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/value.jpg">
+                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/over_value_3.jpeg">
                                 <h4 class="title">{!!trans('labels.value_info_title4')!!}</h4>
                                 <p>{{trans('labels.value_info_para4')}}</p>
                             </div>

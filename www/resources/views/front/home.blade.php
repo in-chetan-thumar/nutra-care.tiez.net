@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <section class="vision_sec">
+    <section class="vision_sec" style="background: #fff;">
         <div class="container">
             <h3>{{trans('labels.mission_title')}}</h3>
             <div class="row">

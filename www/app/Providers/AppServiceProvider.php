@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Hashing\BcryptHasher as Hasher;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+
         \App\Models\News::creating(function ($object) {
             $object->created_by = \Auth::user()->id;
         });
@@ -72,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         \View::share('record_not_found', __('messages.record_not_found'));
         \View::share('please_wait', __('messages.please_wait'));
 
+        Paginator::defaultView('vendor.pagination.bootstrap-4');
     }
 
     /**

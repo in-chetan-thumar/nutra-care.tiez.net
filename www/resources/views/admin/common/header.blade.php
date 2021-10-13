@@ -92,7 +92,7 @@
 															<i class="m-nav__link-icon flaticon-profile-1"></i>
 															<span class="m-nav__link-title">
 																<span class="m-nav__link-wrap">
-																	<span class="m-nav__link-text">{{__('labels.My Profile')}}</span>
+																	<span class="m-nav__link-text">My Profile</span>
 																</span>
 															</span>
 														</a>
@@ -100,13 +100,13 @@
 													<li class="m-nav__item">
 														<a href="javascript:;" class="m-nav__link change_password">
 															<i class="m-nav__link-icon flaticon-share"></i>
-															<span class="m-nav__link-text">{{__('labels.Change Password')}}</span>
+															<span class="m-nav__link-text">Change Password</span>
 														</a>
 													</li>
 													<li class="m-nav__separator m-nav__separator--fit">
 													</li>
 													<li class="m-nav__item">
-														<a href="{{route('logout')}}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">{{__('labels.Logout')}}</a>
+														<a href="{{route('logout')}}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
 													</li>
 												</ul>
 											</div>

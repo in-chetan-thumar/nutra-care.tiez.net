@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\CategoryProductLink;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JsValidator, File, Storage;
@@ -190,6 +191,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
+			CategoryProductLink::where('category_id', $id)->forceDelete();
             $category = Category::find($id)->forceDelete();
             return response()->json(['status' => 'success', 'message' => 'Category deleted successfully.']);
         } catch (\Exception $e) {

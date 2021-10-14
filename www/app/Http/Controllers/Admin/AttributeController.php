@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Attributes;
 use App\Models\Category;
+use App\Models\ProductsAttributes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JsValidator;
@@ -151,6 +152,7 @@ class AttributeController extends Controller
     public function destroy($id)
     {
         try {
+			ProductsAttributes::where('attribute_id', $id)->forceDelete();
             $attribute = Attributes::find($id)->forceDelete();
             return response()->json(['status' => 'success', 'message' => 'Attribute deleted successfully.']);
         } catch (\Exception $e) {

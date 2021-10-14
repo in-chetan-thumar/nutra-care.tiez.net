@@ -169,7 +169,7 @@ class CategoryController extends Controller
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
                 'updated_by' => $user->id,
-                'parent_category_id' => $request->parent_category,
+                'parent_category_id' => $request->parent_category ?? 0 ,
                 'updated_at' => Carbon::now()
             ];
 

@@ -7,7 +7,7 @@ return [
         'APP_USER' => 'APP_USER'
     ],
 
-    'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'demoemail512@gmail.com'),
+    'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'info@nutracareintl.com'),
 	'APP_USER_ROLE_ID' => '2',
 
     // File storage

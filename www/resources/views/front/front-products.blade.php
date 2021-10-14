@@ -2,13 +2,19 @@
 @section('content')
 
     <section class="contact_us_sec">
-        <div class="contact_block">
-            <div class="contact_left">
-                <div class="contact_bg1 product_bg1">
-                    <div class="container">
-                        <p>{{trans('labels.product_subtitle')}}</p>
-                        <h1>{{trans('labels.product_title')}}</h1>
+        <div class="container">
+            <div class="contact_block about_block">
+                <div class="contact_left">
+                    <div class="contact_bg1 product_bg1">
+                        <h1>{{trans('labels.front_product_title')}}</h1>
+                        <p>{{trans('labels.front_product_subtitle')}}</p>
                     </div>
+                </div>
+                <div class="contact_right">
+                    <div class="contact_bg2">
+                        <div class="contact_bg3 product_bg3"></div>
+                    </div>
+                    <div class="contact_bg4 product_bg4"></div>
                 </div>
             </div>
         </div>
@@ -69,7 +75,7 @@
                                 <div class="modal-body">
                                     <div class="contact_form modal-form">
                                         <div class="form-group">
-                                            <input type="text" id="" name="name" value="" class="form-control"
+                                            <input type="text" name="name" value="" class="form-control"
                                                    placeholder="Full Name">
                                             @if ($errors->has('name'))
                                                 <span
@@ -77,14 +83,14 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" id="" name="email" value="" class="form-control"
+                                            <input type="email" name="email" value="" class="form-control"
                                                    placeholder="Email Address">
                                             @if ($errors->has('email'))
                                                 <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="tel" id="" name="phone" value="" class="form-control"
+                                            <input type="tel" name="phone" value="" class="form-control"
                                                    placeholder="Phone Number">
                                             @if ($errors->has('phone'))
                                                 <span class="help-block"><strong>{{ $errors->first('phone') }}</strong></span>
@@ -145,17 +151,15 @@
             <div class="catalogue_main">
                 <div class="sidenav">
                     <div class="col-md-12">
-                        <h4>Products <span style="margin-left: 95px;font-size: 15px;cursor: pointer;border-bottom:1px solid blue;#000: #000" class="clearFilter">Clear all</span></h4>
+                        <h4>Products <span style="margin-left: 96px;font-size: 15px;cursor: pointer;border-bottom:1px solid #000;color: #000" class="clearFilter">Clear all</span></h4>
                     </div>
 
                     <div class="sidenav_link">
                         @if(!empty($categories))
-                            @foreach($categories as $key => $row)
+                            @foreach($categories->where('parent_category_id', 0)->sortBy('id') as $key => $row)
                                 <div class="link_main">
                                     <button class="dropdown-btn active" onclick="changeIcon(event)" data-icon="{{$key}}">
-                                        @if($row->chaild_category->count() != 0)
-                                            <i class="fas fa-chevron-down" id="{{$key}}"></i> {{$row->title}}<span class="badge text-right" style="color: black !important; font-size: 14px;">({{$row->category_products()}})</span></a>
-                                        @endif
+                                        <i class="fas fa-chevron-down" id="{{$key}}"></i> {{$row->title}}<span class="badge text-right" style="color: black !important; font-size: 14px;">({{$row->category_products()}})</span></a>
                                     </button>
                                     @if($row->chaild_category->count() != 0)
                                         <div class="dropdown-container" style="height:150px;overflow-y: auto;display: block;">
@@ -163,7 +167,7 @@
                                                 <input type="checkbox" id="{{$subCategory->title}}" class="active mt-3" name="categories[]"
                                                        value="{{$subCategory->id}}">
                                                 <label for="{{$subCategory->title}}">{{$subCategory->title}}</label>
-                                                <span class="badge text-right" style="color: black !important; font-size: 14px;padding:0px;">({{$subCategory->category_product_links->count()}})</span><br/>
+                                                <span class="badge text-right" style="color: black !important; font-size: 14px; padding:0px;">({{$subCategory->category_product_links->count()}})</span><br/>
                                             @endforeach
                                         </div>
                                     @endif
@@ -177,8 +181,85 @@
                     <div class="product-list">
 
                     </div>
+                    <!-- <div class="pro_block">
+                        <div class="pro_main">
+                            <div class="pro_left">
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            </div>
+                            <div class="pro_right">
+                                <img src="assets/images/product-logo.png" />
+                                <h5>Anti Biotech Free Growth Promoter</h5>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pro_main">
+                            <div class="pro_left">
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            </div>
+                            <div class="pro_right">
+                                <img src="assets/images/product-logo.png" />
+                                <h5>Anti Biotech Free Growth Promoter</h5>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> I have a bike</label>
+                                        </td>
+                                        <td>Halquinol</td>
+                                        <td>95% (Min)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
+        </div>
     </section>
 
 @endsection
@@ -189,8 +270,8 @@
             var hasClass = e.currentTarget.classList.contains('active');
             var id = $(e.currentTarget).data('icon');
             if(hasClass){
-                $("#"+id).removeClass('fas fa-chevron-down');
-                $("#"+id).addClass('fas fa-chevron-right');
+               $("#"+id).removeClass('fas fa-chevron-down');
+               $("#"+id).addClass('fas fa-chevron-right');
             }else{
                 $("#"+id).removeClass('fas fa-chevron-right');
                 $("#"+id).addClass('fas fa-chevron-down');
@@ -203,6 +284,6 @@
             $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
         });
     </script>
-    <script src="{{ asset('js/admin/fronted_product.js')}}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/admin/fronted_product.js') }}" type="text/javascript"></script>
 @endsection
 

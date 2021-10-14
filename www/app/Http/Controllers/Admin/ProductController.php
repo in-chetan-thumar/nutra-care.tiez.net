@@ -243,6 +243,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         try {
+			CategoryProductLink::where('product_id', $id)->forceDelete();
+			ProductsAttributes::where('product_id', $id)->forceDelete();
             $product = Product::find($id)->forceDelete();
             return response()->json(['status' => 'success', 'message' => 'Product deleted successfully.']);
         } catch (\Exception $e) {

@@ -11,28 +11,28 @@ $(document).ready(function () {
 
 var count = 0;
 
-// function selectProduct(e) {
-//     var hasClass = e.currentTarget.classList.contains('active');
-//     var id = e.currentTarget.getAttribute('id');
-//     var product_id = e.currentTarget.getAttribute('data-product-id');
-//
-//     if (hasClass) {
-//         $("#" + id).removeClass("active");
-//         removeLocalStorage(product_id)
-//         $(".productCount").text(countProduct())
-//     } else {
-//         $("#" + id).addClass("active");
-//         const arr_attribute_id = [];
-//         const arr_checkbox_id = [];
-//         const product_attribute = {
-//             'attribute_id': arr_attribute_id,
-//             'product_id': product_id,
-//             'checkbox_id':arr_checkbox_id,
-//         }
-//         saveLocalStorage(product_id, JSON.stringify(product_attribute))
-//         $(".productCount").text(countProduct())
-//     }
-// }
+function selectProduct(e) {
+    var hasClass = e.currentTarget.classList.contains('active');
+    var id = e.currentTarget.getAttribute('id');
+    var product_id = e.currentTarget.getAttribute('data-product-id');
+
+    if (hasClass) {
+        $("#" + id).removeClass("active");
+        removeLocalStorage(product_id)
+        $(".productCount").text(countProduct())
+    } else {
+        $("#" + id).addClass("active");
+        const arr_attribute_id = [];
+        const arr_checkbox_id = [];
+        const product_attribute = {
+            'attribute_id': arr_attribute_id,
+            'product_id': product_id,
+            'checkbox_id':arr_checkbox_id,
+        }
+        saveLocalStorage(product_id, JSON.stringify(product_attribute))
+        $(".productCount").text(countProduct())
+    }
+}
 
 function reset_search() {
     $('.filters').find('input[name="filters[search]"]').val('');

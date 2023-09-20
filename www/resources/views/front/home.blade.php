@@ -4,23 +4,23 @@
 <div class="lottie-progress">
 </div>
 <div class="lottie_container">
-    <div class="content">
+{{--    <div class="content">--}}
 
-    </div>
-    <section class="health_sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-4">
-                    <img src="assets/images/health.png" alt="Health" title="Health" />
-                </div>
-                <div class="col-md-12 col-lg-8 health_col">
-                    <div class="health_info">
-                        <p>{{trans('labels.banner_title')}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    </div>--}}
+{{--    <section class="health_sec">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12 col-lg-4">--}}
+{{--                    <img src="assets/images/health.png" alt="Health" title="Health" />--}}
+{{--                </div>--}}
+{{--                <div class="col-md-12 col-lg-8 health_col">--}}
+{{--                    <div class="health_info">--}}
+{{--                        <p>{{trans('labels.banner_title')}}</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
     <section class="anemia_sec">
         <div class="container">
@@ -34,6 +34,32 @@
         <div class="container">
             <h3>{{trans('labels.category_title')}}</h3>
             <div class="category_main">
+
+                @foreach($categories as $category)
+                    <div class="row">
+                        <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                    <div class="row">
+                        <h3>{{$category->title}}</h3>
+                        @foreach($category->childs as $child)
+                            <div class="col-md-2 col-lg-4">
+                                <div class="category_block">
+                                    <img src="assets/images/food-pharma.png" alt="Food % Pharma" title="Food % Pharma" />
+                                    <h4>{{$child->title}}</h4>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
                         <div class="category_block">
@@ -150,7 +176,7 @@
         </div>
     </section>
 
-    @include('front.layout.partials.footer') 
+    @include('front.layout.partials.footer')
 
 </div>
 

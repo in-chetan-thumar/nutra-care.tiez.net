@@ -44,7 +44,7 @@ class ProductController extends Controller
         //           ->pluck('title','id');
 
         $rules = [
-            'title' => 'required|max:100',
+            'title' => 'required|max:300',
             'photo' => 'image',
             'slug' => 'required',
             'categories' => 'required|not_in:0',
@@ -156,7 +156,7 @@ class ProductController extends Controller
             $record = Product::find($id);
 
             $rules = [
-                'title' => 'required|max:100',
+                'title' => 'required|max:300',
                 'description' => 'required',
                 'photo' => 'image',
                 'slug' => 'required',

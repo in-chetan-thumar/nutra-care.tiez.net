@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactUsRequest;
 use App\Mail\ContactUsInquiryEmail;
 use App\Mail\ProductInquiryMail;
+use App\Models\Category;
 use App\Models\CategoryProductLink;
 use App\Models\ContactUs;
 use App\Models\Inquiry;
@@ -26,8 +27,9 @@ class MainController extends Controller
      */
     public function home()
     {
+        $categories = Category::where('parent_category_id', 0)->get();
         //dd(config('global'));
-        return view('front.home');
+        return view('front.home',compact('categories'));
     }
 
     /**
@@ -37,6 +39,7 @@ class MainController extends Controller
      */
     public function aboutUs()
     {
+
         return view('front.about-us');
     }
 

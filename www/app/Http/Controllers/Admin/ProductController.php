@@ -29,7 +29,7 @@ class ProductController extends Controller
         $records->appends($filters);
 
 
-         $categories = Category::where('parent_category_id','!=',0)->whereDoesntHave('childs')->get();
+         $categories = Category::where('parent_category_id','!=',0)->get();
         $category = app('common')->getCategory($categories);
 
 //        //   $categories1 = Category::where('parent_category_id','!=',0)->get()->toArray();

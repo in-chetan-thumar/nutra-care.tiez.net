@@ -90,13 +90,13 @@
                             </a>
                         </li>
 
-                        <li class="m-menu__item {{($route_name == 'attribute.index')?'m-menu__item--active':''}}"
-                            aria-haspopup="true" m-menu-link-redirect="1">
-                            <a href="{{route('attribute.index')}}" class="m-menu__link ">
-                                <span class="m-menu__item-here"></span>
-                                <span class="m-menu__link-text">Attribute</span>
-                            </a>
-                        </li>
+{{--                        <li class="m-menu__item {{($route_name == 'attribute.index')?'m-menu__item--active':''}}"--}}
+{{--                            aria-haspopup="true" m-menu-link-redirect="1">--}}
+{{--                            <a href="{{route('attribute.index')}}" class="m-menu__link ">--}}
+{{--                                <span class="m-menu__item-here"></span>--}}
+{{--                                <span class="m-menu__link-text">Attribute</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="m-menu__item {{($route_name == 'product.index')?'m-menu__item--active':''}}"
                             aria-haspopup="true" m-menu-link-redirect="1">

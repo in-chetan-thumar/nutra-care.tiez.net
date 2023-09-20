@@ -12,7 +12,10 @@ class CategoryRepository
     {
         $this->category = $category;
     }
-
+    public function findByID($id)
+    {
+        return $this->category->findorFail($id);
+    }
     public function getById($id)
     {
         return $this->category->where('id', $id)->first();

@@ -21,13 +21,13 @@
         </div-->
         <div class="form-group col-md-12">
             {{ Form::label('category', 'Category', array('class'=>'form-control-label')) }}
-            {{Form::select('categories[]', $categories,$record->category_ids,['class'=>'form-control editcategory','multiple'=>'multiple'] )}}
+            {{Form::select('categories[]', $categories,$record->category_ids,['class'=>'form-control  editcategory','multiple'=>'multiple'] )}}
         </div>
 
-        <div class="form-group col-md-12">
-            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}
-            {{Form::select('attributes[]', $attributes,$record->attribute_ids,['class'=>'form-control editattribute','multiple'=>'multiple'] )}}
-        </div>
+{{--        <div class="form-group col-md-12">--}}
+{{--            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}--}}
+{{--            {{Form::select('attributes[]', $attributes,$record->attribute_ids,['class'=>'form-control editattribute','multiple'=>'multiple'] )}}--}}
+{{--        </div>--}}
     </div>
 </div>
 <div class="modal-footer">

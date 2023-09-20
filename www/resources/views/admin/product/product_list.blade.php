@@ -91,10 +91,10 @@
                             {{Form::select('categories[]', $categories,null,['class'=>'form-control category','multiple'=>'multiple'] )}}
                         </div>
 
-                        <div class="form-group col-md-12">
-                            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}
-                            {{Form::select('attributes[]', $attributes,null,['class'=>'form-control attribute','multiple'=>'multiple'] )}}
-                        </div>
+{{--                        <div class="form-group col-md-12">--}}
+{{--                            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}--}}
+{{--                            {{Form::select('attributes[]', $attributes,null,['class'=>'form-control attribute','multiple'=>'multiple'] )}}--}}
+{{--                        </div>--}}
                     </div>
                     <div class="modal-footer">
                         <button class="btn theme-btn">Submit</button>

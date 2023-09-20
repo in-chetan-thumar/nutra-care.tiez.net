@@ -25,7 +25,7 @@
                 <td>{{$value->title}}</td>
                 <td>
                     @foreach($value->category_product_links as $list)
-                        {{$list->categories->title}}
+                        {{$list->categories->title}}<br>
                     @endforeach
                 </td>
                 <!--td>{{$value->description}}</td>

@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -76,7 +77,33 @@
                         </div-->
                         <div class="form-group col-md-12">
                             {{ Form::label('parent_category', 'Main Category', array('class'=>'form-control-label')) }}
-                            {{Form::select('parent_category', $categories,null,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}
+{{--                            {{Form::select('parent_category', $categories,null,['class'=>'form-control category category-search-select2','placeholder'=>'Select parent category'] )}}--}}
+                            <select name="category" class="selectpicker form-control " data-live-search="true" title="Choose one of the following...">
+                                @foreach ($categories as $category)
+                                    @if($category->parent_category_id == 0)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endif
+                                    @if ($category->parent_category_id == 0)
+                                        @include('admin.category.sub_category', ['subcategories' => $category->child, 'parent' => $category->title , 'prefix' => ' - '])
+                                    @endif
+                                @endforeach
+
+                            </select>
+
+
+
+                            {{--                                <select name="parent_category" id="" class="form-control category category-search-select2" >--}}
+{{--                                    @foreach ($categories as $category)--}}
+{{--                                        @if($category->parent_category_id == 0)--}}
+{{--                                        <option value="{{ $category->id }}">{{ $category->title }}</option>--}}
+{{--                                        @endif--}}
+{{--                                        @if ($category->parent_category_id == 0)--}}
+{{--                                            @include('admin.category.sub_category', ['subcategories' => $category->childs, 'parent' => $category->title , 'prefix' => '-'])--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+
+
                         </div>
 
                     </div>
@@ -107,11 +134,26 @@
             </div>
         </div>
     </div>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 @endsection
 @section('scripts')
+    <script src="{{ URL::asset('/assets/js/select2/select2.min.js') }}"></script>
+
     {!! $validator !!}
     <script>
         var index_url = "{{route('category.index')}}";
     </script>
+    <script>
+        $('.selectpicker').selectpicker();
+
+    </script>
+
     <script src="{{ URL::asset('js/admin/category.js') }}" type="text/javascript"></script>
 @endsection

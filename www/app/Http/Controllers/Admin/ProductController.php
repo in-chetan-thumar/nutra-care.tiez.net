@@ -28,15 +28,26 @@ class ProductController extends Controller
         $records = resolve('product')->getListing($filters, true, $per_page);
         $records->appends($filters);
 
-        $categories = Category::where('parent_category_id','!=',0)->pluck('title','id');
-        $attributes = Attributes::all()->pluck('attribute_name','id');
+
+         $categories = Category::where('parent_category_id','!=',0)->whereDoesntHave('childs')->get();
+        $category = app('common')->getCategory($categories);
+
+//        //   $categories1 = Category::where('parent_category_id','!=',0)->get()->toArray();
+
+        //       $categories = Category::where('parent_category_id','!=',0)->whereDoesntHave('childs')
+        //           ->get()->map(function ($category) {
+        //               return [
+        //                   'id' => $category->id,
+        //                   'title' => $category->title,
+        //               ];
+        //           })
+        //           ->pluck('title','id');
 
         $rules = [
             'title' => 'required|max:100',
             'photo' => 'image',
             'slug' => 'required',
-            'categories.*' => 'not_in:0',
-            'attributes.*' => 'not_in:0',
+            'categories' => 'required|not_in:0',
         ];
 
         $custom_messages = [];
@@ -51,7 +62,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return view('admin.product.product_list', ['validator' => $validator, 'categories' => $categories,'attributes' => $attributes]);
+        return view('admin.product.product_list', ['validator' => $validator, 'categories' => $category]);
     }
 
     /**
@@ -84,6 +95,7 @@ class ProductController extends Controller
                 $filename = basename($request->file('photo')->store($fileDir));
             }
 
+
             $data = [
                 'title' => $request->get('title'),
                 'description' => $request->get('description'),
@@ -92,9 +104,7 @@ class ProductController extends Controller
                 'created_by' => $user->id,
                 'created_at' => Carbon::now()
             ];
-
             $products = Product::create($data);
-
             foreach ($request->get('categories') as $category)
             {
                 CategoryProductLink::create([
@@ -150,11 +160,13 @@ class ProductController extends Controller
                 'description' => 'required',
                 'photo' => 'image',
                 'slug' => 'required',
-                'categories.*' => 'required|not_in:0'
+                'categories' => 'required|not_in:0'
             ];
 
-            $categories = Category::where('parent_category_id','!=',0)->pluck('title','id');
+           // $categories = Category::where('parent_category_id','!=',0)->pluck('title','id');
             $attributes = Attributes::all()->pluck('attribute_name','id');
+            $categories = Category::where('parent_category_id','!=',0)->whereDoesntHave('childs')->get();
+            $category = app('common')->getCategory($categories);
 
             $custom_messages = [];
             $custom_attribute = [];
@@ -164,8 +176,7 @@ class ProductController extends Controller
             return view('admin.product.ajax.edit-modal', [
                 'record' => $record,
                 'validator' => $validator,
-                'categories' => $categories,
-                'attributes' => $attributes
+                'categories' => $category,
             ]);
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => 'Something went wrong, please try again.']);
@@ -194,7 +205,6 @@ class ProductController extends Controller
                 Storage::delete($fileDir.$filename);
                 $filename = basename($request->file('photo')->store($fileDir));
             }
-
             $data = [
                 'title' => $request->get('title'),
                 'description' => $request->get('description'),
@@ -205,26 +215,25 @@ class ProductController extends Controller
             ];
 
             CategoryProductLink::where('product_id',$id)->delete();
-            ProductsAttributes::where('product_id',$id)->delete();
-
+//            ProductsAttributes::where('product_id',$id)->delete();
             foreach ($request->get('categories') as $category)
             {
-               CategoryProductLink::create([
+                CategoryProductLink::create([
                     'category_id' => $category,
                     'product_id' => $id
                 ]);
             }
 
-            if(count($request->get('attributes')) != 0)
-            {
-                foreach ($request->get('attributes') as $attribute)
-                {
-                    ProductsAttributes::create([
-                        'product_id' => $id,
-                        'attribute_id' => $attribute,
-                    ]);
-                }
-            }
+//            if(count($request->get('attributes')) != 0)
+//            {
+//                foreach ($request->get('attributes') as $attribute)
+//                {
+//                    ProductsAttributes::create([
+//                        'product_id' => $id,
+//                        'attribute_id' => $attribute,
+//                    ]);
+//                }
+//            }
 
             Product::find($id)->update($data);
 
@@ -244,11 +253,11 @@ class ProductController extends Controller
     {
         try {
 			CategoryProductLink::where('product_id', $id)->forceDelete();
-			ProductsAttributes::where('product_id', $id)->forceDelete();
             $product = Product::find($id)->forceDelete();
             return response()->json(['status' => 'success', 'message' => 'Product deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => $e->getMessage()]);
         }
     }
+
 }

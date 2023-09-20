@@ -30,10 +30,13 @@ class Category extends Model
         $fileurl = empty($filename) ? '' : asset(config('constants.CATEGORY_PHOTO_URL') . $filename);
         return $fileurl;
     }
+    public function product(){
+        return $this->hasMany(Product::class, 'category_id', 'id');
 
+    }
     public function category_product_links()
     {
-        return $this->hasMany('App\Models\CategoryProductLink','category_id','id');
+        return $this->hasMany(CategoryProductLink::class,'category_id','id');
     }
 
     public function chaild_category()
@@ -51,4 +54,18 @@ class Category extends Model
         }
         return $total_link_products;
     }
+    public function childs()
+    {
+        return $this->hasMany(Category::class, 'parent_category_id');
+    }
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_category_id');
+
+    }
+    public function child()
+    {
+        return $this->hasMany(Category::class, 'parent_category_id')->whereDoesntHave('category_product_links');
+    }
+
 }

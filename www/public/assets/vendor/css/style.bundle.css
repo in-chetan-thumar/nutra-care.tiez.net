@@ -1,3 +1,17 @@
+.bootstrap-select .dropdown-toggle .filter-option  {
+     position: absolute !important ;
+    top: 0;
+    left: 0;
+    float: left;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
 
 
 /*!
@@ -54916,7 +54930,7 @@ h1,h2,h3,h4,h5,h6,p{margin: 0;}
 	margin: 25px 0 0 0px;
 }
 .search_button.d-flex {
-	 width: 100%; 
+	 width: 100%;
 	/*float: left;*/
 }
 .search_label {
@@ -54940,11 +54954,11 @@ h1,h2,h3,h4,h5,h6,p{margin: 0;}
 	border-top: none;
 	border: 1px solid #d9d9d9;
 	font-size: 12px;
-}	
+}
 .table.usertable tbody tr td{font-size: 12px;}
 .theme_icon
 {
-	margin-right: 10px; 
+	margin-right: 10px;
 }
 .theme_icon i {
 	color: #46586f;
@@ -55007,7 +55021,7 @@ select.form-control.financial-selector {
   margin-bottom: 0;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -55106,7 +55120,7 @@ box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
 }
 /*end loginhead*/
 
- 
+
 /*14-4-2020*/
 .action-icon {
 	width: 13%;
@@ -55127,7 +55141,7 @@ box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
 	background: #46586f;
 	color: #fff;
 	margin-right: 10px;
-}	
+}
 .dashbord-headertext > p > a.pageheader-text:hover{
 	background: #3e4b5c;
 	color: #fff;
@@ -55284,7 +55298,7 @@ box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
     background: #46586f;
     color: #fff;
     padding: 8px;
-    margin-bottom: 10px;	
+    margin-bottom: 10px;
 }
 .eigth-head h2{
 	font-size: 16px;
@@ -55485,7 +55499,7 @@ span.m-footer__copyright a {
 @media (max-width: 360px) {
 	.userlistingform {		margin: 20px 0;	}
 	.m-grid__item.m-footer.customefooter {		bottom: auto;	}
-	
+
 }
 @media (max-width: 320px) {
 

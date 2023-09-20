@@ -21,7 +21,18 @@
         </div-->
         <div class="form-group col-md-12">
             {{ Form::label('parent_category', 'Parent Category', array('class'=>'form-control-label')) }}
-            {{Form::select('parent_category', $categories,$record->parent_category_id,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}
+{{--            {{Form::select('parent_category', $categories,$record->parent_category_id,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}--}}
+            <select name="category" class="selectpicker  form-control  " data-live-search="true" title="Choose one of the following...">
+                @foreach ($categories as $category)
+                    @if($category->parent_category_id == 0)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endif
+                    @if ($category->parent_category_id == 0)
+                        @include('admin.category.sub_category', ['subcategories' => $category->child, 'parent' => $category->title , 'prefix' => ' - '])
+                    @endif
+                @endforeach
+
+            </select>
         </div>
     </div>
 </div>
@@ -31,3 +42,12 @@
 </div>
 {{ Form::close() }}
 {!! $validator !!}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
+<script>
+    $('.selectpicker').selectpicker();
+</script>
+
+

@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::all()->pluck('title','id');
+        $categories = Category::all();
         $filters = $request->get('filters');
         $per_page = 10;
         $filters['filters'] = $filters;
@@ -30,6 +30,8 @@ class CategoryController extends Controller
         $rules = [
             'title' => 'required|max:100',
             'photo' => 'image',
+            'category' => 'required|not_in:0'
+
         ];
 
 
@@ -66,6 +68,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
             $user = \Auth::user();
             $filename = "";
@@ -83,7 +86,7 @@ class CategoryController extends Controller
                 'description' => $request->get('description'),
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
-                'parent_category_id' => $request->parent_category ?? 0 ,
+                'parent_category_id' => $request->category ?? 0 ,
                 'created_by' => $user->id,
                 'created_at' => Carbon::now()
             ];
@@ -118,12 +121,14 @@ class CategoryController extends Controller
         try {
 
             $record = Category::find($id);
-            $categories = Category::where('id','!=',$id)->pluck('title','id');
+            $categories = Category::whereDoesntHave('category_product_links')->get();
             $rules = [
                 'title' => 'required|max:100',
                 'description' => 'required',
                 'photo' => 'image',
                 'slug' => 'required',
+                'category' => 'required|not_in:0'
+
             ];
 
             $custom_messages = [];
@@ -170,7 +175,7 @@ class CategoryController extends Controller
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
                 'updated_by' => $user->id,
-                'parent_category_id' => $request->parent_category ?? 0 ,
+                'parent_category_id' => $request->category ?? 0 ,
                 'updated_at' => Carbon::now()
             ];
 
@@ -234,4 +239,5 @@ class CategoryController extends Controller
         }
         return $data;
     }
+
 }

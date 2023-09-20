@@ -30,7 +30,6 @@ class CategoryController extends Controller
         $rules = [
             'title' => 'required|max:100',
             'photo' => 'image',
-            'category' => 'required|not_in:0'
 
         ];
 
@@ -127,7 +126,6 @@ class CategoryController extends Controller
                 'description' => 'required',
                 'photo' => 'image',
                 'slug' => 'required',
-                'category' => 'required|not_in:0'
 
             ];
 

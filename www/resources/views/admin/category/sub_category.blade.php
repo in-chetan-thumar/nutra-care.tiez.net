@@ -1,5 +1,6 @@
 
 @foreach ($subcategories as $sub)
+
     <option value="{{ $sub->id }}">{{$prefix }} {{ $sub->title }}</option>
     @if (count($sub->child) > 0)
         @php

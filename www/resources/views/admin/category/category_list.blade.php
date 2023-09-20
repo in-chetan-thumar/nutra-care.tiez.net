@@ -84,7 +84,7 @@
                                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endif
                                     @if ($category->parent_category_id == 0)
-                                        @include('admin.category.sub_category', ['subcategories' => $category->childs, 'parent' => $category->title , 'prefix' => ' - '])
+                                        @include('admin.category.sub_category', ['subcategories' => $category->child, 'parent' => $category->title , 'prefix' => ' - '])
                                     @endif
                                 @endforeach
 

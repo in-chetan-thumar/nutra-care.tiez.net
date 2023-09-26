@@ -4,23 +4,23 @@
 <div class="lottie-progress">
 </div>
 <div class="lottie_container">
-{{--    <div class="content">--}}
+    <div class="content">
 
-{{--    </div>--}}
-{{--    <section class="health_sec">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12 col-lg-4">--}}
-{{--                    <img src="assets/images/health.png" alt="Health" title="Health" />--}}
-{{--                </div>--}}
-{{--                <div class="col-md-12 col-lg-8 health_col">--}}
-{{--                    <div class="health_info">--}}
-{{--                        <p>{{trans('labels.banner_title')}}</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
+    </div>
+    <section class="health_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <img src="assets/images/health.png" alt="Health" title="Health" />
+                </div>
+                <div class="col-md-12 col-lg-8 health_col">
+                    <div class="health_info">
+                        <p>{{trans('labels.banner_title')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="anemia_sec">
         <div class="container">
@@ -36,16 +36,16 @@
             <div class="category_main">
 
                 @foreach($categories as $category)
-                    <div class="row">
+                    <div class="row category_box">
                         <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                    <div class="row">
-                        <h3>{{$category->title}}</h3>
+
+                    <div class="row category_box_center " >
+                        <h5>{{$category->title}}</h5>
+
                         @foreach($category->childs as $child)
-                            <div class="col-md-2 col-lg-4">
+                            <div class="category_size" >
                                 <div class="category_block">
-                                    <img src="assets/images/food-pharma.png" alt="Food % Pharma" title="Food % Pharma" />
+                                    <img src="{{ asset("storage/category/$child->photo") }}" alt="{{$child->title}}" title="{{$child->title}}" height="50px"/>
                                     <h4>{{$child->title}}</h4>
                                 </div>
                             </div>
@@ -53,51 +53,10 @@
 
                         </div>
                         </div>
-                    </div>
-                        </div>
+
                     </div>
                 @endforeach
 
-
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/food-pharma.png" alt="Food % Pharma" title="Food % Pharma" />
-                            <h4>{!!trans('labels.category_info1')!!}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/feed-ingredients.png" alt="Feed Ingredients" title="Feed Ingredients" />
-                            <h4>{!!trans('labels.category_info2')!!}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/microencapsulation.png" alt="Microencapsulation & DC Grade Products" title="Microencapsulation & DC Grade Products" />
-                            <h4>{!!trans('labels.category_info3')!!}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/vitamins-mineral-premix.png" alt="Vitamins & Mineral Premix" title="Vitamins & Mineral Premix" />
-                            <h4>{!!trans('labels.category_info4')!!}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/biocides.png" alt="Biocides" title="Biocides" />
-                            <h4>{!!trans('labels.category_info5')!!}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="category_block">
-                            <img src="assets/images/cosmetics.png" alt="Cosmetics" title="Cosmetics" />
-                            <h4>{!!trans('labels.category_info6')!!}</h4>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -181,4 +140,3 @@
 </div>
 
 @endsection
-

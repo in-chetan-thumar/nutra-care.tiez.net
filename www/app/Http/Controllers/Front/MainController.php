@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactUsRequest;
+use App\Http\Requests\InquiryRequest;
 use App\Mail\ContactUsInquiryEmail;
 use App\Mail\ProductInquiryMail;
 use App\Models\Category;
@@ -28,6 +29,7 @@ class MainController extends Controller
     public function home()
     {
         $categories = Category::where('parent_category_id', 0)->get();
+       // dd($categories);
         //dd(config('global'));
         return view('front.home',compact('categories'));
     }
@@ -61,25 +63,30 @@ class MainController extends Controller
     public function frontProducts(Request $request)
     {
         $filters = $request->get('filters');
+       // dd($filters);
         $per_page = null;
         $filters['filters'] = $filters;
-        $categories = resolve('category')->getAll();
+       // $categories = resolve('category')->getAll();
+       // $categories = Category::all();
+      //  $category = app('common')->getCategorydrop($categories);
 
-        $products = resolve('product')->getListing($filters, false, $per_page);
+        $categories = $this->buildCategoryTree();
+        //$products = resolve('product')->getListing($filters, false, $per_page);
+        $products = resolve('product')->getAll();
         //$products->appends($filters);
 
-        $rules = [
-            'name' => 'required|max:100',
-            'email' => 'required',
-            'phone' => 'required|numeric',
-            'message' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
-        ];
+//        $rules = [
+//            'name' => 'required|max:100',
+//            'email' => 'required',
+//            'phone' => 'required|numeric',
+//            'message' => 'required',
+//            'g-recaptcha-response' => 'required|captcha'
+//        ];
 
         $custom_messages = [];
         $custom_attribute = [];
 
-        $validator = JsValidator::make($rules, $custom_messages, $custom_attribute, '#form-inquiry');
+       // $validator = JsValidator::make($rules, $custom_messages, $custom_attribute, '#form-inquiry');
 
         if ($request->ajax()) {
 
@@ -88,9 +95,28 @@ class MainController extends Controller
             ]);
         }
 
-        return view('front.front-products', compact('categories', 'validator'));
+        return view('front.front-products', compact('categories', 'products'));
     }
+    private function buildCategoryTree($parentId = 0)
+    {
+        $categories = Category::where('parent_category_id', $parentId)->get();
+        $tree = [];
 
+        foreach ($categories as $category) {
+            $childCategories = $this->buildCategoryTree($category->id);
+
+            $categoryData = [
+                'id' => $category->id,
+                'text' => $category->title,
+                'expanded'=> false,
+                'items' => $childCategories,
+            ];
+
+            $tree[] = $categoryData;
+        }
+
+        return $tree;
+    }
     public function submitInquiry(Request $request)
     {
         $errorView = '';
@@ -108,27 +134,16 @@ class MainController extends Controller
 
             foreach ($product_lists as $list) {
 
-                if (count($list['value']['attribute_id']) != 0) {
-                    foreach ($list['value']['attribute_id'] as $attribute) {
-                        InquiryProductLink::create([
-                            'inquiry_id' => $inquiry->id,
-                            'product_id' => $list['name'],
-                            'attribute_id' => $attribute
-                        ]);
-                    }
-                } else {
                     InquiryProductLink::create([
                         'inquiry_id' => $inquiry->id,
                         'product_id' => $list['name'],
-                        'attribute_id' => 0
-                    ]);
-                }
+                        'attribute_id' => 0,
 
+                    ]);
             }
 
             $params = [];
             $params['id'] = $inquiry->id;
-
 
             Mail::send(new ProductInquiryMail($params));
 
@@ -174,16 +189,35 @@ class MainController extends Controller
 
     public function getProductsByCategoryId(Request $request)
     {
-        $ids = $request->id;
-        $products = Product::whereHas('category_product_links', function ($query) use ($ids) {
-            $query->whereIn('category_id', $ids);
-        })->orderBy('title')->get();
+        $idArray = explode(',', $request->categories);
+        $idArray = array_map('intval', $idArray);
+
+        $products = Product::whereHas('category_product_links', function ($query) use ($idArray) {
+            $query->whereIn('category_id', $idArray);
+        })->get();
+       // $products = resolve('product')->getAll();
+
 
         echo view('front.layout.partials.ajax_product_list', [
             'products' => $products
         ])->render();
-    }
 
+
+    }
+    public function getSelectAll(Request $request)
+    {
+//        $idArray = explode(',', $request->categories);
+      //  $idArray =$request->categories;
+        //$idArray = array_map('intval', $request->categories);
+        $products = Product::whereIn('id', $request->products)->get();
+
+
+        echo view('front.layout.partials.only_selected_show', [
+            'products' => $products
+        ])->render();
+
+
+    }
     /**
      * Show the application Privacy Policy Page.
      *
@@ -229,5 +263,55 @@ class MainController extends Controller
     {
         return view('front.research-development');
     }
+    public function searchProduct(Request $request){
+        $filters = $request->get('filters');
 
+//        $idArray = array_map('intval', $idArray);
+
+        if(!empty($request->category)){
+            $idArray = explode(',', $request->category );
+
+            $filters['category_id'] = $idArray;
+
+        }
+        if(!empty($request->search_by)){
+
+            $filters['search_by'] = $request->search_by;
+
+        }
+        $per_page = null;
+        //$filters['filters'] = $filters;
+
+//        $category = Product::whereHas('category_product_links', function ($query) use ($idArray) {
+//            $query->whereIn('category_id', $idArray);
+//        })->get();
+
+
+
+       $products = resolve('product')->getListing($filters, false, $per_page);
+
+        echo view('front.layout.partials.ajax_product_list', [
+            'products' => $products
+        ])->render();
+    }
+    function selectCategory(Request $request){
+
+//dd($request->all());
+
+
+        $categories = $this->buildCategoryTree();
+        //$products = resolve('product')->getListing($filters, false, $per_page);
+        $products = resolve('product')->getAll();
+        //$products->appends($filters);
+
+
+//        if ($request->ajax()) {
+//
+//            return view('front.layout.partials.ajax_product_list', [
+//                'products' => $products,
+//            ]);
+//        }
+
+        return view('front.front-products', compact('categories', 'products'))->render();
+    }
 }

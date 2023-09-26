@@ -5,6 +5,7 @@ namespace App\Helpers;
 
 
 use App\Models\Category;
+use App\Models\CategoryProductLink;
 
 class Common
 {
@@ -32,4 +33,19 @@ class Common
         }
         return $dValue;
     }
+
+
+   public function  getCategoryProduct($id){
+        $category_product = CategoryProductLink::where('product_id',$id)->first();
+       $category = Category::where('id',$category_product->category_id)->first();
+       $check_data = [];
+           $dValue = $category->title;
+           if($category->parent_category_id > 0){
+               // Find parent
+               $dValue = $this->getParentCategory($category->parent_category_id, $dValue);
+           }
+       $check_data = $dValue;
+       return $check_data;
+    }
+
 }

@@ -7,7 +7,8 @@ return [
         'APP_USER' => 'APP_USER'
     ],
 
-    'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'info@nutracareintl.com'),
+    //'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'info@nutracareintl.com'),
+    'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'kajal.baldha@tiez.nl'),
 	'APP_USER_ROLE_ID' => '2',
 
     // File storage
@@ -28,14 +29,18 @@ return [
 
     'PRODUCT_PHOTO' => 'public' . DIRECTORY_SEPARATOR . 'product' . DIRECTORY_SEPARATOR,
     'PRODUCT_PHOTO_URL' => 'storage' . DIRECTORY_SEPARATOR . 'product' . DIRECTORY_SEPARATOR,
-	
+
 	'DOWNLOAD_PRODUCT_CATALOGUE' => [
         'food-and-pharma.pdf' => 'Food & Pharma.PDF',
         'feed.pdf' => 'Feed.PDF',
         'speciality-chemicals.pdf' => 'Speciality Chemicals.PDF',
         'cosmetic-perfumerics.pdf' => 'Cosmetic & Perfumerics.PDF',
     ],
-    'APP_NAME' => 'Nutra Care'
+    'APP_NAME' => 'Nutra Care',
+    'SEARCH_BY'=>[
+        'asc'=>'A-Z',
+        'desc'=>'Z-A',
+    ]
 ];
 
 ?>

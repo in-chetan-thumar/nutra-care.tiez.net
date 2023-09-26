@@ -35,7 +35,7 @@ Route::group(['middleware'=>'language'], function () {
     Route::post('/contact-us', 'Front\MainController@submitContactUs')->name('submit.contact.inquiry');
 
     Route::get('/front-products', 'Front\MainController@frontProducts')->name('front.front.products');
-    Route::post('/products', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
+//    Route::post('/products-table', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
     Route::post('/products/inquiry', 'Front\MainController@submitInquiry')->name('submit.product.inquiry');
     Route::get('/download/{name}', 'Front\MainController@downloadPdf')->name('front.pdf.download');
 
@@ -43,6 +43,11 @@ Route::group(['middleware'=>'language'], function () {
     Route::get('/terms-and-conditions', 'Front\MainController@termsConditions')->name('front.terms.and.conditions');
     Route::get('/sustainability', 'Front\MainController@sustainability')->name('front.sustainability');
     Route::get('/research-development', 'Front\MainController@researchDevelopment')->name('front.research.development');
+    Route::post('/products', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
+    Route::post('/select-all', 'Front\MainController@getSelectAll')->name('front.select.all');
+    Route::get('/search-product', 'Front\MainController@searchProduct')->name('front.search.product');
+
+
 
 });
 

@@ -2,6 +2,7 @@
 <html lang="en">
  <head>
    @include('front.layout.partials.head')
+     @yield('css')
  </head>
  <body>
     @include('front.layout.partials.header')

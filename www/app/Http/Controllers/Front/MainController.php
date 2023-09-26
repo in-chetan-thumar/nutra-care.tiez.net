@@ -60,7 +60,7 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function frontProducts(Request $request)
+    public function frontProducts(Request $request,$category_id = null,$sub_category_id = null)
     {
         $filters = $request->get('filters');
        // dd($filters);
@@ -71,9 +71,13 @@ class MainController extends Controller
       //  $category = app('common')->getCategorydrop($categories);
 
         $categories = $this->buildCategoryTree();
-        //$products = resolve('product')->getListing($filters, false, $per_page);
-        $products = resolve('product')->getAll();
-        //$products->appends($filters);
+
+        if(!empty($sub_category_id) && !empty($category_id)){
+            $filters['category_id'] = [$sub_category_id];
+            $products = resolve('product')->getListing($filters, false, $per_page);
+        }else{
+            $products = resolve('product')->getAll();
+        }
 
 //        $rules = [
 //            'name' => 'required|max:100',
@@ -89,7 +93,6 @@ class MainController extends Controller
        // $validator = JsValidator::make($rules, $custom_messages, $custom_attribute, '#form-inquiry');
 
         if ($request->ajax()) {
-
             return view('front.layout.partials.ajax_product_list', [
                 'products' => $products,
             ]);
@@ -275,9 +278,7 @@ class MainController extends Controller
 
         }
         if(!empty($request->search_by)){
-
             $filters['search_by'] = $request->search_by;
-
         }
         $per_page = null;
         //$filters['filters'] = $filters;
@@ -285,7 +286,6 @@ class MainController extends Controller
 //        $category = Product::whereHas('category_product_links', function ($query) use ($idArray) {
 //            $query->whereIn('category_id', $idArray);
 //        })->get();
-
 
 
        $products = resolve('product')->getListing($filters, false, $per_page);

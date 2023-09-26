@@ -34,7 +34,7 @@ Route::group(['middleware'=>'language'], function () {
     Route::get('/contact-us', 'Front\MainController@contactUs')->name('front.contact.us');
     Route::post('/contact-us', 'Front\MainController@submitContactUs')->name('submit.contact.inquiry');
 
-    Route::get('/front-products', 'Front\MainController@frontProducts')->name('front.front.products');
+    Route::get('/front-products/{category_id?}/{sub_category_id?}', 'Front\MainController@frontProducts')->name('front.front.products');
 //    Route::post('/products-table', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
     Route::post('/products/inquiry', 'Front\MainController@submitInquiry')->name('submit.product.inquiry');
     Route::get('/download/{name}', 'Front\MainController@downloadPdf')->name('front.pdf.download');

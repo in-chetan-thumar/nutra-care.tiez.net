@@ -55,7 +55,7 @@ class ProductRepository
                 });
             }
             return $qry;
-        })->orderBy('title',$filters['search_by']);
+        })->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
 
         if($paginate){
             return $listing->paginate($per_page);

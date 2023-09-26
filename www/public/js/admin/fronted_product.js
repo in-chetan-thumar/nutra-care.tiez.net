@@ -50,7 +50,6 @@ function filterRecoard() {
 }
 function filter_list(data = {}) {
 
-
    var url = window.origin+"/search-product";
     $.ajax({
         headers: {

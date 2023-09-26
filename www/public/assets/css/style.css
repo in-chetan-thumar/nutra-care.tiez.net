@@ -2279,3 +2279,29 @@ ul.certify_list li {
     background-color: #393b54;
     border-color: #393b54
 }
+.top-banner {
+    background-image: url(../images/Group_7188.png);
+    width: 100%;
+    min-height: 115px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    padding: 25px;
+    padding-left: 45px;
+    background-position: left top;
+    border-radius: 8px;
+}
+.top-banner p {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 100;
+}
+.top-banner h3 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.col-lg-3.filter-input {
+    padding-right: 10px;
+}

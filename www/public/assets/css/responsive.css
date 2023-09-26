@@ -836,7 +836,17 @@
     .text-container p{
         font: normal normal 300 14px Karla;
     }
-
+    .top-banner p {
+        font-size: 16px;
+    }
+    .top-banner h3 {
+        font-size: 20px;
+    }
+    .top-banner {
+        min-height: auto;
+        padding: 15px;
+        padding-left: 25px;
+    }
 }
 
 @media screen and (max-width: 568px) {

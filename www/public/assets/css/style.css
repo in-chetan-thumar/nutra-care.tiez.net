@@ -1199,7 +1199,12 @@ button.send_inquiry span {
     background-color: white;
     border-radius: 15px;
 }
-
+.catalogue_main .sidenav.col-lg-3 {
+    display: block;
+}
+.catalogue_main .col-lg-9 {
+    display: block;
+}
 .main {
     /*float: right;*/
     display: inline-block;
@@ -1977,12 +1982,12 @@ span.invalid-feedback {
 
 .category_block {
     background: #effbf1;
-    padding: 10px 0px 10px;
+    padding: 20px 0px 20px;
     box-sizing: border-box;
     width: 100%;
-    height: 145px;
+    height: auto;
     text-align: center;
-    margin: 0 0 25px
+    margin: 0 0 20px;
 }
 
 .category_block img {
@@ -2184,13 +2189,19 @@ ul.certify_list li {
 }
 .product-font{
     font-size: 16px;
-    /*color: rgba(30, 38, 22, .86);*/
+    /* color: rgba(30, 38, 22, .86); */
     font-weight: 400;
     text-transform: capitalize;
-    margin: 0 0 15px;
+    margin: 8px 0 5px;
     line-height: 18px;
+    width: 100%;
+    display: inline-block;
 }
-
+.cat_title {
+    width: 90%;
+    float: left;
+    display: block;
+}
 .category-font{
     font-size: 14px;
     /*color: rgba(30, 38, 22, .86);*/
@@ -2290,6 +2301,8 @@ ul.certify_list li {
     padding-left: 45px;
     background-position: left top;
     border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 20px;
 }
 .top-banner p {
     color: #fff;
@@ -2304,4 +2317,13 @@ ul.certify_list li {
 
 .col-lg-3.filter-input {
     padding-right: 10px;
+}
+section.contact_us_sec {
+    background-color: #eef1f8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.k-treeview-toggle {
+    right: 10px !important;
+    position: absolute !important;
 }

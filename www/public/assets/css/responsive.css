@@ -821,6 +821,7 @@
         width: 100%;
         border-top: 1px solid rgba(160, 160, 160, .3);
         margin-left: 0px;
+        margin-top:10px;
     }
     .text-container {
         position: absolute;
@@ -846,6 +847,15 @@
         min-height: auto;
         padding: 15px;
         padding-left: 25px;
+    }
+    .catalogue_main .col-lg-3.filter-input {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-right: 0;
+    }
+    form.form-group.filters .col-lg-3 {
+        width: 100%;
     }
 }
 

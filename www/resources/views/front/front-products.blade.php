@@ -1,20 +1,18 @@
 @extends('front.layout.mainlayout')
 @section('css')
-    <base href="https://demos.telerik.com/kendo-ui/treeview/checkboxes">
     <style>
         input[type=checkbox] {
             accent-color: #ffffff;
         }
     </style>
     <link href="https://kendo.cdn.telerik.com/themes/6.7.0/default/default-main.css" rel="stylesheet"/>
-
 @endsection
 @section('content')
 
     <section class="contact_us_sec">
         <div class="container ">
             <div class="catalogue_main">
-                <div class="row" style="--bs-gutter-x:0 !important;">
+                <div class="row" style="--bs-gutter-x:0 !important;display: inline-flex;">
                     <div class="sidenav col-lg-3 ">
                         <div class="col-md-12">
                             <h4>PRODUCT CATEGORIES <span
@@ -33,11 +31,9 @@
                     </div>
                     <div class=" col-lg-9">
                         <div class="main" style="min-width: 100%">
-                            <div class="row mb-2">
-                                <div class="top-banner">
-                                    <p>At Nutra Care we believe in</p>
-                                    <h3>Quality, Quantity & Quick Service</h3>
-                                </div>
+                            <div class="top-banner">
+                                <p>At Nutra Care we believe in</p>
+                                <h3>Quality, Quantity & Quick Service</h3>
                             </div>
                             <div class="row mb-2">
                                 <form class="form-group  filters">

@@ -1,11 +1,12 @@
 $(document).ready(function () {
 
     //Load list
-    fetch_list($('.filters').serialize());
+    // fetch_list($('.filters').serialize());
 
     disableInquiryBtn();
     changeProductText();
     $(".productCount").text(countProduct())
+    readLoacalstorage()
 
 })
 
@@ -255,22 +256,22 @@ $(document).on('show.bs.modal', '#inquiryModal', function () {
         localStorage.removeItem('_grecaptcha')
     }
 });
-function getProduct(categories,url) {
-    $.ajax({
-        headers: {
-            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-        },
-        type: "post",
-        url: url,
-        data:{id:categories},
-        success: function (result) {
-            $('.product-list').html(result);
-            readLoacalstorage()
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-    });
-}
+// function getProduct(categories,url) {
+//     $.ajax({
+//         headers: {
+//             'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+//         },
+//         type: "post",
+//         url: url,
+//         data:{id:categories},
+//         success: function (result) {
+//             $('.product-list').html(result);
+//             readLoacalstorage()
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//         }
+//     });
+// }
 
 $(document).ready(function () {
 
@@ -278,7 +279,7 @@ $(document).ready(function () {
 
     $('#treeview').on('change', function (e) {
         e.preventDefault();
-        filterProduct()
+        // filterProduct()
     });
 
     $(".clearFilter").on('click',function () {
@@ -384,20 +385,20 @@ function showAllProducts() {
         }
     });
 }
-function filterProduct() {
-    categories = [];
-    $('input[name="categories[]"]:checked').each(function()
-    {
-        categories.push($(this).val());
-    });
-
-    if(categories.length == 0){
-        fetch_list($('.filters').serialize());
-    }else{
-        getProduct(categories,product_url);
-
-    }
-}
+// function filterProduct() {
+//     categories = [];
+//     $('input[name="categories[]"]:checked').each(function()
+//     {
+//         categories.push($(this).val());
+//     });
+//
+//     if(categories.length == 0){
+//         fetch_list($('.filters').serialize());
+//     }else{
+//         getProduct(categories,product_url);
+//
+//     }
+// }
 
 function changeProductText() {
     if(countProduct() > 1){

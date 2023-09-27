@@ -192,12 +192,18 @@ class MainController extends Controller
 
     public function getProductsByCategoryId(Request $request)
     {
-        $idArray = explode(',', $request->categories);
-        $idArray = array_map('intval', $idArray);
 
-        $products = Product::whereHas('category_product_links', function ($query) use ($idArray) {
-            $query->whereIn('category_id', $idArray);
-        })->get();
+        if(!empty($request->categories)){
+            $idArray = explode(',', $request->categories);
+            $idArray = array_map('intval', $idArray);
+
+            $products = Product::whereHas('category_product_links', function ($query) use ($idArray) {
+                $query->whereIn('category_id', $idArray);
+            })->get();
+        }else{
+            $products = resolve('product')->getAll();
+        }
+
        // $products = resolve('product')->getAll();
 
 

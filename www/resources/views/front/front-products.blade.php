@@ -12,7 +12,7 @@
     <section class="contact_us_sec">
         <div class="container ">
             <div class="catalogue_main">
-                <div class="row" style="--bs-gutter-x:0 !important;display: inline-flex;">
+                <div class="row" style="--bs-gutter-x:0 !important;display: inline-flex; min-width: 100%;">
                     <div class="sidenav col-lg-3 ">
                         <div class="col-md-12">
                             <h4>PRODUCT CATEGORIES <span
@@ -203,6 +203,7 @@
     <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.all.min.js"></script>
 
     <script>
+
         $('#search_by').on('change', function (e) {
             filterRecoard(event)
         });
@@ -244,7 +245,7 @@
         }
 
         $("#treeview").on("change", function () {
-            getProduct()
+            getProductCategory()
         });
 
         var treeView = $("#treeview").data("kendoTreeView");
@@ -254,45 +255,39 @@
         var select_sub_category_item = treeView.findByUid(get_sub_category.uid);
         treeView.dataItem(select_sub_category_item).set("checked", true);
         treeView.bind("change");
-        getProduct()
+        getProductCategory()
         var get_category = treeView.dataSource.get({{request()->category_id}});
         var select_category_item = treeView.findByUid(get_category.uid);
         treeView.expand(select_category_item);
-
         @endif
 
-        function getProduct() {
+        function getProductCategory() {
             var checkedNodes = [],
                 treeView = $("#treeview").data("kendoTreeView"),
-                message;
+                category_ids;
             checkedNodeIds(treeView.dataSource.view(), checkedNodes);
 
             if (checkedNodes.length > 0) {
-                message = checkedNodes.join(",");
+                category_ids = checkedNodes.join(",");
             }
-            // Fetch and display products associated with selected categories via AJAX
-            var url = window.origin + "/products";
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                method: "post", // Replace with the appropriate HTTP method
-                url: url, // Replace with your Laravel route
+                var url = window.origin + "/products";
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: "post", // Replace with the appropriate HTTP method
+                    url: url, // Replace with your Laravel route
 
-                data: {categories: message},
+                    data: {categories: category_ids},
 
-                success: function (products) {
-                    // Update the product display box with the retrieved products
-                    if (products !== '') {
+                    success: function (products) {
                         $("#productDisplayBox").html('');
                         $("#productDisplayBox").html(products);
-                        filterRecoard()
-                    } else {
-                        $("#productDisplayBox").load(url + "#productDisplayBox");
+                        // filterRecoard()
+                        readLoacalstorage()
                     }
+                });
 
-                }
-            });
         }
 
 

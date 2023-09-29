@@ -21,6 +21,7 @@ class ProductRepository
 
     public function getAll()
     {
+        //dd($this->product->orderBy('id','DESC')->get()->take(15)->pluck('id'), $this->product->count());
         return $this->product->get();
     }
 

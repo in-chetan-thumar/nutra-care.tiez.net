@@ -150,13 +150,14 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="mb-3">
-                                {!! app('captcha')->display() !!}
+{{--                                {!! app('captcha')->display() !!}--}}
+{{--                                {!! NoCaptcha::display(['data-theme' => 'light' ]) !!}--}}
 
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="mb-3 inquiry_btn">
-                                <button type="submit" class="btn btn-primary btnInquiry" data-bs-toggle="modal">Send
+                            <div class="mb-3 contact_btn">
+                                <button type="submit" class="btn btn-primary btnInquiry " data-bs-toggle="modal">Send
                                     Inquiry
                                 </button>
                             </div>
@@ -239,7 +240,7 @@
             if (checkedNodes.length > 0) {
                 message = checkedNodes.join(",");
             } else {
-                message = "No nodes checked.";
+                message = null;
             }
             $("#result").val(message);
         }
@@ -283,8 +284,14 @@
                     success: function (products) {
                         $("#productDisplayBox").html('');
                         $("#productDisplayBox").html(products);
-                        // filterRecoard()
                         readLoacalstorage()
+                        $("#deselect-all").show();
+                        $("#show-only-selected").show();
+                        var button = document.getElementById("show-all-selected");
+                        var shouldShowButton = true; // Replace this with your condition
+                        if (shouldShowButton) {
+                            button.setAttribute("hidden","true");
+                        }
                     }
                 });
 

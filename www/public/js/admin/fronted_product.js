@@ -63,28 +63,11 @@ function filter_list(data = {}) {
                 $("#productDisplayBox").html('');
                 $("#productDisplayBox").html(products);
                 readLoacalstorage()
-
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 }
-// function fetch_list(data = {}, url = index_url) {
-//     $.ajax({
-//         headers: {
-//             'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-//         },
-//         type: "get",
-//         url: url,
-//         data: data,
-//         success: function (result) {
-//             $('.product-list').html(result);
-//             readLoacalstorage()
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//         }
-//     });
-// }
 
 $(document).on('submit', '#form-inquiry', function (e) {
         e.preventDefault();
@@ -113,6 +96,9 @@ $(document).on('submit', '#form-inquiry', function (e) {
                     changeProductText();
                     $(".productCount").text(countProduct())
                     $('.success_modal').modal('show');
+                    var treeView = $("#treeview").data("kendoTreeView");
+                    treeView.dataSource.read(); // This reloads the data from the data source
+
                     localStorage.clear();
                 },
                 error: function (reject) {
@@ -197,7 +183,8 @@ function saveLocalStorage(key, value) {
     }
 }
 
-function removeLocalStorage(key) {
+function removeLocalStorage(key)
+{
     if (localStorage.getItem(key) != null) {
         localStorage.removeItem(key)
     }
@@ -256,22 +243,7 @@ $(document).on('show.bs.modal', '#inquiryModal', function () {
         localStorage.removeItem('_grecaptcha')
     }
 });
-// function getProduct(categories,url) {
-//     $.ajax({
-//         headers: {
-//             'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-//         },
-//         type: "post",
-//         url: url,
-//         data:{id:categories},
-//         success: function (result) {
-//             $('.product-list').html(result);
-//             readLoacalstorage()
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//         }
-//     });
-// }
+
 
 $(document).ready(function () {
 
@@ -298,14 +270,18 @@ $(document).ready(function () {
 });
 function deselectAll() {
     if(countProduct() !== 0) {
-
         // $('input[name="categories[]"]').prop('checked',false);
+         var treeView = $("#treeview").data("kendoTreeView");
+         treeView.dataSource.read(); // This reloads the data from the data source
+
         localStorage.clear()
         disableInquiryBtn();
         // changeProductText();
-        // $(".productCount").text(countProduct())
-        filterProduct();
-        $("#productDisplayBox").load(window.location + "#productDisplayBox");
+         $(".productCount").text(countProduct())
+            getProductCategory()
+
+        // filterProduct();
+        // $("#productDisplayBox").load(window.location + "#productDisplayBox");
     }
     else {
             alert('Product is not selected.')
@@ -332,7 +308,8 @@ function onlySelectShow() {
                     $("#productDisplayBox").html(products);
                     // $("#product-box-" + Object.keys(localStorage)).addClass("active");
                     $("#deselect-all").hide();
-                    $("#show-only-selected").hide();
+                     $("#show-only-selected").hide();
+                     // $("#show-all-selected").show();
                     var button = document.getElementById("show-all-selected");
                     var shouldShowButton = true; // Replace this with your condition
                     if (shouldShowButton) {
@@ -367,38 +344,12 @@ function showAllProducts() {
         url: url, // Replace with your Laravel route
 
         data: { categories: message },
-
         success: function (products) {
-            // Update the product display box with the retrieved products
-            if(products !== ''){
-                $("#productDisplayBox").html('');
-                $("#productDisplayBox").html(products);
-                readLoacalstorage()
-
-            }
-            else{
-    readLoacalstorage()
-    $("#productDisplayBox").load(url + "#productDisplayBox");
-
-            }
-
+            getProductCategory()
         }
     });
 }
-// function filterProduct() {
-//     categories = [];
-//     $('input[name="categories[]"]:checked').each(function()
-//     {
-//         categories.push($(this).val());
-//     });
-//
-//     if(categories.length == 0){
-//         fetch_list($('.filters').serialize());
-//     }else{
-//         getProduct(categories,product_url);
-//
-//     }
-// }
+
 
 function changeProductText() {
     if(countProduct() > 1){

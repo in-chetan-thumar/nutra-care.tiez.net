@@ -2268,10 +2268,7 @@ ul.certify_list li {
     align-self: center;
     padding-bottom: 50px !important;
 }
-.inquiry_btn {
-    float: right;
-    margin-top: -65px;
-}
+
 
 .inquiry_btn button {
     background: #1e2616;

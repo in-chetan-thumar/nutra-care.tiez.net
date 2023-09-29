@@ -66,20 +66,18 @@ class MainController extends Controller
        // dd($filters);
         $per_page = null;
         $filters['filters'] = $filters;
-       // $categories = resolve('category')->getAll();
-       // $categories = Category::all();
-      //  $category = app('common')->getCategorydrop($categories);
 
         $categories = $this->buildCategoryTree();
 
         if(!empty($sub_category_id) && !empty($category_id)){
+
             $filters['category_id'] = [$sub_category_id];
             $products = resolve('product')->getListing($filters, false, $per_page);
         }else{
             $products = resolve('product')->getAll();
         }
 
-//        $rules = [
+        //        $rules = [
 //            'name' => 'required|max:100',
 //            'email' => 'required',
 //            'phone' => 'required|numeric',

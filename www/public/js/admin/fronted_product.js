@@ -346,6 +346,13 @@ function showAllProducts() {
         data: { categories: message },
         success: function (products) {
             getProductCategory()
+            $("#deselect-all").show();
+            $("#show-only-selected").show();
+            var button = document.getElementById("show-all-selected");
+            var shouldShowButton = true; // Replace this with your condition
+            if (shouldShowButton) {
+                button.setAttribute("hidden","true");
+            }
         }
     });
 }

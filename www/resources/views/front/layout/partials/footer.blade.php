@@ -5,7 +5,7 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="footer_logo">
                         <a href="{{route('front.home')}}">
-                            <img src="assets/images/logo.png" alt="Nutra Care" title="Nutra Care" / >
+                            <img src="{{asset('assets/images/logo.png')}}" alt="Nutra Care" title="Nutra Care" / >
                         </a>
                     </div>
                     <div class="footer_social_links">

@@ -28,7 +28,7 @@ class InquiryRequest extends FormRequest
             'email' => 'required',
             'phone' => 'required|numeric|digits:10',
             'message' => 'required',
-//            'g-recaptcha-response' => 'required|captcha'
+          // 'g-recaptcha-response' => 'required|captcha'
         ];
     }
     public function messages()

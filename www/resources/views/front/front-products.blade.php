@@ -52,7 +52,7 @@
                                             <input type="search" class="form-control rounded" name="filters[filter]"
                                                    placeholder="Search" aria-label="Search"
                                                    aria-describedby="search-addon" onkeyup="filterRecoard(event)"/>
-                                            <input type="hidden" id="result" name="category" value=""
+                                            <input type="hidden" id="result" name="category" value="{{isset(request()->sub_category_id) ? request()->sub_category_id : ''}}"
                                                    class=" form-control result">
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="mb-3">
-{{--                                {!! app('captcha')->display() !!}--}}
+                                {!! app('captcha')->display() !!}
 {{--                                {!! NoCaptcha::display(['data-theme' => 'light' ]) !!}--}}
 
                             </div>
@@ -198,7 +198,7 @@
 @endsection
 @section('script')
     {!! JsValidator::formRequest('App\Http\Requests\InquiryRequest', '#form-inquiry') !!}
-
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit&amp;onload=recaptchaCallback&amp;hl=fr" async="" defer=""></script>
     {{--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
     {{--    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/jquery.min.js"></script>--}}
     <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.all.min.js"></script>
@@ -285,13 +285,7 @@
                         $("#productDisplayBox").html('');
                         $("#productDisplayBox").html(products);
                         readLoacalstorage()
-                        $("#deselect-all").show();
-                        $("#show-only-selected").show();
-                        var button = document.getElementById("show-all-selected");
-                        var shouldShowButton = true; // Replace this with your condition
-                        if (shouldShowButton) {
-                            button.setAttribute("hidden","true");
-                        }
+
                     }
                 });
 

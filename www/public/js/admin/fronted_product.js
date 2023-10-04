@@ -70,43 +70,57 @@ function filter_list(data = {}) {
 }
 
 $(document).on('submit', '#form-inquiry', function (e) {
+
+    if ($(this).valid()) {
         e.preventDefault();
-            $('.btnInquiry').attr("disabled", true);
-            var url = $(this).attr('action');
-            var productList = readLoacalstorage();
-            var formData = new FormData(this);
-            formData.append('product_list', JSON.stringify(productList))
+        if (countProduct() !== 0) {
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-                },
-                url: url,
-                type: "post",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                enctype: 'multipart/form-data',
+            if (isValidCaptcha()) {
+                $('.btnInquiry').attr("disabled", true);
+                var url = $(this).attr('action');
+                var productList = readLoacalstorage();
+                var formData = new FormData(this);
+                formData.append('product_list', JSON.stringify(productList))
 
-                success: function (result) {
-                    $('.btnInquiry').attr("disabled", false);
-                    $('#inquiryModal').modal('hide');
-                    disableInquiryBtn();
-                    changeProductText();
-                    $(".productCount").text(countProduct())
-                    $('.success_modal').modal('show');
-                    var treeView = $("#treeview").data("kendoTreeView");
-                    treeView.dataSource.read(); // This reloads the data from the data source
+                $.ajax({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+                    },
+                    url: url,
+                    type: "post",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    enctype: 'multipart/form-data',
 
-                    localStorage.clear();
-                },
-                error: function (reject) {
-                    $('.btnInquiry').attr("disabled", true);
-                    var errors = $.parseJSON(reject.responseText);
-                    $(".erroInquiry").html(errors)
-                }
-            });
+                    success: function (result) {
+                        $('.btnInquiry').attr("disabled", false);
+                        $('#inquiryModal').modal('hide');
+                        disableInquiryBtn();
+                        changeProductText();
+                        $(".productCount").text(countProduct())
+                        $('.success_modal').modal('show');
+                        var treeView = $("#treeview").data("kendoTreeView");
+                        treeView.dataSource.read(); // This reloads the data from the data source
+
+                        localStorage.clear();
+                    },
+                    error: function (reject) {
+                        $('.btnInquiry').attr("disabled", true);
+                        var errors = $.parseJSON(reject.responseText);
+                        $(".erroInquiry").html(errors)
+                    }
+                });
+            } else {
+                alert(' You have not select the recaptcha.!')
+            }
+
+        } else {
+            alert(' You have not select any product.!')
+
+        }
+    }
 
 });
 
@@ -194,7 +208,7 @@ function readLoacalstorage() {
     var values = [], keys = Object.keys(localStorage)
 
     for (let i = 0; i < keys.length; i++) {
-        // if (keys[i] != "_grecaptcha") {
+         if (keys[i] != "_grecaptcha") {
 
             $("#product-box-" + keys[i]).addClass("active");
             var data  = JSON.parse(localStorage.getItem(keys[i]))
@@ -204,7 +218,7 @@ function readLoacalstorage() {
             })
 
             values.push({"name": keys[i], "value": JSON.parse(localStorage.getItem(keys[i]))});
-       // }
+        }
     }
     return values.sort((a, b) => (a.step > b.step) ? 1 : -1);
 }

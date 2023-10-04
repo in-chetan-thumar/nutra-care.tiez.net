@@ -2256,6 +2256,10 @@ ul.certify_list li {
     background: #069621 ;
     padding-top: 10px;
     padding-bottom: 10px;
+    width: 100%;
+    position: fixed;
+    bottom: 10px;
+    z-index: 10000;
 }
 .paper-plane{
     width: 194px;

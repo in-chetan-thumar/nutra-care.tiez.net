@@ -32,7 +32,7 @@
 
     <section class="category_sec">
         <div class="container">
-            <h3>{{trans('labels.category_title')}}</h3>
+{{--            <h3>{{trans('labels.category_title')}}</h3>--}}
             <div class="category_main">
 
                 @foreach($categories as $category)

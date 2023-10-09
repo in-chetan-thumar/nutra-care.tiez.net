@@ -2160,8 +2160,9 @@ ul.certify_list li {
     background-color: white;
 }
 .k-treeview-leaf.k-selected {
-    color: #ffffff;
-    background-color: #50CC56 !important;
+    color: #000 !important;
+    background-color: #ffffff !important;
+    border-color: white !important;
 }
 .k-checkbox:checked, .k-checkbox.k-checked {
     border-color: #50CC56 !important;
@@ -2327,4 +2328,17 @@ section.contact_us_sec {
 .k-treeview-toggle {
     right: 10px !important;
     position: absolute !important;
+}
+.send-inquiry {
+    background: #fff;
+    color: #1e2616;
+
+}
+.k-treeview-leaf:hover,
+.k-treeview-leaf .k-hover{
+    background-color: white !important;
+}
+
+.k-treeview-leaf:focus, .k-treeview-leaf.k-focus {
+    box-shadow: inset 0 0 0 0px white !important;
 }

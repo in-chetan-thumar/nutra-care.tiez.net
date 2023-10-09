@@ -73,19 +73,20 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <button type="submit" name="submit" value="upload" class="btn product-button" data-bs-toggle="modal"
+                    <button type="submit" name="submit" value="upload" id="send_inquiry" class="btn product-button " data-bs-toggle="modal"
                             data-bs-target="#inquiryModal">
                         {{--                        <span class="productCount">(0)</span>--}}
                         Send Inquiry
+                    </button>
+
+                    <button type="submit" name="submit" id="deselect-all" value="upload"
+                            class="btn product-button clearFilter" onclick="deselectAll()">Deselect All
                     </button>
                     <button type="submit" name="submit" id="show-all-selected" value="upload" class="btn product-button"
                             onclick="showAllProducts()" hidden>Show all product
                     </button>
                     <button type="submit" name="submit" id="show-only-selected" value="upload"
                             class="btn product-button" onclick="onlySelectShow()">Show only selected
-                    </button>
-                    <button type="submit" name="submit" id="deselect-all" value="upload"
-                            class="btn product-button clearFilter" onclick="deselectAll()">Deselect All
                     </button>
                 </div>
             </div>

@@ -40,6 +40,7 @@ return [
     'SEARCH_BY'=>[
         'asc'=>'A-Z',
         'desc'=>'Z-A',
+        'latest'=>'Latest'
     ]
 ];
 

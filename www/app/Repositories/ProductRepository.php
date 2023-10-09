@@ -56,7 +56,14 @@ class ProductRepository
                 });
             }
             return $qry;
-        })->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
+        });
+            if($filters['search_by'] == 'latest'){
+                $listing->latest();
+            }else{
+                $listing->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
+            }
+            //->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
+        // dd($listing->toSql(), $listing->getBindings(), $filters);
 
         if($paginate){
             return $listing->paginate($per_page);

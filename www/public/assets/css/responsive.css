@@ -550,16 +550,17 @@
 }
 
 @media screen and (max-width: 767px) {
+
+    .product-footer{
+        text-align:center;
+    }
     .product-button{
         background: #069621 ;
         color: #FFFFFF;
         border: 1px solid  #4CAE64;
-        margin-right: 0px;
 
-        float: left;
-        margin-left: 35px;
         margin-bottom: 15px;
-
+        float: none;
     }
     .category_size{
         width: 50%;
@@ -871,6 +872,12 @@
 }
 
 @media screen and (max-width: 568px) {
+    .product-button{
+        float: none;
+    }
+    .product-footer{
+        text-align:center;
+    }
     .banner_overlay {
         top: 51%
     }

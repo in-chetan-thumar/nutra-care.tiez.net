@@ -101,6 +101,7 @@ class ProductController extends Controller
                 'description' => $request->get('description'),
                 'slug' => $request->get('slug'),
                 'photo' => $filename,
+                'featured' => $request->featured ?? 'N',
                 'created_by' => $user->id,
                 'created_at' => Carbon::now()
             ];
@@ -209,11 +210,11 @@ class ProductController extends Controller
                 'title' => $request->get('title'),
                 'description' => $request->get('description'),
                 'slug' => $request->get('slug'),
+                'featured' => $request->featured ?? 'N',
                 'created_by' => $user->id,
                 'photo' => $filename,
                 'updated_at' => Carbon::now()
             ];
-
             CategoryProductLink::where('product_id',$id)->delete();
 //            ProductsAttributes::where('product_id',$id)->delete();
             foreach ($request->get('categories') as $category)

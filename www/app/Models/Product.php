@@ -21,6 +21,7 @@ class Product extends Model
         'description',
         'photo',
         'slug',
+        'featured',
         'created_by',
         'updated_by',
         'deleted_at',

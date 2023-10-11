@@ -2330,8 +2330,8 @@ section.contact_us_sec {
     position: absolute !important;
 }
 .send-inquiry {
-    background: #fff;
-    color: #1e2616;
+    background: #fff !important;
+    color: #1e2616 !important;
 
 }
 .k-treeview-leaf:hover,

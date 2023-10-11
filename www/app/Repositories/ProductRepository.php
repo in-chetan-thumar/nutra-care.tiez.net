@@ -44,7 +44,7 @@ class ProductRepository
             }
 
 
-            if (isset($filters['search']) && $filters['search'] != '') {
+                if (isset($filters['search']) && $filters['search'] != '') {
                 $qry->where(function ($search_qry) use ($filters) {
                     $search_qry->where('title', 'LIKE', '%' . $filters['search'] . '%');
                 });
@@ -57,11 +57,20 @@ class ProductRepository
             }
             return $qry;
         });
-            if($filters['search_by'] == 'latest'){
+        if(!empty($filters['search_by']))
+        {
+            if($filters['search_by'] == 'featured'){
+                $listing->orderBy('featured','ASC');
+            }
+            else if($filters['search_by'] == 'latest'){
                 $listing->latest();
-            }else{
+            }else {
                 $listing->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
             }
+        }else{
+            $listing->latest();
+
+        }
             //->orderBy('title',isset($filters['search_by']) ? $filters['search_by']:'ASC');
         // dd($listing->toSql(), $listing->getBindings(), $filters);
 

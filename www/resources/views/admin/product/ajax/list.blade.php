@@ -24,9 +24,11 @@
                 @endif
                 <td>{{$value->title}}</td>
                 <td>
-                    @foreach($value->category_product_links as $list)
-                        {{$list->categories->title}}<br>
-                    @endforeach
+                    {{app('common')->getCategoryProduct($value->id)}}
+
+{{--                @foreach($value->category_product_links as $list)--}}
+{{--                        {{$list->categories->title}}<br>--}}
+{{--                    @endforeach--}}
                 </td>
                 <!--td>{{$value->description}}</td>
                 <td>{{$value->slug}}</td-->

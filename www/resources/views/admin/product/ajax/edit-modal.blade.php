@@ -23,7 +23,10 @@
             {{ Form::label('category', 'Category', array('class'=>'form-control-label')) }}
             {{Form::select('categories[]', $categories,$record->category_ids,['class'=>'form-control  editcategory','multiple'=>'multiple'] )}}
         </div>
-
+        <div class="form-group col-md-12">
+            {!! Form::checkbox('featured', 'Y',  isset($record) && $record->featured=='Y' ? true : false ) !!}
+            {{ Form::label('featured', 'Featured', ['style' => 'justify-content: right']) }}
+        </div>
 {{--        <div class="form-group col-md-12">--}}
 {{--            {{ Form::label('Attribute', 'Attribute', array('class'=>'form-control-label')) }}--}}
 {{--            {{Form::select('attributes[]', $attributes,$record->attribute_ids,['class'=>'form-control editattribute','multiple'=>'multiple'] )}}--}}

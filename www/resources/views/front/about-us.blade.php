@@ -71,19 +71,19 @@
                 <div class="col-md-12 col-lg-8">
                     <div class="content-holder">
                         <div class="value_right">
-                            <div class="value_box" data-id="vision-1" id="vision-1" data-img-url="assets/images/over_value_1.jpeg">
+                            <div class="value_box" data-id="vision-1" id="vision-1" data-img-url="assets/images/over_value_1.jpeg-removed">
                                 <h4 class="title">{!!trans('labels.value_info_title1')!!}</h4>
                                 <p>{{trans('labels.value_info_para1')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-2" id="vision-2" data-img-url="assets/images/over_value_2.jpeg">
+                            <div class="value_box" data-id="vision-2" id="vision-2" data-img-url="assets/images/over_value_2.jpeg-removed">
                                 <h4 class="title">{!!trans('labels.value_info_title2')!!}</h4>
                                 <p>{{trans('labels.value_info_para2')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-3" id="vision-3" data-img-url="assets/images/over_value_3.jpeg">
+                            <div class="value_box" data-id="vision-3" id="vision-3" data-img-url="assets/images/over_value_3.jpeg-removed">
                                 <h4 class="title">{!!trans('labels.value_info_title3')!!}</h4>
                                 <p>{{trans('labels.value_info_para3')}}</p>
                             </div>
-                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/over_value_3.jpeg">
+                            <div class="value_box" data-id="vision-4" id="vision-4" data-img-url="assets/images/over_value_3.jpeg-removed">
                                 <h4 class="title">{!!trans('labels.value_info_title4')!!}</h4>
                                 <p>{{trans('labels.value_info_para4')}}</p>
                             </div>

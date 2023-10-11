@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5">
-                    <img src="assets/images/vision.png" alt="Mission & Vission" title="Mission & Vission" />
+                    <img src="assets/images/vision.png-removed" alt="Mission & Vission" title="Mission & Vission" />
                 </div>
             </div>
         </div>

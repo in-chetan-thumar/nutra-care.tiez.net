@@ -1394,7 +1394,7 @@ button.send_inquiry span {
     position: absolute;
     top: 0;
     right: 0;
-    background: url(../images/mission-vision.png) no-repeat;
+    background: url(../images/mission-vision.png-removed) no-repeat;
     content: "";
     width: 710px;
     height: 100%; /*transform:skewX(-190deg);transform-origin:bottom center;background-position:50% 50%*/
@@ -2229,7 +2229,7 @@ ul.certify_list li {
 }
  .active {
     color: #fff !important;
-    background: #2c2c2c;
+    /*background: #2c2c2c;*/
 }
 
 .text-container {

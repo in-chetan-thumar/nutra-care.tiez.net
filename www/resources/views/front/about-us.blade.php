@@ -64,7 +64,7 @@
                     <div class="value_left" id="sticky">
                         <h3>{{trans('labels.value_title')}}</h3>
                         <div class="value_img">
-                            <img src="assets/images/over_value_1.jpeg" alt="Value" title="Value" id="img_other" />
+                            <img src="assets/images/over_value_1.jpeg-removed" alt="Value" title="Value" id="img_other" />
                         </div>
                     </div>
                 </div>

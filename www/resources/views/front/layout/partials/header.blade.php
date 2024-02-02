@@ -17,7 +17,7 @@
                             <a href="{{route('front.research.development')}}">{{trans('labels.menu_r_d')}}</a>
                         </li>
                         <li>
-                            <a href="{{route('front.front.products')}}">{{trans('labels.menu_products')}}</a>
+                            <a href="{{route('front.front.products.list')}}">{{trans('labels.menu_products')}}</a>
                         </li>
                         <li>
                             <a href="{{route('front.contact.us')}}">{{trans('labels.menu_contact_us')}}</a>

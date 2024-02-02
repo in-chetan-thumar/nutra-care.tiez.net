@@ -44,11 +44,27 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_category_id');
     }
+
+    public function subCategory()
+    {
+        return $this->hasMany(Category::class, 'parent_category_id', 'id');
+    }
+
+    public function subSubCategory()
+    {
+        return $this->subCategory()->with('subSubCategory');
+    }
+
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_category_id');
-
+        return $this->belongsTo(Category::class, 'parent_category_id','id');
     }
+
+    public function supCategory()
+    {
+        return $this->parent()->with('supCategory');
+    }
+
     public function child()
     {
         return $this->hasMany(Category::class, 'parent_category_id')->whereDoesntHave('category_product_links');

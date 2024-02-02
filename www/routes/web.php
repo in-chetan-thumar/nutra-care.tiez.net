@@ -21,21 +21,22 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::group(['prefix' => 'admin'],function (){
+Route::group(['prefix' => 'admin'], function () {
 
-    Auth::routes(['register' => false,'logout' => false]);
+    Auth::routes(['register' => false, 'logout' => false]);
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
 });
 
-Route::group(['middleware'=>'language'], function () {
+Route::group(['middleware' => 'language'], function () {
     Route::get('/', 'Front\MainController@home')->name('front.home');
     Route::get('/about-us', 'Front\MainController@aboutUs')->name('front.about.us');
     Route::get('/contact-us', 'Front\MainController@contactUs')->name('front.contact.us');
     Route::post('/contact-us', 'Front\MainController@submitContactUs')->name('submit.contact.inquiry');
 
     Route::get('/front-products/{category_id?}/{sub_category_id?}', 'Front\MainController@frontProducts')->name('front.front.products');
-//    Route::post('/products-table', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
+    Route::match(['get', 'post'], '/products-filter/{category_id?}/{sub_category_id?}', 'Front\MainController@productFilter')->name('front.front.products.filter');
+    Route::get('/products-list', 'Front\MainController@productList')->name('front.front.products.list');
+    //    Route::post('/products-table', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
     Route::post('/products/inquiry', 'Front\MainController@submitInquiry')->name('submit.product.inquiry');
     Route::get('/download/{name}', 'Front\MainController@downloadPdf')->name('front.pdf.download');
 
@@ -46,13 +47,10 @@ Route::group(['middleware'=>'language'], function () {
     Route::post('/products', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
     Route::post('/select-all', 'Front\MainController@getSelectAll')->name('front.select.all');
     Route::get('/search-product', 'Front\MainController@searchProduct')->name('front.search.product');
-
-
-
 });
 
 Route::get('/{locale}', function ($locale) {
-    Session::put('locale',$locale);
+    Session::put('locale', $locale);
     return redirect(url()->previous());
 })->name('locale.lang');
 Route::group(['middleware' => ['auth']], function () {
@@ -118,40 +116,37 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Contact Route
 
-        Route::resource('contacts','ContactController');
-        Route::get('contact','ContactController@index')->name('contact.index');
+        Route::resource('contacts', 'ContactController');
+        Route::get('contact', 'ContactController@index')->name('contact.index');
 
         // Page Route
 
-        Route::resource('pages','PageController');
-        Route::get('page','PageController@index')->name('page.index');
+        Route::resource('pages', 'PageController');
+        Route::get('page', 'PageController@index')->name('page.index');
 
         // Product Route
 
-        Route::resource('products','ProductController');
-        Route::get('product','ProductController@index')->name('product.index');
+        Route::resource('products', 'ProductController');
+        Route::get('product', 'ProductController@index')->name('product.index');
 
         // Category Route
 
-        Route::resource('categories','CategoryController');
-        Route::get('category','CategoryController@index')->name('category.index');
+        Route::resource('categories', 'CategoryController');
+        Route::get('category', 'CategoryController@index')->name('category.index');
 
         // Setting Route
 
-        Route::resource('settings','SettingsController');
-        Route::get('setting','SettingsController@index')->name('setting.index');
+        Route::resource('settings', 'SettingsController');
+        Route::get('setting', 'SettingsController@index')->name('setting.index');
 
         // Attribute Route
 
-        Route::resource('attributes','AttributeController');
-        Route::get('attribute','AttributeController@index')->name('attribute.index');
+        Route::resource('attributes', 'AttributeController');
+        Route::get('attribute', 'AttributeController@index')->name('attribute.index');
 
         // Inquiry Route
 
-        Route::resource('inquiries','InquiryController');
-        Route::get('inquiry','InquiryController@index')->name('inquiry.index');
-
-
+        Route::resource('inquiries', 'InquiryController');
+        Route::get('inquiry', 'InquiryController@index')->name('inquiry.index');
     });
-
 });

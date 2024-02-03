@@ -2342,3 +2342,113 @@ section.contact_us_sec {
 .k-treeview-leaf:focus, .k-treeview-leaf.k-focus {
     box-shadow: inset 0 0 0 0px white !important;
 }
+
+
+.application_page .sidenav { width: 100%;padding: 15px; border-radius: 0;background-color: #ffffff;height: 100%;}
+.application_page .nav-tabs .nav-link { border: none;  color: #000000 !important;}
+.application_page .nav-tabs {  border: none;margin-bottom: 15px;}
+.application_page .nav-tabs .nav-link {  font-size: 20px;text-align: center;padding: 10px 8px 10px 16px;}
+.application_page .nav-tabs .nav-item {width: 50%;}
+.application_page .nav-tabs .nav-item .nav-link.active {background-color: #EFF1F8;}
+.application_page .sidenav .tab-content .k-treeview-lines>.k-treeview-item {padding-left: 0px;}
+
+.application_page .links ul li { float: left;  margin-right: 20px;}
+.application_page .links ul li a {   color: #159725;   font-weight: 600;}
+.application_page .filters .form-control {  height: 45px;  border: none;}
+.application_page .category-font .cat_title { font-size: 16px;  font-weight: 700;}
+.application_page .product-box {  width: 100%;  float: left;  padding: 15px;   min-height: 120px;}
+.application_page .product-box.active {background-color: #069621;}
+.application_page .accordion-body {  padding: 0;}
+.application_page .accordion-button h2 {  font-size: 20px;  font-weight: 600;   color: #000000;}
+.application_page .accordion-item {border-left: none;border-right: none;border-top: 1px solid #dddddd;}
+.application_page .accordion_main #categoryExample>.accordion-item {width: 100%;float: left;padding: 20px;background-color: #ffffff;}
+.application_page .accordion_main #categoryExample>.accordion-item+.accordion-item {margin-top: 15px;}
+.application_page .accordion-button:not(.collapsed) {background: transparent;color: #000000;box-shadow: none;}
+.application_page .accordion-button:focus {box-shadow: none;}
+.application_page .accordion-button {padding-left: 0px;padding-right: 0px;color: #000000; font-weight: 600;}
+.application_page .product-box {margin-top: 0px;}
+
+.application_page .filter_buttons {
+    display: inline-block;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    padding: 15px 0;
+}
+
+.application_page .filter_buttons ul li {
+    width: 48%;
+    float: left;
+}
+
+.application_page .filter_buttons ul li button {
+    width: 100%;
+    margin: 0;
+}
+
+.application_page .filter_buttons ul li:nth-child(odd) {
+    margin-right: 4%;
+}
+
+
+.application_page .k-treeview-leaf {
+    text-transform: uppercase;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 600;
+}
+.application_page .k-checkbox-md {
+    width: 24px;
+    height: 24px;
+    border-color: #000000 !important;
+}
+.application_page .k-treeview-item {
+    margin-top: 13px;
+}
+
+.application_page .accordion-button:not(.collapsed)::after {
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.application_page .accordion-button::after {
+    flex-shrink: 0;
+    width: auto;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "Show Categories";
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+    padding-right: 27px;
+    background-position: right center;
+}
+.application_page .accordion-collapse .accordion-button::after {content: "Show Products";}
+
+.application_page .accordion-button::before {
+    position: absolute;
+    right: 0;
+    flex-shrink: 0;
+    width: auto;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "Hide Categories";
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+    padding-right: 27px;
+    background-position: right center;
+}
+.application_page .accordion-collapse .accordion-button::before {content: "Hide Products";}
+
+.application_page .accordion-button:not(.collapsed)::after, .application_page .accordion-collapse .accordion-button:not(.collapsed)::after {display: none;}
+.application_page .accordion-button:is(.collapsed)::before, .application_page .accordion-collapse .accordion-button:is(.collapsed)::before {display: none;}
+
+.application_page .k-checkbox:checked, .application_page .k-checkbox.k-checked {  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='square' stroke-linejoin='square' stroke-width='1' d='M3,8 l3,3 l7-7'/%3e%3c/svg%3e") !important;background-color: #ffffff !important;}
+
+.application_page .tab-content>.active {
+    background: transparent;
+}

@@ -109,12 +109,16 @@ class MainController extends Controller
 
     public function productFilter(Request $request, $category_id = null, $sub_category_id = null)
     {
+        $categoriesForFilter = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
         $categories = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
+        $uniqueArray = [];
+        $selectedCat = [];
 
-        if ($request->isMethod('post') && $request->subsubcategories != null) {
-            $selectedCat = $request->subsubcategories;
+        if (($request->isMethod('post') && !empty($request->subsubcategories)) || (isset($sub_category_id))) {
+            $selectedCat = $request->subsubcategories ?? [$sub_category_id];
             // dd($selectedCat, $categories);
-            $categoryids = array();
+
+            $categoryids = [];
             foreach ($selectedCat as $id) {
                 $category = Category::find($id);
                 $allIds = app('common')->getAllSubCategory($category);
@@ -130,74 +134,48 @@ class MainController extends Controller
             $flattenedArray = array_merge(...$allParentCat);
             $uniqueArray = array_unique($flattenedArray);
             $uniqueArray = array_values($uniqueArray);
+        }
+        $newArrayOfProduct = app('common')->getProductForDisplay($categories, $uniqueArray);
+        // dd($uniqueArray);
+        // dd($newArrayOfProduct);
+        // else {
+        //     if (isset($sub_category_id)) {
+        //         $category = Category::find($sub_category_id);
+        //         $allIds = app('common')->getAllSubCategory($category);
+        //         $products = CategoryProductLink::with('products')->whereIn('category_id', $allIds)->groupBy('category_id')->get();
 
-            $newFunction = app('common')->getProductForDisplay($categories, $uniqueArray);
-            dd($newFunction, $uniqueArray);
+        //         $newArrayOfProduct = [];
 
+        //         foreach ($products as $product) {
+        //             $category = Category::with('supCategory')->find($product->category_id);
+        //             $allParentCat = app('common')->getAllSupCategory($category);
+        //             $newArrayOfProduct[] = ["products" => [$product->products], "catArray" => array_reverse($allParentCat)];
+        //         }
+        //         $selectedCat = $allIds;
+        //     } else {
+        //         $products = resolve('product')->getAll();
 
-            $products = CategoryProductLink::with('products')->whereIn('category_id', $categoryids)->get();
+        //         $newArrayOfProduct = [];
 
-            $newArrayOfProduct = [];
+        //         foreach ($products as $product) {
+        //             $category = Category::with('supCategory')->find($product->category_id);
+        //             $allParentCat = app('common')->getAllSupCategory($category);
+        //             $newArrayOfProduct[] = ["products" => [$product->products], "catArray" =>  array_reverse($allParentCat)];
+        //         }
 
-            foreach ($products as $product) {
-                $category = Category::with('supCategory')->find($product->category_id);
-                $allParentCat = app('common')->getAllSupCategory($category);
-                // dd($allParentCat);
+        //         $selectedCat = [];
+        //     }
+        // }
 
-                $categoryExists = false;
-                foreach ($newArrayOfProduct as &$existingProduct) {
-                    // dd($category->supCategory->supCategory);
-                    if (in_array($category->supCategory->supCategory->title, $existingProduct["catArray"])) {
-
-                        $existingProduct["products"][] = $product->products;
-                        $categoryExists = true;
-                        break;
-                    }
-                }
-
-                if (!$categoryExists) {
-                    $newArrayOfProduct[] = ["products" => [$product->products], "catArray" => array_reverse($allParentCat)];
-                }
-            }
-
-            $newArray = [];
-
-            foreach ($newArrayOfProduct as $key => $val) {
-                $newArray[] =  '[' . implode('][', $val['catArray']) . ']';
-            }
-
-            // dd($newArrayOfProduct);
-        } else {
-            if (isset($sub_category_id)) {
-                $category = Category::find($sub_category_id);
-                $allIds = app('common')->getAllSubCategory($category);
-                $products = CategoryProductLink::with('products')->whereIn('category_id', $allIds)->groupBy('category_id')->get();
-
-                $newArrayOfProduct = [];
-
-                foreach ($products as $product) {
-                    $category = Category::with('supCategory')->find($product->category_id);
-                    $allParentCat = app('common')->getAllSupCategory($category);
-                    $newArrayOfProduct[] = ["products" => [$product->products], "catArray" => array_reverse($allParentCat)];
-                }
-                $selectedCat = $allIds;
-            } else {
-                $products = resolve('product')->getAll();
-
-                $newArrayOfProduct = [];
-
-                foreach ($products as $product) {
-                    $category = Category::with('supCategory')->find($product->category_id);
-                    $allParentCat = app('common')->getAllSupCategory($category);
-                    $newArrayOfProduct[] = ["products" => [$product->products], "catArray" =>  array_reverse($allParentCat)];
-                }
-
-                $selectedCat = [];
-            }
+        $categoriesForFilterArray = app('common')->getAllCatForFilter($categoriesForFilter);
+        $dataSubCatList = [];
+        foreach ($categoriesForFilterArray as $catItem) {
+            $dataSubCatList[$catItem['id']] =  $catItem['items'];
         }
 
+        // dd($newArrayOfProduct);
 
-        return view('front.product-filter', compact('categories', 'newArrayOfProduct', 'selectedCat'));
+        return view('front.product-filter', compact('categoriesForFilterArray', 'newArrayOfProduct', 'selectedCat','dataSubCatList'));
     }
 
 

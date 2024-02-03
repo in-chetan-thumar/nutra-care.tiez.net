@@ -7,7 +7,11 @@ namespace App\Helpers;
 use App\Models\Category;
 use App\Models\CategoryProductLink;
 use App\Models\Product;
+use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+
 
 class Common
 {
@@ -106,19 +110,107 @@ class Common
     {
         // dump("before", $categoryCollection);
         foreach ($categoryCollection as $key => $cat) {
-            if (!in_array($cat->id, $catIds)) {
+            if (!empty($catIds) && !in_array($cat->id, $catIds)) {
                 unset($categoryCollection[$key]);
                 // $categoryCollection = $categoryCollection->reject(function ($cat) use ($catIds) {
                 //     return !in_array($cat->id, $catIds);
                 // })->values();
                 // dump("after", $cat->id, $catIds, $categoryCollection);
             } else {
-                if ($cat->subSubCategory != null) {
+                if ($cat->subSubCategory->count() > 0) {
                     $cat->subSubCategory = $this->getProductForDisplay($cat->subSubCategory, $catIds);
+                } else {
+                    // $produts = Product::whereIn('id',CategoryProductLink::where('category_id',$cat->id))
+                    $products = Product::whereIn('id', function ($query) use ($cat) {
+                        $query->select('product_id')
+                            ->from('category_product_links')
+                            ->where('category_id', $cat->id);
+                    })->get();
+
+                    $cat['products'] = $products;
                 }
             }
         }
 
         return $categoryCollection;
+    }
+
+    public function getAllCatForFilter($categoriesForFilter)
+    {
+        $catArray = [];
+        foreach ($categoriesForFilter as $catItem) {
+            $subArray = [];
+            if ($catItem->subSubCategory->count() > 0) {
+                $subArray = $this->getAllCatForFilter($catItem->subSubCategory);
+            }
+
+            $catArray[] = [
+                "id" => $catItem->id,
+                "text" => $catItem->title,
+                "expanded" => false,
+                "items" => $subArray
+            ];
+        }
+
+        return $catArray;
+    }
+
+    public function getTitleForAccordion($subCats,$subCatId)
+    {
+        $leafCats = $this->getLeafCategories($subCats);
+        $leafCats = Arr::flatten($leafCats);
+        $memorizationOfleafCatsWithParentTree = [];
+        $leafCatsCollection = new Collection();
+        foreach($leafCats as $key => $leafCat){
+            $leafCatsWithParentTree = $leafCat->supCategory()->first();
+            if(!isset($memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id])){
+                $leafCatsWithParentTreeName = $this->getParentTreeName($leafCatsWithParentTree,$subCatId);
+                // dump($leafCatsWithParentTree, $leafCatsWithParentTreeName,$leafCatsWithParentTree->id);
+                $memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] = $leafCatsWithParentTreeName;
+            }
+            $collectLeafCat = collect($leafCat);
+            $collectLeafCat->put('parentTreeTitle',$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] . ' > '.$leafCat->title);
+            $leafCatsCollection->push($collectLeafCat);
+            // dump( $collectLeafCat, $leafCat,$leafCatsWithParentTree,$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id]);
+        
+        }
+        // dd('finally');
+        return $leafCatsCollection;
+    }
+
+    public function getLeafCategories($subCats){
+        $arr = [];
+        foreach ($subCats as $cat) {
+            // $tempTitle = $item->getAttribute('title');
+            if ($cat->subSubCategory->count() > 0) {
+                $arr[] =  $this->getLeafCategories($cat->subSubCategory);
+            } else {
+                $arr[] = $cat;
+            }
+            // $arr[] =  $tempTitle;
+        }
+        return $arr;
+    }
+
+    public function getParentTreeName($cat, $parentCategoryId){
+        try{
+            $title = $cat->title;
+            if($parentCategoryId != $cat->parent_category_id && $cat->supCategory != null ){
+                $title = $this->getParentTreeName($cat->supCategory,$parentCategoryId).' > '. $title;
+            }
+            return $title;
+        }catch(Exception $e){
+            dd($cat);
+        }
+    }
+
+    public function getDirectProducts(&$subCat){
+        $products = Product::whereIn('id', function ($query) use ($subCat) {
+            $query->select('product_id')
+                ->from('category_product_links')
+                ->where('category_id', $subCat->id);
+        })->get();
+        $subCat['products'] = $products;
+        return collect($subCat);
     }
 }

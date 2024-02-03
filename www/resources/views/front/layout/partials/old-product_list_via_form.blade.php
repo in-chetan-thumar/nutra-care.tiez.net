@@ -1,9 +1,10 @@
 @if (!empty($newArrayOfProduct))
     @foreach ($newArrayOfProduct as $product)
+        @php dd($product) @endphp
         <h1>{{ $product['catArray']['0'] . ' > ' . $product['catArray']['1'] }}</h1>
         <div class="col-lg-4 ">
             @foreach ($product['products'] as $item)
-            <div class="product-box product_background " id="product-box-{{ $item->id }}">
+                <div class="product-box product_background " id="product-box-{{ $item->id }}">
                     <div class="category-font">
 
                         <div class="cat_title">
@@ -25,9 +26,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="checkbox" id="{{ $item->id }}"
-                            data-checkbox-id="{{ $item->id }}" name="product" value=""
-                            class="product-check" onclick="getValue(event)"
+                        <input type="checkbox" id="{{ $item->id }}" data-checkbox-id="{{ $item->id }}"
+                            name="product" value="" class="product-check" onclick="getValue(event)"
                             data-product-id="{{ $item->id }}">
                     </div>
                     {{-- <div class="product-font">{{ $product->title }}</div> --}}

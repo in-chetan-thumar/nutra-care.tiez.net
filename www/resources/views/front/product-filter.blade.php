@@ -66,7 +66,7 @@
                                     <div class="d-flex align-items-center justify-content-end">
                                         <div class="links">
                                             <ul>
-                                                <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#selectedpro">24 product Selected</a></li>
+                                                <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#selectedpro"><span class="productCount" ></span> Product Selected</a></li>
                                                 <li><a href="#">Deselect All</a></li>
                                             </ul>
                                         </div>
@@ -137,7 +137,7 @@
                                                                                                     name="product" value=""
                                                                                                     class="product-check"
                                                                                                     onclick="getValue(event)"
-                                                                                                    data-product-id="{{$prod['id']}}" data-cat-title="{{ $mainCat->title .' > '. $subCat->title .' > '.$catWithProd['parentTreeTitle'] }}">
+                                                                                                    data-product-id="{{$prod['id']}}" data-product-title="{{$prod['title']}}" data-cat-title="{{ $mainCat->title .' > '. $subCat->title .' > '.$catWithProd['parentTreeTitle'] }}">
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -196,12 +196,12 @@
                             <div>
                                 <h5 class="modal-title" id="exampleModalLabel">Send Inquiry</h5>
                             </div>
-                            <div class="d-flex align-items-center"><span class="total">29</span><a class="removebtn"
-                                    href="#">Remove All</a></div>
+                            <div class="d-flex align-items-center"><span class="total productCount"></span><a class="removebtn"
+                                    href="#"  onclick="removeAll()">Remove All</a></div>
                         </div>
                     </div>
-                    <div class="modal_body">
-                        <div class="pronamelist">
+                    <div class="modal_body" id="selectedpro_modal_body">
+                        {{--<div class="pronamelist">
                             <div class="pro_breadcrumb">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
@@ -484,7 +484,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
 
 
@@ -506,8 +506,7 @@
         var mainList = @php echo json_encode($dataSubCatList) @endphp;
         // console.log(mainList);
         Object.keys(mainList).forEach(key => {
-
-            console.log(key, mainList[key]);
+            // console.log(key, mainList[key]);
             $("#subCat" + key).kendoTreeView({
                 checkboxes: {
                     checkChildren: true

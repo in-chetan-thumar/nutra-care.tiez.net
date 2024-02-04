@@ -67,7 +67,7 @@
                                         <div class="links">
                                             <ul>
                                                 <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#selectedpro"><span class="productCount" ></span> Product Selected</a></li>
-                                                <li><a href="#">Deselect All</a></li>
+                                                <li><a href="#" onclick="removeAll()">Deselect All</a></li>
                                             </ul>
                                         </div>
                                         <div><button type="button" name="submit" value="upload" id="send_inquiry"

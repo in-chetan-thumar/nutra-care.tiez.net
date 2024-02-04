@@ -45,9 +45,6 @@
                     </div>
                 </div>
 
-
-
-
                 <div class=" col-lg-9">
                     <div class="main_rgt">
                         <div class="top-banner">
@@ -69,7 +66,7 @@
                                     <div class="d-flex align-items-center justify-content-end">
                                         <div class="links">
                                             <ul>
-                                                <li><a href="#">24 product Selected</a></li>
+                                                <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#selectedpro">24 product Selected</a></li>
                                                 <li><a href="#">Deselect All</a></li>
                                             </ul>
                                         </div>
@@ -81,8 +78,6 @@
                             </div>
                         </form>
                     </div>
-
-
                     <div class="accordion_main">
                         <div class="accordion" id="categoryExample">
                             @foreach ($newArrayOfProduct as $mainCat)
@@ -91,7 +86,7 @@
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="category{{$subCat->id}}">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#catcollapse{{$subCat->id}}" aria-expanded="true"
+                                                    data-bs-target="#catcollapse{{$subCat->id}}" aria-expanded="false"
                                                     aria-controls="catcollapse{{$subCat->id}}">
                                                     <h2>{{ $mainCat->title }} > {{ $subCat->title }}</h2>
                                                 </button>
@@ -132,7 +127,7 @@
                                                                                 @foreach ($catWithProd['products'] as $prod)
                                                                                     <div class="col-lg-4 ">
                                                                                         <div class="product-box product_background"
-                                                                                            id="product-box-1">
+                                                                                            id="product-box-{{$prod['id']}}">
                                                                                             <div class="category-font">
                                                                                                 <div class="cat_title">
                                                                                                     {{$prod['title']}}
@@ -142,299 +137,361 @@
                                                                                                     name="product" value=""
                                                                                                     class="product-check"
                                                                                                     onclick="getValue(event)"
-                                                                                                    data-product-id="{{$prod['id']}}">
+                                                                                                    data-product-id="{{$prod['id']}}" data-cat-title="{{ $mainCat->title .' > '. $subCat->title .' > '.$catWithProd['parentTreeTitle'] }}">
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 @endforeach
-                                                                                
-                                                                                {{--
-                                                                                <div class="col-lg-4 ">
-                                                                                    <div class="product-box product_background "
-                                                                                        id="product-box-2">
-                                                                                        <div class="category-font">
-                                                                                            <div class="cat_title">
-                                                                                                ENCAPSULATED CALCIUM PROPIONATE
-                                                                                                60/70%
-                                                                                            </div>
-                                                                                            <input type="checkbox" id="2"
-                                                                                                data-checkbox-id="2"
-                                                                                                name="product" value=""
-                                                                                                class="product-check"
-                                                                                                onclick="getValue(event)"
-                                                                                                data-product-id="2">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-lg-4 ">
-                                                                                    <div class="product-box product_background "
-                                                                                        id="product-box-3">
-                                                                                        <div class="category-font">
-                                                                                            <div class="cat_title">
-                                                                                                ENCAPSULATED SORBIC ACID
-                                                                                                50/60/70/80/85%
-                                                                                            </div>
-                                                                                            <input type="checkbox" id="3"
-                                                                                                data-checkbox-id="3"
-                                                                                                name="product" value=""
-                                                                                                class="product-check"
-                                                                                                onclick="getValue(event)"
-                                                                                                data-product-id="3">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div> --}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                {{--<div class="accordion-item">
-                                                                    <h2 class="accordion-header" id="headingTwo">
-                                                                        <button class="accordion-button collapsed" type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseTwo" aria-expanded="false"
-                                                                            aria-controls="collapseTwo">
-                                                                            FLOUR FORTIFICATION (8 Products)
-                                                                        </button>
-                                                                    </h2>
-                                                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                                                        aria-labelledby="headingTwo"
-                                                                        data-bs-parent="#accordionExample">
-                                                                        <div class="accordion-body">
-                                                                            <div class="row product-data" id="productDisplayBox">
-                                                                                <div class="col-lg-4 ">
-                                                                                    <div class="product-box product_background"
-                                                                                        id="product-box-4">
-                                                                                        <div class="category-font">
-                                                                                            <div class="cat_title">
-                                                                                                ENCAPSULATED SODIUM PROPIONATE
-                                                                                                60/70%
-                                                                                            </div>
-                                                                                            <input type="checkbox" id="4"
-                                                                                                data-checkbox-id="4"
-                                                                                                name="product" value=""
-                                                                                                class="product-check"
-                                                                                                onclick="getValue(event)"
-                                                                                                data-product-id="4">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-lg-4 ">
-                                                                                    <div class="product-box product_background "
-                                                                                        id="product-box-5">
-                                                                                        <div class="category-font">
-                                                                                            <div class="cat_title">
-                                                                                                ENCAPSULATED CALCIUM PROPIONATE
-                                                                                                60/70%
-                                                                                            </div>
-                                                                                            <input type="checkbox" id="5"
-                                                                                                data-checkbox-id="5"
-                                                                                                name="product" value=""
-                                                                                                class="product-check"
-                                                                                                onclick="getValue(event)"
-                                                                                                data-product-id="5">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-lg-4 ">
-                                                                                    <div class="product-box product_background "
-                                                                                        id="product-box-6">
-                                                                                        <div class="category-font">
-                                                                                            <div class="cat_title">
-                                                                                                ENCAPSULATED SORBIC ACID
-                                                                                                50/60/70/80/85%
-                                                                                            </div>
-                                                                                            <input type="checkbox" id="6"
-                                                                                                data-checkbox-id="6"
-                                                                                                name="product" value=""
-                                                                                                class="product-check"
-                                                                                                onclick="getValue(event)"
-                                                                                                data-product-id="6">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>--}}
+                                                                </div>                                                                
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <div class="row product-data" id="productDisplayBox">
-                                                    <?php //dd($catWithProd['id'],$subCat->id); ?>
-                                                    @foreach ($catWithProds['products'] as $prod)
-                                                        <div class="col-lg-4 ">
-                                                            <div class="product-box product_background"
-                                                                id="product-box-1">
-                                                                <div class="category-font">
-                                                                    <div class="cat_title">
-                                                                        {{$prod['title']}}
+                                                <div id="catcollapse{{$subCat->id}}" class="accordion-collapse"
+                                                    aria-labelledby="category{{$subCat->id}}" data-bs-parent="#category{{$subCat->id}}">
+                                                    <div class="row product-data" id="productDisplayBox">
+                                                        <?php //dd($catWithProd['id'],$subCat->id); ?>
+                                                        @foreach ($catWithProds['products'] as $prod)
+                                                            <div class="col-lg-4 ">
+                                                                <div class="product-box product_background"
+                                                                    id="product-box-1">
+                                                                    <div class="category-font">
+                                                                        <div class="cat_title">
+                                                                            {{$prod['title']}}
+                                                                        </div>
+                                                                        <input type="checkbox" id="{{$prod['id']}}"
+                                                                            data-checkbox-id="{{$prod['id']}}"
+                                                                            name="product" value=""
+                                                                            class="product-check"
+                                                                            onclick="getValue(event)"
+                                                                            data-product-id="{{$prod['id']}}" data-cat-title="{{ $mainCat->title .' > '. $subCat->title }}">
                                                                     </div>
-                                                                    <input type="checkbox" id="{{$prod['id']}}"
-                                                                        data-checkbox-id="{{$prod['id']}}"
-                                                                        name="product" value=""
-                                                                        class="product-check"
-                                                                        onclick="getValue(event)"
-                                                                        data-product-id="{{$prod['id']}}">
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    @endforeach
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             @endif
                                         </div>
                                     @endforeach
                                 @endif
                             @endforeach
-
-                            {{--            
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="categorytwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#catcollapsetwo" aria-expanded="true"
-                                        aria-controls="catcollapsetwo">
-                                        <h2>D C GRADES (1/20 Selected)</h2>
-                                    </button>
-                                </h2>
-                                <div id="catcollapsetwo" class="accordion-collapse collapse"
-                                    aria-labelledby="categorytwo" data-bs-parent="#categorytwo">
-                                    <div class="accordion-body">
-                                        <div class="accordion" id="accordionExample">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="headingthree">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapsethree"
-                                                        aria-expanded="true" aria-controls="collapsethree">
-                                                        RICE FORTIFICATION (6 Products)
-                                                    </button>
-                                                </h2>
-                                                <div id="collapsethree" class="accordion-collapse collapse"
-                                                    aria-labelledby="headingthree" data-bs-parent="#categorytwo">
-                                                    <div class="accordion-body">
-                                                        <div class="row product-data" id="productDisplayBox">
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background"
-                                                                    id="product-box-1">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED SODIUM PROPIONATE 60/70%
-                                                                        </div>
-                                                                        <input type="checkbox" id="1"
-                                                                            data-checkbox-id="1" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="1">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background "
-                                                                    id="product-box-2">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED CALCIUM PROPIONATE 60/70%
-                                                                        </div>
-                                                                        <input type="checkbox" id="2"
-                                                                            data-checkbox-id="2" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="2">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background "
-                                                                    id="product-box-3">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED SORBIC ACID 50/60/70/80/85%
-                                                                        </div>
-                                                                        <input type="checkbox" id="3"
-                                                                            data-checkbox-id="3" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="3">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="headingfour">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapsefour"
-                                                        aria-expanded="false" aria-controls="collapsefour">
-                                                        FLOUR FORTIFICATION (8 Products)
-                                                    </button>
-                                                </h2>
-                                                <div id="collapsefour" class="accordion-collapse collapse"
-                                                    aria-labelledby="headingfour" data-bs-parent="#accordionExample">
-                                                    <div class="accordion-body">
-                                                        <div class="row product-data" id="productDisplayBox">
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background"
-                                                                    id="product-box-4">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED SODIUM PROPIONATE 60/70%
-                                                                        </div>
-                                                                        <input type="checkbox" id="4"
-                                                                            data-checkbox-id="4" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="4">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background "
-                                                                    id="product-box-5">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED CALCIUM PROPIONATE 60/70%
-                                                                        </div>
-                                                                        <input type="checkbox" id="5"
-                                                                            data-checkbox-id="5" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="5">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 ">
-                                                                <div class="product-box product_background "
-                                                                    id="product-box-6">
-                                                                    <div class="category-font">
-                                                                        <div class="cat_title">
-                                                                            ENCAPSULATED SORBIC ACID 50/60/70/80/85%
-                                                                        </div>
-                                                                        <input type="checkbox" id="6"
-                                                                            data-checkbox-id="6" name="product"
-                                                                            value="" class="product-check"
-                                                                            onclick="getValue(event)" data-product-id="6">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Selected Product Modal -- Start -->
+        <div class="modal fade product_modal" id="selectedpro" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5 class="modal-title" id="exampleModalLabel">Send Inquiry</h5>
+                            </div>
+                            <div class="d-flex align-items-center"><span class="total">29</span><a class="removebtn"
+                                    href="#">Remove All</a></div>
+                        </div>
+                    </div>
+                    <div class="modal_body">
+                        <div class="pronamelist">
+                            <div class="pro_breadcrumb">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <ol>
+                                            <li>VERTICALS</li>
+                                            <li>HUMAN NUTRITION</li>
+                                            <li>ENCAPSULATED PRODUCTS</li>
+                                            <li>VITAMINS</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <span class="totalprocount">11</span>
                                     </div>
                                 </div>
                             </div>
-                            --}}
+                            <div class="allpronamelist">
+                                <ul>
+                                    <li>VITAMIN E 50% <div><a href="#" class="removebtn">Remove <svg width="17" height="16"
+                                                    viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID 50/60/70/75/85/90/95% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pronamelist">
+                            <div class="pro_breadcrumb">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <ol>
+                                            <li>VERTICALS</li>
+                                            <li>Pharma</li>
+                                            <li>PELLETS</li>
+                                            <li>NUTRACEUTICALS</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <span class="totalprocount">9</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="allpronamelist">
+                                <ul>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pronamelist">
+                            <div class="pro_breadcrumb">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <ol>
+                                            <li>VERTICALS</li>
+                                            <li>Pharma</li>
+                                            <li>PELLETS</li>
+                                            <li>NUTRACEUTICALS</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <span class="totalprocount">9</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="allpronamelist">
+                                <ul>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>ASCORBIC ACID (VITAMIN C) 60/90% <div><a href="#" class="removebtn">Remove <svg
+                                                    width="17" height="16" viewBox="0 0 17 16"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS FUMARATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                    <li>FERROUS SULPHATE 60% <div><a href="#" class="removebtn">Remove <svg width="17"
+                                                    height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.7041 4L12.7041 12" stroke="#079620"
+                                                        stroke-linecap="round" />
+                                                    <path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />
+                                                </svg> </a></div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
         </div>
+        <!-- Selected Product Modal -- end -->
     </section>
 @endsection
 @section('script')
@@ -448,7 +505,6 @@
     <script>
         var mainList = @php echo json_encode($dataSubCatList) @endphp;
         // console.log(mainList);
-
         Object.keys(mainList).forEach(key => {
 
             console.log(key, mainList[key]);
@@ -462,506 +518,9 @@
 
         });
 
-
-
         $('#search_by').on('change', function(e) {
             filterRecoard(event)
         });
-        
-        /*
-        $("#treeview").kendoTreeView({
-            checkboxes: {
-                checkChildren: true
-            },
-            check: onCheck,
-            dataSource: [{
-                "id": 1,
-                "text": "Verticals",
-                "expanded": false,
-                "items": [{
-                    "id": 2,
-                    "text": "Human Nutrition",
-                    "expanded": false,
-                    "items": [{
-                        "id": 7,
-                        "text": "Micronutrient  Premix",
-                        "expanded": false,
-                        "items": [{
-                            "id": 34,
-                            "text": "Rice Fortification",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 35,
-                            "text": "Flour Fortification",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 36,
-                            "text": "Salt Fortification",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 37,
-                            "text": "Milk Fortification",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 38,
-                            "text": "Oil Fortification",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 39,
-                            "text": "Bakery",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 40,
-                            "text": "Ready To Use Therapeutic Food (rutf)",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 41,
-                            "text": "Take Home Ration (thr)",
-                            "expanded": false,
-                            "items": [{
-                                "id": 69,
-                                "text": "Children",
-                                "expanded": false,
-                                "items": []
-                            }, {
-                                "id": 70,
-                                "text": "Pregnant & Lactating Women",
-                                "expanded": false,
-                                "items": []
-                            }]
-                        }, {
-                            "id": 42,
-                            "text": "Extruded Foods",
-                            "expanded": false,
-                            "items": [{
-                                "id": 71,
-                                "text": "Breakfast Cereals",
-                                "expanded": false,
-                                "items": []
-                            }, {
-                                "id": 72,
-                                "text": "Biscuits",
-                                "expanded": false,
-                                "items": []
-                            }, {
-                                "id": 73,
-                                "text": "Noodles",
-                                "expanded": false,
-                                "items": []
-                            }, {
-                                "id": 74,
-                                "text": "Confectioneries",
-                                "expanded": false,
-                                "items": []
-                            }]
-                        }, {
-                            "id": 43,
-                            "text": "Beverages",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 8,
-                        "text": "Encapsulated Products",
-                        "expanded": false,
-                        "items": [{
-                            "id": 44,
-                            "text": "Acids\/ph Reducers",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 45,
-                            "text": "Vitamins",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 46,
-                            "text": "Amino Acids",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 47,
-                            "text": "Beverages",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 48,
-                            "text": "Encapsulated Iron",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 49,
-                            "text": "Magnesium",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 50,
-                            "text": "Iron",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 51,
-                            "text": "Zinc",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 52,
-                            "text": "Copper",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 53,
-                            "text": "Other Products",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 54,
-                            "text": "Choline",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 9,
-                        "text": "Trituration",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 10,
-                        "text": "Bakery",
-                        "expanded": false,
-                        "items": [{
-                            "id": 55,
-                            "text": "Anti Fungal Agents \/ Ph Reducers",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 56,
-                            "text": "Bread Premix",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 57,
-                            "text": "Cake Premix",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 58,
-                            "text": "Glitters",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 59,
-                            "text": "Sugar Sphere",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }]
-                }, {
-                    "id": 3,
-                    "text": "Cosmetics",
-                    "expanded": false,
-                    "items": [{
-                        "id": 11,
-                        "text": "Haircare",
-                        "expanded": false,
-                        "items": [{
-                            "id": 75,
-                            "text": "Anti-dandruff",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 12,
-                        "text": "Scalp Treatment",
-                        "expanded": false,
-                        "items": []
-                    }]
-                }, {
-                    "id": 4,
-                    "text": "Animal Nutrition",
-                    "expanded": false,
-                    "items": [{
-                        "id": 13,
-                        "text": "Premixes",
-                        "expanded": false,
-                        "items": [{
-                            "id": 61,
-                            "text": "Mineral Mixtures",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 62,
-                            "text": "Vitamin Ad3",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 63,
-                            "text": "Vitamin & Mineral Mixtures",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 14,
-                        "text": "Encapsulated Products",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 15,
-                        "text": "Feed Products",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 16,
-                        "text": "Organic Glycinate",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 17,
-                        "text": "Organic Bisglycinate",
-                        "expanded": false,
-                        "items": []
-                    }]
-                }, {
-                    "id": 5,
-                    "text": "Pharma",
-                    "expanded": false,
-                    "items": [{
-                        "id": 18,
-                        "text": "Pellets",
-                        "expanded": false,
-                        "items": [{
-                            "id": 64,
-                            "text": "Nutraceuticals",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 76,
-                            "text": "Neutral",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 78,
-                            "text": "Vitamins",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 19,
-                        "text": "D C Grades",
-                        "expanded": false,
-                        "items": [{
-                            "id": 65,
-                            "text": "Agglomeration & Granulation For Direct Compression",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 66,
-                            "text": "Iron",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 67,
-                            "text": "Sweetners",
-                            "expanded": false,
-                            "items": []
-                        }, {
-                            "id": 68,
-                            "text": "Nutraceuticals",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }]
-                }, {
-                    "id": 6,
-                    "text": "Encapsulation",
-                    "expanded": false,
-                    "items": [{
-                        "id": 20,
-                        "text": "Acids\/ph Reducers",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 21,
-                        "text": "Vitamins",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 22,
-                        "text": "Amino Acids",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 23,
-                        "text": "Beverages",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 24,
-                        "text": "Encapsulated Iron",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 25,
-                        "text": "Magnesium",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 26,
-                        "text": "Iron",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 27,
-                        "text": "Zinc",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 28,
-                        "text": "Copper",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 30,
-                        "text": "Other Products",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 31,
-                        "text": "Choline",
-                        "expanded": false,
-                        "items": []
-                    }]
-                }]
-            }, {
-                "id": 79,
-                "text": "Application",
-                "expanded": false,
-                "items": [{
-                    "id": 80,
-                    "text": "Rice",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 81,
-                    "text": "Flour",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 82,
-                    "text": "Salt",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 83,
-                    "text": "Oil",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 84,
-                    "text": "Milk",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 85,
-                    "text": "Biscuit",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 86,
-                    "text": "Confectionery",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 87,
-                    "text": "Extruded Foods",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 88,
-                    "text": "Bakery",
-                    "expanded": false,
-                    "items": [{
-                        "id": 93,
-                        "text": "Acids\/ph Reducers",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 94,
-                        "text": "Bread Premix",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 95,
-                        "text": "Cake Premix",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 96,
-                        "text": "Glitters",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 97,
-                        "text": "Sugar Sphere",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 98,
-                        "text": "Other Ingredients",
-                        "expanded": false,
-                        "items": []
-                    }, {
-                        "id": 99,
-                        "text": "Micronutrient Premix",
-                        "expanded": false,
-                        "items": []
-                    }]
-                }, {
-                    "id": 89,
-                    "text": "Beverages",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 90,
-                    "text": "Sweetners",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 91,
-                    "text": "Pharmaceutical Products",
-                    "expanded": false,
-                    "items": []
-                }, {
-                    "id": 92,
-                    "text": "Cosmetics",
-                    "expanded": false,
-                    "items": [{
-                        "id": 100,
-                        "text": "Hair Care",
-                        "expanded": false,
-                        "items": [{
-                            "id": 102,
-                            "text": "Anti Dandruff",
-                            "expanded": false,
-                            "items": []
-                        }]
-                    }, {
-                        "id": 101,
-                        "text": "Scalp Treatment",
-                        "expanded": false,
-                        "items": []
-                    }]
-                }]
-            }]
-        });
-        */
 
         // function that gathers IDs of checked nodes
         function checkedNodeIds(nodes, checkedNodes) {

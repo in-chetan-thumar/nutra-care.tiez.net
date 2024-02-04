@@ -125,12 +125,14 @@ $(document).on('submit', '#form-inquiry', function (e) {
 });
 
 function getValue(e) {
+    console.log(e);
     const arr_checkbox_id = [];
-    var product_id = e.currentTarget.getAttribute('data-product-id')
-    var checkbox_id = e.currentTarget.getAttribute('data-checkbox-id')
+    var product_id = e.currentTarget.getAttribute('data-product-id');
+    var checkbox_id = e.currentTarget.getAttribute('data-checkbox-id');
     var category = e.currentTarget.getAttribute('data-category')
+    var cat_title = e.currentTarget.getAttribute('data-cat-title');
     var product_attribute = null;
-
+    console.log(cat_title);
     // selectProduct(event)
 
     if (localStorage.getItem(product_id) != null) {
@@ -164,6 +166,7 @@ function getValue(e) {
             product_attribute = {
                 'product_id': product_id,
                 'checkbox_id':arr_checkbox_id,
+                'cat_title':cat_title
             }
             saveLocalStorage(product_id, JSON.stringify(product_attribute))
             changeInquiryBtn();
@@ -181,6 +184,7 @@ function getValue(e) {
         product_attribute = {
             'product_id': product_id,
             'checkbox_id':arr_checkbox_id,
+            'cat_title':cat_title
         }
         saveLocalStorage(product_id, JSON.stringify(product_attribute))
         changeInquiryBtn();

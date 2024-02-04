@@ -164,14 +164,18 @@ class Common
         foreach($leafCats as $key => $leafCat){
             $leafCatsWithParentTree = $leafCat->supCategory()->first();
             if(!isset($memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id])){
-                $leafCatsWithParentTreeName = $this->getParentTreeName($leafCatsWithParentTree,$subCatId);
+                $leafCatsWithParentTreeName = '';
+                if($leafCatsWithParentTree->id != $subCatId){
+                    $leafCatsWithParentTreeName = $this->getParentTreeName($leafCatsWithParentTree,$subCatId). ' > ';
+                }
                 // dump($leafCatsWithParentTree, $leafCatsWithParentTreeName,$leafCatsWithParentTree->id);
                 $memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] = $leafCatsWithParentTreeName;
             }
             $collectLeafCat = collect($leafCat);
-            $collectLeafCat->put('parentTreeTitle',$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] . ' > '.$leafCat->title);
+            $collectLeafCat->put('parentTreeTitle',$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] . $leafCat->title);
             $leafCatsCollection->push($collectLeafCat);
-            // dump( $collectLeafCat, $leafCat,$leafCatsWithParentTree,$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id]);
+            // dump( $collectLeafCat, $leafCat,$leafCatsWithParentTree,$subCatId,$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id]);
+            // dump( $collectLeafCat, $leafCatsWithParentTree,$subCatId);
         
         }
         // dd('finally');
@@ -195,7 +199,7 @@ class Common
     public function getParentTreeName($cat, $parentCategoryId){
         try{
             $title = $cat->title;
-            if($parentCategoryId != $cat->parent_category_id && $cat->supCategory != null ){
+            if($cat->supCategory != null && $parentCategoryId != $cat->parent_category_id && $parentCategoryId != $cat->id){
                 $title = $this->getParentTreeName($cat->supCategory,$parentCategoryId).' > '. $title;
             }
             return $title;

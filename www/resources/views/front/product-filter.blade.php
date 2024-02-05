@@ -32,34 +32,43 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade product_modal" id="profilter" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        @foreach ($categoriesForFilterArray as $key => $val)
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
+                                                    id="acat{{ $val['id'] }}" data-bs-toggle="tab"
+                                                    href="#cat{{ $val['id'] }}" role="tab"
+                                                    aria-controls="{{ $val['text'] }}"
+                                                    aria-selected="false">{{ $val['text'] }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
 
-                        <ul class="nav nav-tabs" role="tablist">
-                            @foreach ($categoriesForFilterArray as $key => $val)
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
-                                        id="acat{{ $val['id'] }}" data-bs-toggle="tab" href="#cat{{ $val['id'] }}"
-                                        role="tab" aria-controls="{{ $val['text'] }}"
-                                        aria-selected="false">{{ $val['text'] }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                                    <div class="tab-content" id="tab-content">
+                                        @foreach ($categoriesForFilterArray as $key => $val)
+                                            <div class="tab-pane <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
+                                                id="cat{{ $val['id'] }}" role="tabpanel" aria-labelledby="simple-tab-0">
+                                                <div id="subCat{{ $val['id'] }}"></div>
+                                            </div>
+                                        @endforeach
+                                    </div>
 
-                        <div class="tab-content" id="tab-content">
-                            @foreach ($categoriesForFilterArray as $key => $val)
-                                <div class="tab-pane <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
-                                    id="cat{{ $val['id'] }}" role="tabpanel" aria-labelledby="simple-tab-0">
-                                    <div id="subCat{{ $val['id'] }}"></div>
+                                    <div class="filter_buttons">
+                                        <ul>
+                                            <li><button type="button" class="btn product-button send-inquiry"
+                                                    onclick="window.location.href='{{ route('front.front.products.filter') }}'">Reset</button>
+                                            </li>
+                                            {{-- <li><button type="button" class="btn product-button">Apply</button></li> --}}
+                                        </ul>
+                                    </div>
                                 </div>
-                            @endforeach
-                        </div>
-
-                        <div class="filter_buttons">
-                            <ul>
-                                <li><button type="button" class="btn product-button send-inquiry"
-                                        onclick="window.location.href='{{ route('front.front.products.filter') }}'">Reset</button>
-                                </li>
-                                {{-- <li><button type="button" class="btn product-button">Apply</button></li> --}}
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,7 +82,7 @@
                     </div>
                     <div class="row mb-2">
                         <form class="form-group  filters">
-                            <div class="row align-items-center justify-content-between">
+                            <div class="row g-4 align-items-center justify-content-between">
                                 <div class="col-lg-4">
                                     <input type="search" class="form-control rounded" id="search_product"
                                         name="filters[filter]" placeholder="Search Product" aria-label="Search Product"
@@ -82,7 +91,7 @@
                                         class=" form-control result">
                                 </div>
                                 <div class="col-lg-8">
-                                    <div class="d-flex align-items-center justify-content-end">
+                                    <div class="d-flex align-items-center justify-content-end btnwrpr">
                                         <div class="links">
                                             <ul>
                                                 <li><a href="javascript:void(0);" data-bs-toggle="modal"
@@ -129,7 +138,7 @@
         </div>
         <!-- Selected Product Modal -- end -->
         <div class="modal fade product_modal" id="inquiryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -194,7 +203,8 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="mb-3 contact_btn">
-                                    <button type="submit" class="btn btn-primary btnInquiry " data-bs-toggle="modal">Send
+                                    <button type="submit" class="btn btn-primary btnInquiry "
+                                        data-bs-toggle="modal">Send
                                         Inquiry
                                     </button>
                                 </div>
@@ -209,21 +219,22 @@
             </div>
         </div>
         <div class="modal fade product_modal success_modal" id="exampleModal1" tabindex="-1"
-             aria-labelledby="exampleModal1Label" aria-hidden="true">
+            aria-labelledby="exampleModal1Label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header model-line">
-                        <h5 class="modal-title" id="exampleModal1Label"><span class="productCount">0</span> Products Inquiry
-                            <br> Submitted Succeefully!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModal1Label"><span class="productCount">0</span> Products
+                            Inquiry
+                            <br> Submitted Succeefully!
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body paper-plane">
-                        <img src="{{asset('assets/images/paper-plane.svg')}}" alt="Paper Plane" title="Paper Plane"/>
+                        <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Send Inquiry</button>
-                    </div> -->
+                          <button type="button" class="btn btn-primary">Send Inquiry</button>
+                        </div> -->
                 </div>
             </div>
         </div>

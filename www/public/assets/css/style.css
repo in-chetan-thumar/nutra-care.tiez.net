@@ -2801,3 +2801,5 @@ div .k-svg-icon { width: 9px;  height: 9px;background-repeat: no-repeat !importa
 .application_page .k-treeview-item {padding: 0 0 0 10px;}
 .application_page .k-treeview-leaf {word-wrap: break-word;  white-space: break-spaces;}
 .application_page .k-treeview-toggle {z-index: 33;}
+
+.sidenav .mobile_show .d-flex div>a {position: relative; z-index: 22;}

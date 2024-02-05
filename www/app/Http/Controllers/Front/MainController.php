@@ -109,14 +109,24 @@ class MainController extends Controller
 
     public function productFilter(Request $request, $category_id = null, $sub_category_id = null)
     {
-        $categoriesForFilter = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
         $categories = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
         $uniqueArray = [];
         $selectedCat = [];
 
-        if (($request->isMethod('post') && !empty($request->subsubcategories)) || (isset($sub_category_id))) {
-            $selectedCat = $request->subsubcategories ?? [$sub_category_id];
-            // dd($selectedCat, $categories);
+        if (($request->isMethod('post') && (!empty($request->categories) || !empty($request->search_product)))  || (isset($sub_category_id))) {
+
+            $selectedCat = $request->categories ?? [$sub_category_id];
+            if (!empty($request->search_product)) {
+                $filtercategory = Category::whereIn('id', $selectedCat)->whereHas('category_product_links', function ($cateory_product_qry) use ($request) {
+                    $cateory_product_qry->whereHas('products', function ($product) use ($request) {
+                        $product->where('title', 'LIKE', '%' . $request->search_product . '%');
+                    });
+                });
+                $selectedCat = $filtercategory->pluck('id')->toArray();
+            }
+            if ($request->ajax() && empty($selectedCat)) {
+                return view('front.ajax_product_filter', ['newArrayOfProduct' => []]);
+            }
 
             $categoryids = [];
             foreach ($selectedCat as $id) {
@@ -135,7 +145,13 @@ class MainController extends Controller
             $uniqueArray = array_unique($flattenedArray);
             $uniqueArray = array_values($uniqueArray);
         }
-        $newArrayOfProduct = app('common')->getProductForDisplay($categories, $uniqueArray);
+        $newArrayOfProduct = app('common')->getProductForDisplay($categories, $uniqueArray, $request->search_product);
+
+        if ($request->ajax()) {
+            return view('front.ajax_product_filter', compact('newArrayOfProduct'));
+        }
+
+        $categoriesForFilter = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
         // dd($uniqueArray);
         // dd($newArrayOfProduct);
         // else {
@@ -175,7 +191,7 @@ class MainController extends Controller
 
         // dd($newArrayOfProduct);
 
-        return view('front.product-filter', compact('categoriesForFilterArray', 'newArrayOfProduct', 'selectedCat','dataSubCatList'));
+        return view('front.product-filter', compact('categoriesForFilterArray', 'newArrayOfProduct', 'selectedCat', 'dataSubCatList'));
     }
 
 

@@ -19,10 +19,12 @@ function selectProduct(e) {
         .classList.contains("active");
 
     if (hasClass) {
+        console.log("in if");
         $("#product-box-" + id).removeClass("active");
         removeLocalStorage(product_id);
         $(".productCount").text(countProduct());
     } else {
+        console.log("in else");
         $("#product-box-" + id).addClass("active");
         const arr_attribute_id = [];
         const arr_checkbox_id = [];
@@ -47,17 +49,31 @@ function loadProduct(e) {
 }
 
 function filterRecoard() {
-    filter_list($(".filters").serialize());
+    filter_list($("#search_product").val());
 }
 function filter_list(data = {}) {
-    var url = window.origin + "/search-product";
+    // var url = window.origin + "/search-product";
+    var checkedNodes = [],
+        category_ids;
+
+    Object.keys(mainList).forEach((catId) => {
+        var treeView = $("#subCat" + catId).data("kendoTreeView");
+        checkedNodeIds(treeView.dataSource.view(), checkedNodes);
+    });
+
+    var url = window.origin + "/products-filter";
+
     $.ajax({
         headers: {
             "X-CSRF-Token": $("meta[name=csrf-token]").attr("content"),
         },
-        type: "get",
+        type: "post",
         url: url,
-        data: data,
+        data: {
+            search_product: data,
+            categories: checkedNodes,
+        },
+
         success: function (products) {
             $("#productDisplayBox").html("");
             $("#productDisplayBox").html(products);
@@ -126,8 +142,9 @@ function getValue(e) {
     var checkbox_id = e.currentTarget.getAttribute("data-checkbox-id");
     var category = e.currentTarget.getAttribute("data-category");
     var product_attribute = null;
-    
+
     if (localStorage.getItem(product_id) != null) {
+        console.log("in if");
         var data = JSON.parse(localStorage.getItem(product_id));
         if (e.target.checked) {
             $("#product-box-" + product_id).addClass("active");
@@ -149,18 +166,20 @@ function getValue(e) {
                 product_id: product_id,
                 checkbox_id: arr_checkbox_id,
                 cat_title: e.currentTarget.getAttribute("data-cat-title"),
-                product_title:e.currentTarget.getAttribute("data-product-title")
+                product_title:
+                    e.currentTarget.getAttribute("data-product-title"),
             };
             saveLocalStorage(product_id, JSON.stringify(product_attribute));
         }
     } else {
+        console.log("in else", product_id);
         $("#product-box-" + product_id).addClass("active");
         arr_checkbox_id.push(checkbox_id);
         product_attribute = {
             product_id: product_id,
             checkbox_id: arr_checkbox_id,
             cat_title: e.currentTarget.getAttribute("data-cat-title"),
-            product_title:e.currentTarget.getAttribute("data-product-title")
+            product_title: e.currentTarget.getAttribute("data-product-title"),
         };
         saveLocalStorage(product_id, JSON.stringify(product_attribute));
     }
@@ -170,61 +189,68 @@ function getValue(e) {
     changeSelectedProModal();
 }
 
-function changeSelectedProModal(){
+function changeSelectedProModal() {
     // console.log(Object.keys(localStorage));
     let prodsGroupByCat = {};
     // console.log(localStorage);
     let selectedProds = Object.keys(localStorage);
     // console.log(selectedProds);
     for (var prod_id of selectedProds) {
-        try{
+        try {
             let product = JSON.parse(localStorage.getItem(prod_id));
-            if (product.hasOwnProperty('cat_title')) {
-                if(!prodsGroupByCat.hasOwnProperty(product['cat_title'])){
-                    prodsGroupByCat[product['cat_title']] = [];
+            if (product.hasOwnProperty("cat_title")) {
+                if (!prodsGroupByCat.hasOwnProperty(product["cat_title"])) {
+                    prodsGroupByCat[product["cat_title"]] = [];
                 }
-                prodsGroupByCat[product['cat_title']].push(product);
+                prodsGroupByCat[product["cat_title"]].push(product);
             }
-        }catch(error){
+        } catch (error) {
             console.log(localStorage[prod_id]);
         }
     }
     // console.log(prodsGroupByCat);
-    let modalBody = '';
-    for(var cat in prodsGroupByCat){
-        modalBody += '<div class="pronamelist">'+
-                        '<div class="pro_breadcrumb">'+
-                            '<div class="d-flex align-items-center justify-content-between">'+
-                                '<div>'+
-                                    cat+
-                                '</div>'+
-                                '<div>'+
-                                    '<span class="totalprocount">'+ prodsGroupByCat[cat].length +'</span>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'+
-                    '<div class="allpronamelist">'+
-                        '<ul>';
+    let modalBody = "";
+    for (var cat in prodsGroupByCat) {
+        modalBody +=
+            '<div class="pronamelist">' +
+            '<div class="pro_breadcrumb">' +
+            '<div class="d-flex align-items-center justify-content-between">' +
+            "<div>" +
+            cat +
+            "</div>" +
+            "<div>" +
+            '<span class="totalprocount">' +
+            prodsGroupByCat[cat].length +
+            "</span>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="allpronamelist">' +
+            "<ul>";
         for (var prod of prodsGroupByCat[cat]) {
             console.log(prod);
-            modalBody += '<li>'+ prod['product_title']+
-                                    '<div>'+
-                                        '<a href="#" class="removebtn" onclick="removeLocalStorage('+prod['product_id']+');changeSelectedProModal();">'+
-                                            'Remove <svg width="17" height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">'+
-                                                '<path d="M4.7041 4L12.7041 12" stroke="#079620" stroke-linecap="round" />'+
-                                                '<path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />'+
-                                            '</svg>'+
-                                        '</a>'+
-                                    '</div>'+
-                                '</li>';
-        }                
-        modalBody += '</ul></div></div>';
+            modalBody +=
+                "<li>" +
+                prod["product_title"] +
+                "<div>" +
+                '<a href="#" class="removebtn" onclick="removeLocalStorage(' +
+                prod["product_id"] +
+                ');changeSelectedProModal();">' +
+                'Remove <svg width="17" height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">' +
+                '<path d="M4.7041 4L12.7041 12" stroke="#079620" stroke-linecap="round" />' +
+                '<path d="M13 4L5 12" stroke="#079620" stroke-linecap="round" />' +
+                "</svg>" +
+                "</a>" +
+                "</div>" +
+                "</li>";
+        }
+        modalBody += "</ul></div></div>";
         // console.log(modalBody);
     }
-    $('#selectedpro_modal_body').html(modalBody);
+    $("#selectedpro_modal_body").html(modalBody);
 }
 
-function removeAll(){
+function removeAll() {
     let selectedProds = Object.keys(localStorage);
     console.log(selectedProds);
     for (var prod_id of selectedProds) {
@@ -243,7 +269,7 @@ function saveLocalStorage(key, value) {
 
 function removeLocalStorage(key) {
     if (localStorage.getItem(key) != null) {
-        $('#'+key).prop('checked', false);
+        $("#" + key).prop("checked", false);
         $("#product-box-" + key).removeClass("active");
         localStorage.removeItem(key);
         $(".productCount").text(countProduct());

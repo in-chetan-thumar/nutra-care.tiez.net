@@ -106,28 +106,27 @@ class Common
         return array_unique($categoryNames);
     }
 
-    public function getProductForDisplay(&$categoryCollection, $catIds)
+    public function getProductForDisplay(&$categoryCollection, $catIds, $productTitle = '')
     {
         // dump("before", $categoryCollection);
         foreach ($categoryCollection as $key => $cat) {
             if (!empty($catIds) && !in_array($cat->id, $catIds)) {
                 unset($categoryCollection[$key]);
-                // $categoryCollection = $categoryCollection->reject(function ($cat) use ($catIds) {
-                //     return !in_array($cat->id, $catIds);
-                // })->values();
-                // dump("after", $cat->id, $catIds, $categoryCollection);
             } else {
                 if ($cat->subSubCategory->count() > 0) {
-                    $cat->subSubCategory = $this->getProductForDisplay($cat->subSubCategory, $catIds);
+                    $cat->subSubCategory = $this->getProductForDisplay($cat->subSubCategory, $catIds, $productTitle);
                 } else {
-                    // $produts = Product::whereIn('id',CategoryProductLink::where('category_id',$cat->id))
                     $products = Product::whereIn('id', function ($query) use ($cat) {
                         $query->select('product_id')
                             ->from('category_product_links')
                             ->where('category_id', $cat->id);
-                    })->get();
+                    });
 
-                    $cat['products'] = $products;
+                    if (!empty($productTitle)) {
+                        $products->where('title', 'LIKE', '%' . $productTitle . '%');
+                    }
+
+                    $cat['products'] = $products->get();
                 }
             }
         }
@@ -155,34 +154,35 @@ class Common
         return $catArray;
     }
 
-    public function getTitleForAccordion($subCats,$subCatId)
+    public function getTitleForAccordion($subCats, $subCatId)
     {
         $leafCats = $this->getLeafCategories($subCats);
         $leafCats = Arr::flatten($leafCats);
         $memorizationOfleafCatsWithParentTree = [];
         $leafCatsCollection = new Collection();
-        foreach($leafCats as $key => $leafCat){
+        foreach ($leafCats as $key => $leafCat) {
             $leafCatsWithParentTree = $leafCat->supCategory()->first();
-            if(!isset($memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id])){
+            if (!isset($memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id])) {
                 $leafCatsWithParentTreeName = '';
-                if($leafCatsWithParentTree->id != $subCatId){
-                    $leafCatsWithParentTreeName = $this->getParentTreeName($leafCatsWithParentTree,$subCatId). ' > ';
+                if ($leafCatsWithParentTree->id != $subCatId) {
+                    $leafCatsWithParentTreeName = $this->getParentTreeName($leafCatsWithParentTree, $subCatId) . ' > ';
                 }
                 // dump($leafCatsWithParentTree, $leafCatsWithParentTreeName,$leafCatsWithParentTree->id);
                 $memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] = $leafCatsWithParentTreeName;
             }
             $collectLeafCat = collect($leafCat);
-            $collectLeafCat->put('parentTreeTitle',$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] . $leafCat->title);
+            $collectLeafCat->put('parentTreeTitle', $memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id] . $leafCat->title);
             $leafCatsCollection->push($collectLeafCat);
             // dump( $collectLeafCat, $leafCat,$leafCatsWithParentTree,$subCatId,$memorizationOfleafCatsWithParentTree[$leafCatsWithParentTree->id]);
             // dump( $collectLeafCat, $leafCatsWithParentTree,$subCatId);
-        
+
         }
         // dd('finally');
         return $leafCatsCollection;
     }
 
-    public function getLeafCategories($subCats){
+    public function getLeafCategories($subCats)
+    {
         $arr = [];
         foreach ($subCats as $cat) {
             // $tempTitle = $item->getAttribute('title');
@@ -196,19 +196,21 @@ class Common
         return $arr;
     }
 
-    public function getParentTreeName($cat, $parentCategoryId){
-        try{
+    public function getParentTreeName($cat, $parentCategoryId)
+    {
+        try {
             $title = $cat->title;
-            if($cat->supCategory != null && $parentCategoryId != $cat->parent_category_id && $parentCategoryId != $cat->id){
-                $title = $this->getParentTreeName($cat->supCategory,$parentCategoryId).' > '. $title;
+            if ($cat->supCategory != null && $parentCategoryId != $cat->parent_category_id && $parentCategoryId != $cat->id) {
+                $title = $this->getParentTreeName($cat->supCategory, $parentCategoryId) . ' > ' . $title;
             }
             return $title;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             dd($cat);
         }
     }
 
-    public function getDirectProducts(&$subCat){
+    public function getDirectProducts(&$subCat)
+    {
         $products = Product::whereIn('id', function ($query) use ($subCat) {
             $query->select('product_id')
                 ->from('category_product_links')

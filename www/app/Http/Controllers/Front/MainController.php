@@ -153,36 +153,6 @@ class MainController extends Controller
         }
 
         $categoriesForFilter = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
-        // dd($uniqueArray);
-        // dd($newArrayOfProduct);
-        // else {
-        //     if (isset($sub_category_id)) {
-        //         $category = Category::find($sub_category_id);
-        //         $allIds = app('common')->getAllSubCategory($category);
-        //         $products = CategoryProductLink::with('products')->whereIn('category_id', $allIds)->groupBy('category_id')->get();
-
-        //         $newArrayOfProduct = [];
-
-        //         foreach ($products as $product) {
-        //             $category = Category::with('supCategory')->find($product->category_id);
-        //             $allParentCat = app('common')->getAllSupCategory($category);
-        //             $newArrayOfProduct[] = ["products" => [$product->products], "catArray" => array_reverse($allParentCat)];
-        //         }
-        //         $selectedCat = $allIds;
-        //     } else {
-        //         $products = resolve('product')->getAll();
-
-        //         $newArrayOfProduct = [];
-
-        //         foreach ($products as $product) {
-        //             $category = Category::with('supCategory')->find($product->category_id);
-        //             $allParentCat = app('common')->getAllSupCategory($category);
-        //             $newArrayOfProduct[] = ["products" => [$product->products], "catArray" =>  array_reverse($allParentCat)];
-        //         }
-
-        //         $selectedCat = [];
-        //     }
-        // }
 
         $categoriesForFilterArray = app('common')->getAllCatForFilter($categoriesForFilter);
         $dataSubCatList = [];

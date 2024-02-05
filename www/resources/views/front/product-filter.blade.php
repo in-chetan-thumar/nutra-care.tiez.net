@@ -36,17 +36,18 @@
                         <ul class="nav nav-tabs" role="tablist">
                             @foreach ($categoriesForFilterArray as $key => $val)
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link <?= $key == 0 ? 'active' : '' ?>" id="acat{{ $val['id'] }}"
-                                        data-bs-toggle="tab" href="#cat{{ $val['id'] }}" role="tab"
-                                        aria-controls="{{ $val['text'] }}" aria-selected="false">{{ $val['text'] }}</a>
+                                    <a class="nav-link <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
+                                        id="acat{{ $val['id'] }}" data-bs-toggle="tab" href="#cat{{ $val['id'] }}"
+                                        role="tab" aria-controls="{{ $val['text'] }}"
+                                        aria-selected="false">{{ $val['text'] }}</a>
                                 </li>
                             @endforeach
                         </ul>
 
                         <div class="tab-content" id="tab-content">
                             @foreach ($categoriesForFilterArray as $key => $val)
-                                <div class="tab-pane <?= $key == 0 ? 'active' : '' ?>" id="cat{{ $val['id'] }}"
-                                    role="tabpanel" aria-labelledby="simple-tab-0">
+                                <div class="tab-pane <?= (isset(request()->category_id) && request()->category_id == $val['id']) || (!isset(request()->category_id) && $key == 0) ? 'active' : '' ?>"
+                                    id="cat{{ $val['id'] }}" role="tabpanel" aria-labelledby="simple-tab-0">
                                     <div id="subCat{{ $val['id'] }}"></div>
                                 </div>
                             @endforeach
@@ -150,6 +151,19 @@
                 dataSource: mainList[key],
             });
 
+            @if (request()->sub_category_id)
+                var treeView = $("#subCat" + key).data("kendoTreeView");
+                var get_sub_category = treeView.dataSource.get({{ request()->sub_category_id }});
+                console.log(treeView);
+                console.log("subcat", get_sub_category);
+                if (get_sub_category) {
+                    var select_sub_category_item = treeView.findByUid(get_sub_category.uid);
+                    treeView.dataItem(select_sub_category_item).set("checked", true);
+                    treeView.bind("change");
+                    var get_category = treeView.dataSource.get({{ request()->category_id }});
+                }
+            @endif
+
         });
 
         $('#search_by').on('change', function(e) {
@@ -191,24 +205,6 @@
                 getProductCategory(catId);
             });
         });
-
-        // Object.keys(mainList).forEach(catId => {
-        //     var treeView = $("#subCat" + catId).data("kendoTreeView");
-        //     console.log("foreach",treeView);
-
-        //     @if (request()->sub_category_id)
-        //         var get_sub_category = treeView.dataSource.get({{ request()->sub_category_id }});
-        //         var select_sub_category_item = treeView.findByUid(get_sub_category.uid);
-        //         treeView.dataItem(select_sub_category_item).set("checked", true);
-        //         treeView.bind("change");
-        //         var get_category = treeView.dataSource.get({{ request()->category_id }});
-        //         var select_category_item = treeView.findByUid(get_category.uid);
-        //         treeView.expand(select_category_item);
-        //     @endif
-        // });
-
-
-
 
         function getProductCategory(catId) {
             var checkedNodes = [],

@@ -13,35 +13,53 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="sidenav">
-                        <form action="{{ route('front.front.products.filter') }}" method="post">
-                            @csrf
-                            <ul class="nav nav-tabs" role="tablist">
-                                @foreach ($categoriesForFilterArray as $key => $val)
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link <?= $key == 0 ? 'active' : '' ?>" id="acat{{ $val['id'] }}"
-                                            data-bs-toggle="tab" href="#cat{{ $val['id'] }}" role="tab"
-                                            aria-controls="{{ $val['text'] }}"
-                                            aria-selected="false">{{ $val['text'] }}</a>
-                                    </li>
-                                @endforeach
+
+                        <div class="mobile_show">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2>Filter</h2>
+                                <div>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#profilter">
+                                        <svg width="20" height="18" viewBox="0 0 20 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <line y1="2.5" x2="20" y2="2.5" stroke="black" />
+                                            <line y1="8.5" x2="20" y2="8.5" stroke="black" />
+                                            <line y1="14.5" x2="20" y2="14.5" stroke="black" />
+                                            <circle cx="11.5" cy="2.9209" r="2" fill="white" stroke="black" />
+                                            <circle cx="6.5" cy="8.9209" r="2" fill="white" stroke="black" />
+                                            <circle cx="12.5" cy="14.9209" r="2" fill="white" stroke="black" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            @foreach ($categoriesForFilterArray as $key => $val)
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link <?= $key == 0 ? 'active' : '' ?>" id="acat{{ $val['id'] }}"
+                                        data-bs-toggle="tab" href="#cat{{ $val['id'] }}" role="tab"
+                                        aria-controls="{{ $val['text'] }}" aria-selected="false">{{ $val['text'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="tab-content" id="tab-content">
+                            @foreach ($categoriesForFilterArray as $key => $val)
+                                <div class="tab-pane <?= $key == 0 ? 'active' : '' ?>" id="cat{{ $val['id'] }}"
+                                    role="tabpanel" aria-labelledby="simple-tab-0">
+                                    <div id="subCat{{ $val['id'] }}"></div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="filter_buttons">
+                            <ul>
+                                <li><button type="button" class="btn product-button send-inquiry"
+                                        onclick="window.location.href='{{ route('front.front.products.filter') }}'">Reset</button>
+                                </li>
+                                {{-- <li><button type="button" class="btn product-button">Apply</button></li> --}}
                             </ul>
-
-
-                            <div class="tab-content" id="tab-content">
-                                @foreach ($categoriesForFilterArray as $key => $val)
-                                    <div class="tab-pane <?= $key == 0 ? 'active' : '' ?>" id="cat{{ $val['id'] }}"
-                                        role="tabpanel" aria-labelledby="simple-tab-0">
-                                        <div id="subCat{{ $val['id'] }}"></div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div class="filter_buttons">
-                                <ul>
-                                    <li><button type="button" class="btn product-button send-inquiry" onclick="window.location.href='{{ route('front.front.products.filter') }}'">Reset</button></li>
-                                    {{-- <li><button type="button" class="btn product-button">Apply</button></li> --}}
-                                </ul>
-                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -56,8 +74,8 @@
                         <form class="form-group  filters">
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-lg-4">
-                                    <input type="search" class="form-control rounded" id="search_product" name="filters[filter]"
-                                        placeholder="Search Product" aria-label="Search Product"
+                                    <input type="search" class="form-control rounded" id="search_product"
+                                        name="filters[filter]" placeholder="Search Product" aria-label="Search Product"
                                         aria-describedby="search-addon" onkeyup="filterRecoard()">
                                     <input type="hidden" id="result" name="category" value=""
                                         class=" form-control result">
@@ -69,7 +87,7 @@
                                                 <li><a href="javascript:void(0);" data-bs-toggle="modal"
                                                         data-bs-target="#selectedpro"><span class="productCount"></span>
                                                         Product Selected</a></li>
-                                                <li><a href="#" onclick="removeAll()">Deselect All</a></li>
+                                                <li><a href="#" onclick="removeAll();">Deselect All</a></li>
                                             </ul>
                                         </div>
                                         <div><button type="button" name="submit" value="upload" id="send_inquiry"
@@ -98,7 +116,9 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Send Inquiry</h5>
                             </div>
                             <div class="d-flex align-items-center"><span class="total productCount"></span><a
-                                    class="removebtn" href="#" onclick="removeAll()">Remove All</a></div>
+                                    class="removebtn" href="#" data-bs-dismiss="modal"
+                                    onclick="removeAll()">Remove
+                                    All</a></div>
                         </div>
                     </div>
                     <div class="modal_body" id="selectedpro_modal_body"></div>

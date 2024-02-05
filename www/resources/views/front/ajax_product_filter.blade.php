@@ -115,7 +115,15 @@
                 @endif
             @endforeach
         @else
-            <h1><b>no application/vertical selected.</b></h1>
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <h1><b>No application/vertical selected.</b></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
     </div>
 </div>

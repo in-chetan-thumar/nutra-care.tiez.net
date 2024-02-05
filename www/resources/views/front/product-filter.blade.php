@@ -492,6 +492,106 @@
             </div>
         </div>
         <!-- Selected Product Modal -- end -->
+        <div class="modal fade product_modal" id="inquiryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Send Inquiry</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="erroInquiry">
+
+                    </div>
+                    <p><span class="productCount">0</span> <span class="productText"></span> Selected</p>
+                    {{ Form::open(['url' => route('submit.product.inquiry'), 'name' => 'form-inquiry', 'id' => 'form-inquiry']) }}
+                    @csrf
+
+                    <div class="modal-body">
+                        <div class="contact_form modal-form">
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    {!! Form::text('name', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Full Name',
+                                    ]) !!}
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    {!! Form::text('email', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Email Address',
+                                    ]) !!}
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    {!! Form::number('phone', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Phone Number',
+                                        'oninput' =>
+                                            'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);',
+                                        'maxlength' => '10',
+                                    ]) !!}
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    {!! Form::textarea('message', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Message',
+                                    ]) !!}
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="mb-3">
+                                    {!! app('captcha')->display() !!}
+                                    {{--                                {!! NoCaptcha::display(['data-theme' => 'light' ]) !!} --}}
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3 contact_btn">
+                                    <button type="submit" class="btn btn-primary btnInquiry " data-bs-toggle="modal">Send
+                                        Inquiry
+                                    </button>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade product_modal success_modal" id="exampleModal1" tabindex="-1"
+             aria-labelledby="exampleModal1Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header model-line">
+                        <h5 class="modal-title" id="exampleModal1Label"><span class="productCount">0</span> Products Inquiry
+                            <br> Submitted Succeefully!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body paper-plane">
+                        <img src="{{asset('assets/images/paper-plane.svg')}}" alt="Paper Plane" title="Paper Plane"/>
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Send Inquiry</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
     </section>
 @endsection
 @section('script')

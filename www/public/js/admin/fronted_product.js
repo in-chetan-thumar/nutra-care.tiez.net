@@ -99,9 +99,6 @@ $(document).on("submit", "#form-inquiry", function (e) {
                         changeProductText();
                         $(".productCount").text(countProduct());
                         $(".success_modal").modal("show");
-                        var treeView = $("#treeview").data("kendoTreeView");
-                        treeView.dataSource.read(); // This reloads the data from the data source
-
                         localStorage.clear();
                     },
                     error: function (reject) {

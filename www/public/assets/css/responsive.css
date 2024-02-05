@@ -229,7 +229,8 @@
 
 @media screen and (max-width: 823px) {
 
-
+.application_page .accordion-collapse .accordion-button::before {content: "" !important;}
+    
 /**/
 .application_page .main_rgt {display: none;}
 .application_page .sidenav {padding: 7px 15px;}

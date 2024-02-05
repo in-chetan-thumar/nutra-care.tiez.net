@@ -192,7 +192,22 @@
             });
         });
 
-        // var treeView = $("#treeview").data("kendoTreeView");
+        // Object.keys(mainList).forEach(catId => {
+        //     var treeView = $("#subCat" + catId).data("kendoTreeView");
+        //     console.log("foreach",treeView);
+
+        //     @if (request()->sub_category_id)
+        //         var get_sub_category = treeView.dataSource.get({{ request()->sub_category_id }});
+        //         var select_sub_category_item = treeView.findByUid(get_sub_category.uid);
+        //         treeView.dataItem(select_sub_category_item).set("checked", true);
+        //         treeView.bind("change");
+        //         var get_category = treeView.dataSource.get({{ request()->category_id }});
+        //         var select_category_item = treeView.findByUid(get_category.uid);
+        //         treeView.expand(select_category_item);
+        //     @endif
+        // });
+
+
 
 
         function getProductCategory(catId) {
@@ -213,7 +228,9 @@
                 url: url, // Replace with your Laravel route
 
                 data: {
-                    categories: checkedNodes
+                    search_product: $("#search_product").val(),
+                    categories: checkedNodes,
+
                 },
 
                 success: function(products) {

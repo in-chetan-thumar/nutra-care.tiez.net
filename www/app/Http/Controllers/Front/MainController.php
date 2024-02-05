@@ -112,6 +112,7 @@ class MainController extends Controller
         $categories = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
         $uniqueArray = [];
         $selectedCat = [];
+        $newArrayOfProduct = [];
 
         if (($request->isMethod('post') && (!empty($request->categories) || !empty($request->search_product)))  || (isset($sub_category_id))) {
 
@@ -144,8 +145,8 @@ class MainController extends Controller
             $flattenedArray = array_merge(...$allParentCat);
             $uniqueArray = array_unique($flattenedArray);
             $uniqueArray = array_values($uniqueArray);
+            $newArrayOfProduct = app('common')->getProductForDisplay($categories, $uniqueArray, $request->search_product);
         }
-        $newArrayOfProduct = app('common')->getProductForDisplay($categories, $uniqueArray, $request->search_product);
 
         if ($request->ajax()) {
             return view('front.ajax_product_filter', compact('newArrayOfProduct'));

@@ -243,8 +243,9 @@
 .allpronamelist ul li {  font-size: 13px;}
 #selectedpro.product_modal .modal-title {  font-size: 20px;}
 .application_page .accordion-collapse .accordion-button::before {content: "" !important;}
-.btn-close { right: 0;  top: -25px;}
+.btn-close { }
 .modal-header .btn-close {padding: 3px;}
+#profilter.product_modal .modal-content {padding-top: 40px;}
 /**/
 
 
@@ -917,7 +918,6 @@
 }
 
 @media screen and (max-width: 575px) {
-.modal.fade .modal-dialog {margin-top: 30px;}
 .product_modal .modal-content {  padding: 20px 15px;}
 }
 

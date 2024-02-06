@@ -229,8 +229,7 @@
 
 @media screen and (max-width: 823px) {
 
-.application_page .accordion-collapse .accordion-button::before {content: "" !important;}
-    
+
 /**/
 .application_page .main_rgt {display: none;}
 .application_page .sidenav {padding: 7px 15px;}
@@ -243,6 +242,9 @@
 .pro_breadcrumb ol li {  font-size: 13px;}
 .allpronamelist ul li {  font-size: 13px;}
 #selectedpro.product_modal .modal-title {  font-size: 20px;}
+.application_page .accordion-collapse .accordion-button::before {content: "" !important;}
+.btn-close { right: 0;  top: -25px;}
+.modal-header .btn-close {padding: 3px;}
 /**/
 
 
@@ -912,6 +914,11 @@
     form.form-group.filters .col-lg-3 {
         width: 100%;
     }
+}
+
+@media screen and (max-width: 575px) {
+.modal.fade .modal-dialog {margin-top: 30px;}
+.product_modal .modal-content {  padding: 20px 15px;}
 }
 
 @media screen and (max-width: 568px) {

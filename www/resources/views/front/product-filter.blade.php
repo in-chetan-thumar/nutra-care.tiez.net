@@ -4,8 +4,25 @@
         input[type=checkbox] {
             accent-color: #ffffff;
         }
+
+        .confBtn {
+            margin-right: 1rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+            #submitButton {
+                display: inline;
+            }
+        }
+
+        @media only screen and (min-width: 801px) {
+            #submitButton {
+                display: none;
+            }
+        }
     </style>
     <link href="https://kendo.cdn.telerik.com/themes/6.7.0/default/default-main.css" rel="stylesheet" />
+    <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <section class="contact_us_sec application_page">
@@ -61,10 +78,11 @@
 
                                     <div class="filter_buttons">
                                         <ul>
+                                            <li><button type="submit" class="btn product-button" id="submitButton"
+                                                    data-bs-dismiss="modal" aria-label="Close">Apply</button></li>
                                             <li><button type="button" class="btn product-button send-inquiry"
                                                     onclick="window.location.href='{{ route('front.front.products.filter') }}'">Reset</button>
                                             </li>
-                                            {{-- <li><button type="button" class="btn product-button">Apply</button></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -84,15 +102,17 @@
                         <form class="form-group  filters">
                             <div class="row g-4 align-items-center justify-content-between">
                                 <div class="col-lg-4">
-                                    <input type="search" class="form-control rounded" id="search_product"
-                                        name="filters[filter]" placeholder="Search Product" aria-label="Search Product"
-                                        aria-describedby="search-addon" onkeyup="filterRecoard()">
+                                    <input type="search" class="form-control rounded"
+                                        <?= count($newArrayOfProduct) > 0 ? '' : 'style="display: none"' ?>
+                                        id="search_product" name="filters[filter]" placeholder="Search Product"
+                                        aria-label="Search Product" aria-describedby="search-addon"
+                                        onkeyup="filterRecoard()">
                                     <input type="hidden" id="result" name="category" value=""
                                         class=" form-control result">
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="d-flex align-items-center justify-content-end btnwrpr">
-                                        <div class="links">
+                                        <div class="links" id="hidden_links">
                                             <ul>
                                                 <li><a href="javascript:void(0);" data-bs-toggle="modal"
                                                         data-bs-target="#selectedpro"><span class="productCount"></span>
@@ -132,7 +152,6 @@
                         </div>
                     </div>
                     <div class="modal_body" id="selectedpro_modal_body"></div>
-
                 </div>
             </div>
         </div>
@@ -233,8 +252,8 @@
                         <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                          <button type="button" class="btn btn-primary">Send Inquiry</button>
-                        </div> -->
+                                                                                                                                                                          <button type="button" class="btn btn-primary">Send Inquiry</button>
+                                                                                                                                                                        </div> -->
                 </div>
             </div>
         </div>
@@ -248,6 +267,9 @@
     {{--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     {{--    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/jquery.min.js"></script> --}}
     <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.all.min.js"></script>
+
+    <script src="{{ URL::asset('js/admin/fronted_product.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/admin/sweetalert2.min.js') }}" type="text/javascript"></script>
 
     <script>
         var mainList = @php echo json_encode($dataSubCatList) @endphp;
@@ -265,8 +287,6 @@
             @if (request()->sub_category_id)
                 var treeView = $("#subCat" + key).data("kendoTreeView");
                 var get_sub_category = treeView.dataSource.get({{ request()->sub_category_id }});
-                console.log(treeView);
-                console.log("subcat", get_sub_category);
                 if (get_sub_category) {
                     var select_sub_category_item = treeView.findByUid(get_sub_category.uid);
                     treeView.dataItem(select_sub_category_item).set("checked", true);
@@ -304,8 +324,10 @@
             });
 
             if (checkedNodes.length > 0) {
+                $("#search_product").show();
                 message = checkedNodes.join(",");
             } else {
+                $("#search_product").hide();
                 message = null;
             }
             $("#result").val(message);
@@ -370,6 +392,4 @@
             $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
         });
     </script>
-
-    <script src="{{ URL::asset('js/admin/fronted_product.js') }}" type="text/javascript"></script>
 @endsection

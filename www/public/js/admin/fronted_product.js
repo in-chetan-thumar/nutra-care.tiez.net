@@ -5,6 +5,10 @@ $(document).ready(function () {
     changeInquiryBtn();
     changeProductText();
     $(".productCount").text(countProduct());
+    if (countProduct() == 0) {
+        $("#hidden_links").hide();
+        $("#send_inquiry").hide();
+    }
     readLoacalstorage();
     changeSelectedProModal();
 });
@@ -19,12 +23,10 @@ function selectProduct(e) {
         .classList.contains("active");
 
     if (hasClass) {
-        console.log("in if");
         $("#product-box-" + id).removeClass("active");
         removeLocalStorage(product_id);
         $(".productCount").text(countProduct());
     } else {
-        console.log("in else");
         $("#product-box-" + id).addClass("active");
         const arr_attribute_id = [];
         const arr_checkbox_id = [];
@@ -141,7 +143,6 @@ function getValue(e) {
     var product_attribute = null;
 
     if (localStorage.getItem(product_id) != null) {
-        console.log("in if");
         var data = JSON.parse(localStorage.getItem(product_id));
         if (e.target.checked) {
             $("#product-box-" + product_id).addClass("active");
@@ -169,7 +170,6 @@ function getValue(e) {
             saveLocalStorage(product_id, JSON.stringify(product_attribute));
         }
     } else {
-        console.log("in else", product_id);
         $("#product-box-" + product_id).addClass("active");
         arr_checkbox_id.push(checkbox_id);
         product_attribute = {
@@ -180,18 +180,25 @@ function getValue(e) {
         };
         saveLocalStorage(product_id, JSON.stringify(product_attribute));
     }
+
+    console.log(countProduct());
+
     changeInquiryBtn();
     changeProductText();
     $(".productCount").text(countProduct());
+    if (countProduct() > 0) {
+        $("#hidden_links").show();
+        $("#send_inquiry").show();
+    } else {
+        $("#hidden_links").hide();
+        $("#send_inquiry").hide();
+    }
     changeSelectedProModal();
 }
 
 function changeSelectedProModal() {
-    // console.log(Object.keys(localStorage));
     let prodsGroupByCat = {};
-    // console.log(localStorage);
     let selectedProds = Object.keys(localStorage);
-    // console.log(selectedProds);
     for (var prod_id of selectedProds) {
         try {
             let product = JSON.parse(localStorage.getItem(prod_id));
@@ -205,7 +212,6 @@ function changeSelectedProModal() {
             console.log(localStorage[prod_id]);
         }
     }
-    // console.log(prodsGroupByCat);
     let modalBody = "";
     for (var cat in prodsGroupByCat) {
         modalBody +=
@@ -225,7 +231,6 @@ function changeSelectedProModal() {
             '<div class="allpronamelist">' +
             "<ul>";
         for (var prod of prodsGroupByCat[cat]) {
-            console.log(prod);
             modalBody +=
                 "<li>" +
                 prod["product_title"] +
@@ -248,12 +253,29 @@ function changeSelectedProModal() {
 }
 
 function removeAll() {
-    let selectedProds = Object.keys(localStorage);
-    console.log(selectedProds);
-    for (var prod_id of selectedProds) {
-        removeLocalStorage(prod_id);
-    }
-    changeSelectedProModal();
+    swal({
+        title: "Are you sure?",
+        text: "This Selected Prodcuts are not recover after this action!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Remove",
+        cancelButtonText: "No, Cancel",
+        confirmButtonClass: "btn btn-success confBtn",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+    }).then(function () {
+        let selectedProds = Object.keys(localStorage);
+        for (var prod_id of selectedProds) {
+            removeLocalStorage(prod_id);
+        }
+
+        if (countProduct() == 0) {
+            $("#hidden_links").hide();
+            $("#send_inquiry").hide();
+        }
+
+        changeSelectedProModal();
+    });
 }
 
 function saveLocalStorage(key, value) {

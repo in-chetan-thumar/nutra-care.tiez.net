@@ -2613,3 +2613,7 @@ div .k-svg-icon { width: 9px;  height: 9px;background-repeat: no-repeat !importa
 
 .btn-close {  position: absolute; right:10px; opacity: 1; top: 5px; width: 15px;  height: 15px;}
 .product_modal .modal-header .btn-close {margin: 0;}
+
+.product-box.active {
+    background-color: #069621;
+}

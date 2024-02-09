@@ -6,7 +6,7 @@
                     @foreach ($mainCat->subSubCategory as $subCat)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="category{{ $subCat->id }}">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#catcollapse{{ $subCat->id }}" aria-expanded="false"
                                     aria-controls="catcollapse{{ $subCat->id }}">
                                     <h2>{{ $mainCat->title }} > {{ $subCat->title }}</h2>
@@ -28,7 +28,7 @@
                                 @foreach ($catWithProds as $catWithProd)
                                     <?php //dd($catWithProd['id'],$subCat->id);
                                     ?>
-                                    <div id="catcollapse{{ $subCat->id }}" class="accordion-collapse"
+                                    <div id="catcollapse{{ $subCat->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="category{{ $subCat->id }}"
                                         data-bs-parent="#category{{ $subCat->id }}">
                                         <div class="accordion-body">
@@ -82,7 +82,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <div id="catcollapse{{ $subCat->id }}" class="accordion-collapse"
+                                <div id="catcollapse{{ $subCat->id }}" class="accordion-collapse collapse"
                                     aria-labelledby="category{{ $subCat->id }}"
                                     data-bs-parent="#category{{ $subCat->id }}">
                                     <div class="row product-data" id="productDisplayBox">

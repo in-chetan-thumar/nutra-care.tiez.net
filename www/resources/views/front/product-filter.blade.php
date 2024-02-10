@@ -30,7 +30,6 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="sidenav">
-
                         <div class="mobile_show">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h2>Filter</h2>
@@ -317,7 +316,6 @@
         function onCheck() {
             var checkedNodes = [],
                 message;
-
             Object.keys(mainList).forEach(catId => {
                 var treeView = $("#subCat" + catId).data("kendoTreeView");
                 checkedNodeIds(treeView.dataSource.view(), checkedNodes);
@@ -333,12 +331,16 @@
             $("#result").val(message);
         }
 
+        var old_selected_cats = [];
         Object.keys(mainList).forEach(catId => {
             $("#subCat" + catId).on("change", function() {
                 getProductCategory(catId);
             });
+            checkedNodeIds($("#subCat" + catId).data("kendoTreeView").dataSource.view(), old_selected_cats);
         });
-
+        $(document).ready(function () {
+            $("#catcollapse" + {{ request()->sub_category_id }}).collapse("show");
+        });
         function getProductCategory(catId) {
             var checkedNodes = [],
                 category_ids;
@@ -359,14 +361,22 @@
                 data: {
                     search_product: $("#search_product").val(),
                     categories: checkedNodes,
-
                 },
 
                 success: function(products) {
                     $("#productDisplayBox").html('');
                     $("#productDisplayBox").html(products);
-                    readLoacalstorage()
-
+                    readLoacalstorage();
+                    last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
+                    console.log("Last Selected Category : " , last_selected_cat);
+                    if(last_selected_cat.length > 0){
+                        last_selected_cat.forEach(function(cat){
+                            if($("#catcollapse" + last_selected_cat).length){
+                                $("#catcollapse" + last_selected_cat).collapse("show");
+                            }
+                        });
+                    }
+                    old_selected_cats = checkedNodes;
                 }
             });
 

@@ -368,7 +368,6 @@
                     $("#productDisplayBox").html(products);
                     readLoacalstorage();
                     last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
-                    console.log("Last Selected Category : " , last_selected_cat);
                     if(last_selected_cat.length > 0){
                         last_selected_cat.forEach(function(cat){
                             if($("#catcollapse" + last_selected_cat).length){

@@ -251,8 +251,8 @@
                         <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                                                                                                                                                                          <button type="button" class="btn btn-primary">Send Inquiry</button>
-                                                                                                                                                                        </div> -->
+                                                                                                                                                                              <button type="button" class="btn btn-primary">Send Inquiry</button>
+                                                                                                                                                                            </div> -->
                 </div>
             </div>
         </div>
@@ -338,9 +338,12 @@
             });
             checkedNodeIds($("#subCat" + catId).data("kendoTreeView").dataSource.view(), old_selected_cats);
         });
-        $(document).ready(function () {
-            $("#catcollapse" + {{ request()->sub_category_id }}).collapse("show");
+        $(document).ready(function() {
+            @if (!empty(request()->sub_category_id))
+                $(".catcollapse" + {{ request()->sub_category_id }}).collapse("show");
+            @endif
         });
+
         function getProductCategory(catId) {
             var checkedNodes = [],
                 category_ids;
@@ -368,9 +371,9 @@
                     $("#productDisplayBox").html(products);
                     readLoacalstorage();
                     last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
-                    if(last_selected_cat.length > 0){
-                        last_selected_cat.forEach(function(cat){
-                            if($("#catcollapse" + last_selected_cat).length){
+                    if (last_selected_cat.length > 0) {
+                        last_selected_cat.forEach(function(cat) {
+                            if ($("#catcollapse" + last_selected_cat).length) {
                                 $("#catcollapse" + last_selected_cat).collapse("show");
                             }
                         });

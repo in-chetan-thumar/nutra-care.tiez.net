@@ -42,6 +42,12 @@
     }
 }
 
+@media screen and (max-width: 1400px) {
+.application_page .nav-tabs .nav-link { font-size: 16px;  padding: 10px 8px 10px 10px;}    
+.application_page .k-treeview-leaf {font-size: 16px;}
+.application_page .k-checkbox-md { width: 20px; height: 20px;}
+}
+
 @media screen and (max-width: 1199px) {
     .header_main nav ul li a, .header_main nav ul li a:visited {
         margin: 0 11px;
@@ -210,7 +216,47 @@
     }
 }
 
+
+@media screen and (min-width: 824px) {
+.sidenav .modal { position: static; display: block; overflow: unset; opacity: 1;}
+.sidenav .modal-content {padding:0 !important;}
+.sidenav .modal-content .btn-close {display: none;}
+.sidenav .modal.fade .modal-dialog {transform: unset;margin: 0;}
+.mobile_show {display: none;}
+}
+
+
+
 @media screen and (max-width: 823px) {
+
+
+/**/
+.application_page .main_rgt {display: none;}
+.application_page .sidenav {padding: 7px 15px;}
+.btnwrpr.d-flex {display: block !important;}
+.btnwrpr button {width: 100%;margin-top: 15px;}
+.btnwrpr .links {width: 100%;float: left;}
+.btnwrpr .links ul {display: inline-block;float: right;}
+.btnwrpr .links ul li:last-child {margin-right: 0px;}
+.application_page .accordion-button::before, .application_page .accordion-collapse .accordion-button::after, .application_page .accordion-button::after {content: "";}
+.pro_breadcrumb ol li {  font-size: 13px;}
+.allpronamelist ul li {  font-size: 13px;}
+#selectedpro.product_modal .modal-title {  font-size: 20px;}
+.application_page .accordion-collapse .accordion-button::before {content: "" !important;}
+.btn-close { }
+.modal-header .btn-close {padding: 3px;}
+#profilter.product_modal .modal-content {padding-top: 40px;}
+/**/
+
+
+
+
+
+
+
+
+
+
     .header_right {
         float: none;
         margin: 0;
@@ -869,6 +915,10 @@
     form.form-group.filters .col-lg-3 {
         width: 100%;
     }
+}
+
+@media screen and (max-width: 575px) {
+.product_modal .modal-content {  padding: 20px 15px;}
 }
 
 @media screen and (max-width: 568px) {

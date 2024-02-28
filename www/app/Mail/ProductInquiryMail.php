@@ -12,7 +12,7 @@ class ProductInquiryMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $NAME, $SUBJECT, $USER, $CC_USER, $body,$PATIENT_NAME ;
+    public $NAME, $SUBJECT, $INQUIRY, $CC_USER, $body,$PATIENT_NAME ,$PRODUCT_LIST;
     public $id;
 
     /**
@@ -23,6 +23,8 @@ class ProductInquiryMail extends Mailable
     public function __construct($params)
     {
         $this->id = $params['id'];
+        $this->PRODUCT_LIST = $params['product_lists'];
+        $this->INQUIRY = $params['inquiry'];
     }
 
 
@@ -35,10 +37,12 @@ class ProductInquiryMail extends Mailable
     public function build()
     {
         $record = resolve('inquiry')->getById($this->id);
+        $product_list =  $this->PRODUCT_LIST;
+        $inquiry = $this->INQUIRY;
         $cc = $bcc = [];
         $to =config('constants.PRACTICE_MANAGER_EMAILS');
         $cc = config('constants.PRACTICE_MANAGER_EMAILS');;
         $subject = "# New Inquiry From {{$record->name}} Check it.";
-        return $this->to($to)->cc($cc)->from(config('mail.from.address'))->subject($subject)->view('admin.email.inquiry_email',compact('record'));
+        return $this->to($to)->cc($cc)->from(config('mail.from.address'))->subject($subject)->view('admin.email.inquiry_email',compact('record','product_list','inquiry'));
     }
 }

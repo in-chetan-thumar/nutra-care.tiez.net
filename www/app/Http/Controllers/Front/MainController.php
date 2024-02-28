@@ -213,6 +213,8 @@ class MainController extends Controller
 
             $params = [];
             $params['id'] = $inquiry->id;
+            $params['product_lists'] = $product_lists;
+            $params['inquiry'] = $inquiry;
 
             Mail::send(new ProductInquiryMail($params));
 

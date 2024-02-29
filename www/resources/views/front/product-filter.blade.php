@@ -251,8 +251,8 @@
                         <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                                                                                                                                                                              <button type="button" class="btn btn-primary">Send Inquiry</button>
-                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                      <button type="button" class="btn btn-primary">Send Inquiry</button>
+                                                                                                                                                                                                                                                                                    </div> -->
                 </div>
             </div>
         </div>
@@ -367,8 +367,7 @@
                 },
 
                 success: function(products) {
-                    $("#productDisplayBox").html('');
-                    $("#productDisplayBox").html(products);
+                    $("#categoryExample").html(products);
                     readLoacalstorage();
                     last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
                     if (last_selected_cat.length > 0) {

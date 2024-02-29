@@ -188,8 +188,8 @@
                     <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                 </div>
                 <!-- <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Send Inquiry</button>
-                    </div> -->
+                          <button type="button" class="btn btn-primary">Send Inquiry</button>
+                        </div> -->
             </div>
         </div>
     </div>

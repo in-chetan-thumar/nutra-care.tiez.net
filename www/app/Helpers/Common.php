@@ -184,14 +184,24 @@ class Common
     public function getLeafCategories($subCats)
     {
         $arr = [];
-        foreach ($subCats as $cat) {
-            // $tempTitle = $item->getAttribute('title');
-            if ($cat->subSubCategory->count() > 0) {
-                $arr[] =  $this->getLeafCategories($cat->subSubCategory);
-            } else {
-                $arr[] = $cat;
+        if (is_array($subCats)) {
+            foreach ($subCats as $cat) {
+                // $tempTitle = $item->getAttribute('title');
+                if ($cat->subSubCategory->count() > 0) {
+                    $arr[] =  $this->getLeafCategories($cat->subSubCategory);
+                } else {
+                    $arr[] = $cat;
+                }
+                // $arr[] =  $tempTitle;
             }
-            // $arr[] =  $tempTitle;
+        } else {
+            if ($subCats->subSubCategory->count() > 0) {
+                foreach ($subCats->subSubCategory as $item) {
+                    $arr[] =  $this->getLeafCategories($item);
+                }
+            } else {
+                $arr[] = $subCats;
+            }
         }
         return $arr;
     }
@@ -199,6 +209,7 @@ class Common
     public function getParentTreeName($cat, $parentCategoryId)
     {
         try {
+
             $title = $cat->title;
             if ($cat->supCategory != null && $parentCategoryId != $cat->parent_category_id && $parentCategoryId != $cat->id) {
                 $title = $this->getParentTreeName($cat->supCategory, $parentCategoryId) . ' > ' . $title;

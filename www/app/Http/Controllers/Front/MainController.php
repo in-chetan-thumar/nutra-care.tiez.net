@@ -154,7 +154,7 @@ class MainController extends Controller
 
         $categoriesForFilter = Category::with('subSubCategory')->where('parent_category_id', 0)->get();
 
-        $categoriesForFilterArray = app('common')->getAllCatForFilter($categoriesForFilter);
+        $categoriesForFilterArray = app('common')->getAllCatForFilter($categoriesForFilter, 0);
         $dataSubCatList = [];
         foreach ($categoriesForFilterArray as $catItem) {
             $dataSubCatList[$catItem['id']] =  $catItem['items'];

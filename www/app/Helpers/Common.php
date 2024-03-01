@@ -90,7 +90,6 @@ class Common
     {
         $categoryNames = [];
 
-
         if ($category instanceof \App\Models\Category) {
             $categoryNames[] = $category->getAttribute('id');
 
@@ -102,7 +101,6 @@ class Common
                 );
             }
         }
-
         return array_unique($categoryNames);
     }
 
@@ -134,21 +132,25 @@ class Common
         return $categoryCollection;
     }
 
-    public function getAllCatForFilter($categoriesForFilter)
+    public function getAllCatForFilter($categoriesForFilter, $count = 0)
     {
         $catArray = [];
         foreach ($categoriesForFilter as $catItem) {
             $subArray = [];
-            if ($catItem->subSubCategory->count() > 0) {
-                $subArray = $this->getAllCatForFilter($catItem->subSubCategory);
+            if ($catItem->subSubCategory->count() > 0 && $count < 3) {
+                $count++;
+                $subArray = $this->getAllCatForFilter($catItem->subSubCategory, $count);
+                $count--;
             }
 
-            $catArray[] = [
-                "id" => $catItem->id,
-                "text" => $catItem->title,
-                "expanded" => false,
-                "items" => $subArray
-            ];
+            if ($count < 3) {
+                $catArray[] = [
+                    "id" => $catItem->id,
+                    "text" => $catItem->title,
+                    "expanded" => false,
+                    "items" => $subArray
+                ];
+            }
         }
 
         return $catArray;
@@ -229,5 +231,26 @@ class Common
         })->get();
         $subCat['products'] = $products;
         return collect($subCat);
+    }
+
+    public function getParentCategoryId($last_selected_cat)
+    {
+        $catArray = [];
+
+        if (count($last_selected_cat) == 1) {
+            $showCat = Category::with('supCategory')->whereIn('id', $last_selected_cat)->get();
+
+            $catArray = collect($showCat)->map(function ($cat) {
+                return app('common')->getAllSupCategory($cat);
+            })->flatten()->all();
+        } else {
+            $catArray = Category::with('supCategory')->whereIn('id', $last_selected_cat)->get()->pluck('supCategory.id')->unique()->toArray();
+        }
+
+        $valuesToRemove = Category::where('parent_category_id', 0)->get()->pluck('id')->unique()->toArray();
+
+        $uniqueArray = array_values(array_diff($catArray, $valuesToRemove));
+
+        return array_unique($uniqueArray);
     }
 }

@@ -35,6 +35,10 @@ Route::group(['middleware' => 'language'], function () {
 
     Route::get('/front-products/{category_id?}/{sub_category_id?}', 'Front\MainController@frontProducts')->name('front.front.products');
     Route::match(['get', 'post'], '/products-filter/{category_id?}/{sub_category_id?}', 'Front\MainController@productFilter')->name('front.front.products.filter');
+    Route::post('/get-parent-category-id', function () {
+        $result = app('common')->getParentCategoryId($_REQUEST['last_selected_cat']);
+        return $result;
+    })->name('front.front.getParentCategoryId');
     Route::get('/products-list', 'Front\MainController@productList')->name('front.front.products.list');
     //    Route::post('/products-table', 'Front\MainController@getProductsByCategoryId')->name('front.product.category');
     Route::post('/products/inquiry', 'Front\MainController@submitInquiry')->name('submit.product.inquiry');

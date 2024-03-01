@@ -251,8 +251,8 @@
                         <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                                                                                                                                                                                                                                                                                      <button type="button" class="btn btn-primary">Send Inquiry</button>
-                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <button type="button" class="btn btn-primary">Send Inquiry</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
                 </div>
             </div>
         </div>
@@ -370,17 +370,73 @@
                     $("#categoryExample").html(products);
                     readLoacalstorage();
                     last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
+
                     if (last_selected_cat.length > 0) {
-                        last_selected_cat.forEach(function(cat) {
-                            if ($("#catcollapse" + last_selected_cat).length) {
-                                $("#catcollapse" + last_selected_cat).collapse("show");
-                            }
-                        });
+                        console.log(last_selected_cat);
+                        getParentCategoryId(last_selected_cat)
+                            .then(function(catArr) {
+                                console.log("catArr", catArr);
+                                if (Object.keys(catArr).length > 0) {
+                                    for (var key in catArr) {
+                                        if (catArr.hasOwnProperty(key)) {
+                                            if ($("#catcollapse" + catArr[key]).length) {
+                                                $("#catcollapse" + catArr[key]).collapse("show");
+                                            }
+                                        }
+                                    }
+                                }
+                            })
+                            .catch(function(error) {
+                                console.error("Error fetching parent category ID:", error);
+                            });
+                    }
+                    if (old_selected_cats.length >= checkedNodes.length) {
+                        removeCat = old_selected_cats.filter(removeCat => !checkedNodes.includes(removeCat));
+                        console.log("removeCat", removeCat);
+                        if (removeCat.length > 0) {
+                            getParentCategoryId(removeCat)
+                                .then(function(catArr) {
+                                    if (Object.keys(catArr).length > 0) {
+                                        for (var key in catArr) {
+                                            if (catArr.hasOwnProperty(key)) {
+                                                if ($("#catcollapse" + catArr[key]).length) {
+                                                    $("#catcollapse" + catArr[key]).collapse("show");
+                                                }
+                                            }
+                                        }
+                                    }
+                                })
+                                .catch(function(error) {
+                                    console.error("Error fetching parent category ID:", error);
+                                });
+                        }
                     }
                     old_selected_cats = checkedNodes;
                 }
             });
 
+        }
+
+        function getParentCategoryId(last_selected_cat) {
+            var getParentCategoryIdUrl = window.origin + "/get-parent-category-id";
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: "post",
+                    url: getParentCategoryIdUrl,
+                    data: {
+                        last_selected_cat: last_selected_cat,
+                    },
+                    success: function(result) {
+                        resolve(result);
+                    },
+                    error: function(error) {
+                        reject(error);
+                    }
+                });
+            });
         }
     </script>
 

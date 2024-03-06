@@ -44,7 +44,7 @@
 
                         @foreach($category->childs as $child)
                             <div class="category_size" >
-                                <a class="text-decoration-none" href="{{route('front.front.products',[$category->id,$child->id])}}">
+                                <a class="text-decoration-none" href="{{route('front.front.products.filter',[$category->id,$child->id])}}">
                                 <div class="category_block">
                                     <img src="{{ asset("storage/category/$child->photo") }}" alt="{{$child->title}}" title="{{$child->title}}" height="50px"/>
                                     <h4>{{$child->title}}</h4>

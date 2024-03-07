@@ -251,8 +251,8 @@
                         <img src="{{ asset('assets/images/paper-plane.svg') }}" alt="Paper Plane" title="Paper Plane" />
                     </div>
                     <!-- <div class="modal-footer">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <button type="button" class="btn btn-primary">Send Inquiry</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <button type="button" class="btn btn-primary">Send Inquiry</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
                 </div>
             </div>
         </div>
@@ -369,18 +369,19 @@
                 success: function(products) {
                     $("#categoryExample").html(products);
                     readLoacalstorage();
+                    console.log("checkedNodes", checkedNodes);
                     last_selected_cat = checkedNodes.filter(cat => !old_selected_cats.includes(cat));
 
                     if (last_selected_cat.length > 0) {
-                        console.log(last_selected_cat);
+                        console.log("last_selected_cat", last_selected_cat);
                         getParentCategoryId(last_selected_cat)
                             .then(function(catArr) {
                                 console.log("catArr", catArr);
                                 if (Object.keys(catArr).length > 0) {
                                     for (var key in catArr) {
                                         if (catArr.hasOwnProperty(key)) {
-                                            if ($("#catcollapse" + catArr[key]).length) {
-                                                $("#catcollapse" + catArr[key]).collapse("show");
+                                            if ($(".catcollapse" + catArr[key]).length) {
+                                                $(".catcollapse" + catArr[key]).collapse("show");
                                             }
                                         }
                                     }
@@ -399,8 +400,8 @@
                                     if (Object.keys(catArr).length > 0) {
                                         for (var key in catArr) {
                                             if (catArr.hasOwnProperty(key)) {
-                                                if ($("#catcollapse" + catArr[key]).length) {
-                                                    $("#catcollapse" + catArr[key]).collapse("show");
+                                                if ($(".catcollapse" + catArr[key]).length) {
+                                                    $(".catcollapse" + catArr[key]).collapse("show");
                                                 }
                                             }
                                         }

@@ -48,7 +48,12 @@
                                                                     aria-expanded="true"
                                                                     aria-controls="subSubCat{{ $catWithProd['id'] }}">
                                                                     {{ $catWithProd['title'] }}
-                                                                    ({{ count($catWithProd['products']) }} Products)
+                                                                    @if(count($catWithProd['products']) <= 1)
+                                                                        ({{ count($catWithProd['products']) }} Product)
+                                                                    @else
+                                                                        ({{ count($catWithProd['products']) }} Products)
+                                                                    @endif
+
                                                                 </button>
                                                             </h2>
                                                             <div id="subSubCat{{ $catWithProd['id'] }}"

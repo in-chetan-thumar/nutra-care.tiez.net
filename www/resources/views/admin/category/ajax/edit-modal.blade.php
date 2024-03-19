@@ -22,6 +22,7 @@
         <div class="form-group col-md-12">
             {{ Form::label('parent_category', 'Parent Category', array('class'=>'form-control-label')) }}
 {{--            {{Form::select('parent_category', $categories,$record->parent_category_id,['class'=>'form-control category','placeholder'=>'Select parent category'] )}}--}}
+            
             <select name="category" class="selectpicker  form-control  " data-live-search="true" title="Choose one of the following...">
                 <option value="{{ isset($record) && !empty($record->id) ? $record->parent->id : '' }}" {{isset($record) && !empty($record->id) ? 'selected' : '' }}>{{  isset($record) && !empty($record->id) ? $record->parent->title : '' }}</option>
                 @foreach ($categories as $category)

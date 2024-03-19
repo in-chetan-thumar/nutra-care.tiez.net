@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
-                        <img src="assets/images/nutra_2nd.png" alt="World" title="" width="80%"/>
+                        <img src="assets/images/nutra_2nd.png" alt="World" title="" width="70%"/>
                     </div>
                 </div>
             </div>

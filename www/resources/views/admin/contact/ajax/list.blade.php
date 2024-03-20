@@ -7,6 +7,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Comment</th>
+            <th>Product type</th>
 {{--            <th>Replay</th>--}}
 {{--            <th class="action-icon">Action</th>--}}
         </tr>
@@ -22,6 +23,7 @@
                 <td>{{$value->phone}}</td>
                 <td>{{$value->email}}</td>
                 <td>{{$value->comment}}</td>
+                <td>{{$value->product_type}}</td>
 {{--                <td>{{$value->replay}}</td>--}}
 {{--                <td class="action-icon">--}}
 {{--                    <a href="javascript:;" class="form-contact-form theme_icon replay_model" data-url="{{route('contacts.update', $value->id)}}" data-toggle="modal" data-placement="top" title="Replay"><i class="fa fa-reply"></i></a>&nbsp;--}}

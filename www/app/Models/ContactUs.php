@@ -14,6 +14,7 @@ class ContactUs extends Model
         "email",
         "phone",
         "comment",
+        "product_type",
         "created_by",
         "updated_by",
         "deleted_at",

@@ -237,20 +237,19 @@ class MainController extends Controller
         try {
 
             $contactus = ContactUs::create([
-                'name' => $request->name,
+                'name' => $request->full_name,
                 'email' => $request->email,
-                'phone' => $request->phone,
+                'phone' => $request->phone_number,
                 'comment' => $request->message,
+                'product_type' => $request->product_type,
             ]);
-
-            $params = [];
-            $params['id'] = $contactus->id;
-
-            Mail::send(new ContactUsInquiryEmail($params));
-
-            return redirect()->back()->with(['status' => false, 'message' => 'Inquiry submit successfully']);
+            if($contactus){
+                $params = [];
+                $params['id'] = $contactus->id;
+                Mail::send(new ContactUsInquiryEmail($params));
+            }
+            return redirect()->back()->with(['status' => false, 'message' => 'Thank you for contacting us. Your message has been successfully submitted.']);
         } catch (\Exception $e) {
-
             return redirect()->back()->with(['status' => true, 'message' => 'Something went wrong try again.!']);
         }
     }

@@ -10,29 +10,81 @@
 <section class="contact_address">
   <div class="container">
     <div class="contact_div">
+        @if(session('status') === false)
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
       <div class="contact_form">
-        <div class="form-group">
-          <input type="text" id="" name="fname" value="" class="form-control" placeholder="Full Name">
-        </div>
-        <div class="form-group">
-          <input type="tel" id="" name="pnumber" value="" class="form-control" placeholder="Phone Number">
-        </div>
-        <div class="form-group">
-          <input type="email" id="" name="email" value="" class="form-control" placeholder="Email Address">
-        </div>
-        <div class="form-group">
-          <select class="form-control">
-            <option selected="selected">Select Product Type</option>
-            <option>Product1</option>
-            <option>Product2</option>
-          </select>
-        </div>
-        <div class="form-group textarea_class">
-          <textarea class="form-control" placeholder="Message" rows="3"></textarea>
-        </div>
+          {!! Form::open([
+             'url' => route('submit.contact.inquiry'),
+             'method' => 'POST',
+             'id' => 'contact-form',
+             'files' => true,
+         ]) !!}
+          <div class="row">
+              <div class="col-6 form-group">
+                      <input type="text" id="full_name" name="full_name" value="" class="form-control" placeholder="Full Name">
+                      @error('full_name')
+                      <span style="color:red">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                      @enderror
+              </div>
+              <div class="col-6 form-group">
+                  {!! Form::number('phone_number', null, [
+                  'class' => ' form-control phone_number',
+                  'placeholder' => 'Phone Number',
+                  'oninput' =>
+                      'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);',
+                  'maxlength' => '10',
+              ]) !!}
+                  @error('phone_number')
+                  <span style="color:red">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+              </div>
+              <div class="col-6 form-group">
+                  <input type="email" id="" name="email" value="" class="form-control" placeholder="Email Address">
+                  @error('email')
+                  <span style="color:red">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
+              </div>
+              <div class="col-6 form-group">
+                  <select name="product_type" class="form-control">
+                      <option value="" selected="selected">Select Product Type</option>
+                      <option value="Product1" >Product1</option>
+                      <option value="Product2" >Product2</option>
+                  </select>
+                  @error('product_type')
+                  <span style="color:red">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+              </div>
+              <div class="col-12 form-group textarea_class">
+                  <textarea class="form-control" name="message" placeholder="Message" rows="3"></textarea>
+                  @error('message')
+                  <span style="color:red">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
+              </div>
+
+              </div>
+
+
+
         <div class="contact_btn">
           <button type="submit" class="btn btn-primary">{{trans('labels.submit_req_btn')}}</button>
         </div>
+          {!! Form::close() !!}
+
       </div>
     </div>
     <div class="contact_address_block">
@@ -53,3 +105,4 @@
 </section>
 
 @endsection
+{{--{!! JsValidator::formRequest('App\Http\Requests\ContactUsRequest', '#contact-form') !!}--}}

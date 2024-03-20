@@ -31,7 +31,7 @@ Route::group(['middleware' => 'language'], function () {
     Route::get('/', 'Front\MainController@home')->name('front.home');
     Route::get('/about-us', 'Front\MainController@aboutUs')->name('front.about.us');
     Route::get('/contact-us', 'Front\MainController@contactUs')->name('front.contact.us');
-    Route::post('/contact-us', 'Front\MainController@submitContactUs')->name('submit.contact.inquiry');
+    Route::post('/contact-us/store', 'Front\MainController@submitContactUs')->name('submit.contact.inquiry');
 
     Route::get('/front-products/{category_id?}/{sub_category_id?}', 'Front\MainController@frontProducts')->name('front.front.products');
     Route::match(['get', 'post'], '/products-filter/{category_id?}/{sub_category_id?}', 'Front\MainController@productFilter')->name('front.front.products.filter');

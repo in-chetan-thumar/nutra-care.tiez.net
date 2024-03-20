@@ -40,8 +40,8 @@ class ProductInquiryMail extends Mailable
         $product_list =  $this->PRODUCT_LIST;
         $inquiry = $this->INQUIRY;
         $cc = $bcc = [];
-        $to =config('constants.PRACTICE_MANAGER_EMAILS');
-        $cc = config('constants.PRACTICE_MANAGER_EMAILS');;
+        $to =config('constants.EMAIL_TO');
+        $cc = config('constants.EMAIL_TO');;
         $subject = "# New Inquiry From {{$record->name}} Check it.";
         return $this->to($to)->cc($cc)->from(config('mail.from.address'))->subject($subject)->view('admin.email.inquiry_email',compact('record','product_list','inquiry'));
     }

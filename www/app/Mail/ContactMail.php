@@ -35,7 +35,7 @@ class ContactMail extends Mailable
 
         $cc = $bcc = [];
         $to = $contact_data->email;
-        $cc[] = config('constants.PRACTICE_MANAGER_EMAILS');;
+        $cc[] = config('constants.EMAIL_TO');;
         $subject = "Contact US Replay";
 
         return $this->to($to)->cc($cc)->from(config('mail.from.address'))->subject($subject)->view('admin.email.contact_replay_email',compact('contact_data'));

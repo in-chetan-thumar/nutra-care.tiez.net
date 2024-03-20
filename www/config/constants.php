@@ -8,7 +8,7 @@ return [
     ],
 
     //'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'info@nutracareintl.com'),
-    'PRACTICE_MANAGER_EMAILS' => env('PRACTICE_MANAGER_EMAILS', 'kajal.baldha@tiez.nl'),
+    'EMAIL_TO' => env('EMAIL_TO', 'kajal.baldha@tiez.nl'),
 	'APP_USER_ROLE_ID' => '2',
 
     // File storage

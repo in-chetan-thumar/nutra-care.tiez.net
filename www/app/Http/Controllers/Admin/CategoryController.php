@@ -194,12 +194,26 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-			CategoryProductLink::where('category_id', $id)->forceDelete();
-            $category = Category::find($id)->forceDelete();
-            return response()->json(['status' => 'success', 'message' => 'Category deleted successfully.']);
+            CategoryProductLink::where('category_id', $id)->delete();
+
+            $category = Category::find($id);
+
+            if ($category) {
+                $category->delete();
+                return response()->json(['status' => 'success', 'message' => 'Category deleted successfully.']);
+            } else {
+                return response()->json(['status' => 'danger', 'message' => 'Category not found.']);
+            }
         } catch (\Exception $e) {
             return response()->json(['status' => 'danger', 'message' => $e->getMessage()]);
         }
+//        try {
+//			CategoryProductLink::where('category_id', $id)->forceDelete();
+//            $category = Category::find($id)->forceDelete();
+//            return response()->json(['status' => 'success', 'message' => 'Category deleted successfully.']);
+//        } catch (\Exception $e) {
+//            return response()->json(['status' => 'danger', 'message' => $e->getMessage()]);
+//        }
     }
 
     public function getCategory()
